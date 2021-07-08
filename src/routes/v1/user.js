@@ -1,38 +1,12 @@
 import Router from '@koa/router'
+import UserController from '../../controllers/UserController'
 
 const router = new Router()
 
-router.post('/register', ctx => {   // 회원가입
-  ctx.body = {
-    code: 'S0001',
-  }
-})
-
-router.post('/login', ctx => {      // 로그인
-  ctx.body = {
-    code: 'S0001',
-  }
-})
-
-router.get('/me', ctx => {    // 본인정보 확인
-  ctx.body = {
-    code: 'S0001',
-  }
-})
-
-router.put('/:id', ctx => {         // 패스워드 변경
-  ctx.body = {
-    code: 'S0001',
-  }
-})
-
-router.delete('/:id', ctx => {      // 회원 삭제
-  ctx.body = {
-    code: 'S0001',
-    data: {
-      user: null,
-    },
-  }
-})
+router.post('/register', UserController.create)     // 회원가입
+router.post('/login', UserController.create)        // 로그인
+router.get('/me', UserController.create)      // 본인정보 확인
+router.put('/:id', UserController.create)           // 패스워드 변경
+router.delete('/:id', UserController.create)        // 회원 삭제
 
 module.exports = router
