@@ -1,12 +1,19 @@
 import Router from '@koa/router'
 
+import user from './user'
+import cls from './class'
+import simulation from './simulation'
+
 const router = new Router()
 
-router.get('/user', (ctx, next) => {
+router.use('/user', user.routes())
+router.use('/class', cls.routes())
+router.use('/simulation', simulation.routes())
+
+router.get('/', ctx => {
   ctx.body = {
-    message: 'hello',
-    path: ctx.request.path,
-    ctx
+    message: 'Api 서버 작동 확인용입니다.',
+    path: ctx.request.path
   }
 })
 

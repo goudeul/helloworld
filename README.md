@@ -22,13 +22,11 @@
 // nvm 설치
 $ sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 $ source ~/.bashrc
-$ nvm install 15
+$ nvm install 16
 
 $ sudo -su $USER
 $ git config --global credential.helper store             // git 계정정보 저장 (1회 저장후 지속됨)
-$ git clone https://github.com/coarzip/48room-api && cd 48room-api
-$ cp .env.localhost .env.development
-$ nano .env.development                     // 포트 및 기타 수정사항 변경
+$ git clone https://github.com/coarzip/naval-academy-api && cd naval-academy-api
 ~~~
 
 2. git pull / build
@@ -46,7 +44,6 @@ $ npm run dev           // Dev Watch
 ~~~shell
 $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 ~~~
-
 
 ### production 서버 세팅시 확인할 것
 - 일반계정으로 서버 실행하기 (80번 포트)
