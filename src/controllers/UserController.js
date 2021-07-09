@@ -31,12 +31,30 @@ module.exports = {
       ctx.throw(404, e.message, { code: 'S9999' })
     }
   },
-  read: async (ctx) => {
-    const { id } = ctx.params
+  login: async (ctx, next) => {
+    await passport.authenticate('local', {}, async (err, user) => {
+      if (err) {
+        ctx.throw(404, err, { code: 'S9999' })
+      } else {
+        const bearerToken = setBearerToken(user)
 
+        ctx.body = {
+          code: 'S0001',
+          data: {
+            user,
+            token: bearerToken,
+          },
+        }
+      }
+    })(ctx, next)
+  },
+  me: async (ctx, next) => {
+    const user = ctx.user
     ctx.body = {
       code: 'S0001',
-      data: {},
+      data: {
+        user
+      }
     }
-  },
+  }
 }

@@ -4,9 +4,9 @@ import KoaBody from 'koa-body'
 import KoaCors from '@koa/cors'
 import error from 'koa-json-error'
 import KoaLogger from 'koa-logger'
+import passport from 'koa-passport'
 // import session from 'koa-session'
-// import passport from 'koa-passport'
-// import { authenticateJwt } from './middlewares/passport'
+import { authenticateJwt } from './middlewares/passport'
 import './config/env'
 
 const app = new Koa()
@@ -51,8 +51,8 @@ app.keys = ['coarsoft']
 app.use(session(CONFIG, app))*/
 
 // authentication
-/*app.use(passport.initialize())
-app.use(authenticateJwt)*/
+app.use(passport.initialize())
+app.use(authenticateJwt)
 
 // router
 const router = new Router()
