@@ -1,20 +1,14 @@
+import path from 'path'
 import fsPromises from 'fs/promises'
 import fs from 'fs'
-import path from 'path'
 
 // import bcrypt from 'bcryptjs'
 
 const appDir = path.dirname(require.main.filename)
-const directory = appDir + '/events/user'
+const directory = appDir + '/events/user/'
 
 module.exports = {
   create: async (user) => {
-    const { id } = user
-
-    const aa = await fsPromises.open(directory + '/aa1').catch(e => console.log(e)) || null
-    console.log(aa)
-    // await aa.close()
-
     /*// const aa = await fs.open(directory + '/' + id + '.json')
     const aa = await fs.open(directory + '/aa')
     const bb = await fs.read(aa)
@@ -35,7 +29,7 @@ module.exports = {
 
     return user
   },
-  read: async () => {
+  read: async (id) => {
     const file = require(`../events/user/${id}.json`)
     console.log(file)
   },
