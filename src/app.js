@@ -18,7 +18,7 @@ app.use(
   error((err) => {
     return {
       code: err.code || 'S9999',
-      message: err.message,
+      message: err.message
     }
   }),
 )

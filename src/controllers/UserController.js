@@ -29,13 +29,15 @@ module.exports = {
         },
       }
     } catch (e) {
-      ctx.throw(404, e.message, { code: 'S9999' })
+      const user = ctx.user
+      ctx.throw(404, e.message, { code: 'S9999', user })
     }
   },
   login: async (ctx, next) => {
     await passport.authenticate('local', {}, async (err, user) => {
       if (err) {
-        ctx.throw(404, err, { code: 'S9999' })
+        const user = ctx.request.body.user
+        ctx.throw(404, err, { code: 'S9999', user })
       } else {
         const bearerToken = setBearerToken(user)
 
@@ -78,7 +80,8 @@ module.exports = {
     const oldUser = await UserService.read(id)
 
     if (!await bcrypt.compareSync(password, oldUser.password)) {
-      ctx.throw(404, '패스워드를 확인해주세요.', { user: ctx.user, code: 'S9999' })
+      const user = ctx.user
+      ctx.throw(404, '패스워드를 확인해주세요.', { code: 'S9999', user })
     }
 
     const user = await UserService.update(id, {
@@ -93,9 +96,18 @@ module.exports = {
     }
   },
   delete: async (ctx) => {
+    const id = ctx.params.id
+    const user = await UserService.delete(id)
+    if (!user) {
+      const user = ctx.user
+      ctx.throw(404, '회원정보가 존재하지 않습니다.', { code: 'S9999', user })
+    }
+
     ctx.body = {
       code: 'S0001',
-      data: {}
+      data: {
+        user: user
+      }
     }
   },
 }

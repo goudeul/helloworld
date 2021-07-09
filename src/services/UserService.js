@@ -65,5 +65,15 @@ module.exports = {
     delete changeUser.password
     return changeUser
   },
-  async delete (id) {},
+  async delete (id) {
+    const userFile = await fsPromises.open(directory + `${id}.json`)
+      .catch(() => {}) || null
+
+    if (userFile) {
+      await fsPromises.rm(directory + `${id}.json`)
+      return null
+    } else {
+      return false
+    }
+  },
 }
