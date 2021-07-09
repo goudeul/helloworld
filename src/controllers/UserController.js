@@ -1,6 +1,7 @@
 import UserService from '../services/UserService'
 import passport from 'koa-passport'
 import jwt from 'jsonwebtoken'
+const bcrypt = require('bcryptjs')
 
 function setBearerToken (user) {
   const secret = process.env.JWT_SECRET
@@ -56,5 +57,45 @@ module.exports = {
         user
       }
     }
-  }
+  },
+  update: async (ctx) => {
+    const id = ctx.params.id
+    const body = ctx.request.body
+    const user = await UserService.update(id, body.user)
+
+    ctx.body = {
+      code: 'S0001',
+      data: {
+        id,
+        user
+      }
+    }
+  },
+  changePassword: async (ctx, next) => {
+    const id = ctx.user.id
+    const body = ctx.request.body
+    const { password, new_password } = body.user
+    const oldUser = await UserService.read(id)
+
+    if (!await bcrypt.compareSync(password, oldUser.password)) {
+      ctx.throw(404, '패스워드를 확인해주세요.', { user: ctx.user, code: 'S9999' })
+    }
+
+    const user = await UserService.update(id, {
+      password: new_password
+    })
+
+    ctx.body = {
+      code: 'S0001',
+      data: {
+        user
+      }
+    }
+  },
+  delete: async (ctx) => {
+    ctx.body = {
+      code: 'S0001',
+      data: {}
+    }
+  },
 }
