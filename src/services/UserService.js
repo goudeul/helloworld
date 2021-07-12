@@ -43,7 +43,7 @@ module.exports = {
     try {
       return require(`../events/user/${id}.json`)
     } catch (e) {
-      return false
+      return e
     }
   },
   async update (id, user) {

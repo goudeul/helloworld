@@ -14,9 +14,7 @@ passport.use(new LocalStrategy({
 }, async (id, password, done) => {
   const user = await UserService.read(id)
 
-  console.log(id, password)
-
-  if (!user) return done(null, false, '계정정보가 존재하지 않습니다.')
+  if (!user.id) return done(null, false, '계정정보가 존재하지 않습니다.')
   if (!await bcrypt.compareSync(password, user.password)) return done('패스워드를 확인해주세요.', false)
 
   // returnUser 객체의 패스워드를 지워서 반환해야함!! (user 객체에 대한 메모리 참조때문에)
@@ -33,7 +31,7 @@ passport.use(new JwtStrategy({
 }, async (payload, done) => {
   const user = await UserService.read(payload.id)
 
-  if (!user) return done(null, false, '계정정보가 존재하지 않습니다.')
+  if (!user.id) return done(null, false, '계정정보가 존재하지 않습니다.')
 
   // returnUser 객체의 패스워드를 지워서 반환해야함!! (user 객체에 대한 메모리 참조때문에)
   const returnUser = JSON.parse(JSON.stringify(user))

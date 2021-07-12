@@ -10,10 +10,10 @@ module.exports = {
   async create (cls, professor) {
     try {
       const now = moment().format('YYYY-MM-DD HH:mm:ss')
-      const id = uniqid()
+      const class_id = uniqid()
 
       cls = {
-        id: id,
+        id: class_id,
         name: cls.name,
         lastApiRequest: now,
         created_at: now,
@@ -22,9 +22,10 @@ module.exports = {
           name: professor.name,
           role: professor.role,
         },
+        students: [],
       }
 
-      await fsPromises.writeFile(directory + `${id}.json`,
+      await fsPromises.writeFile(directory + `${class_id}.json`,
         JSON.stringify(cls))
 
       return cls
@@ -32,7 +33,40 @@ module.exports = {
       return e
     }
   },
-  async read (id) {},
+  async read (class_id) {
+    try {
+      return require(`../events/class/${class_id}.json`)
+    } catch (e) {
+      return e
+    }
+  },
+  async update (class_id, cls) {
+    try {
+      await fsPromises.writeFile(directory + `${class_id}.json`,
+        JSON.stringify(cls))
+
+      return cls
+    } catch (e) {
+      return e
+    }
+  },
+  async delete (class_id) {
+    try {
+      const classFile = await fsPromises.open(directory + `${class_id}.json`)
+        .catch((e) => { return e }) || null
+
+      if (classFile) {
+        await fsPromises.rm(directory + `${class_id}.json`)
+        await classFile.close()
+
+        return true
+      } else {
+        return false
+      }
+    } catch (e) {
+      return e
+    }
+  },
   async fetchList (size, sort) {
     try {
       const files = await fsPromises.readdir(directory)
