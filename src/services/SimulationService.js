@@ -49,7 +49,13 @@ module.exports = {
   },
   async read (simulation_id) {
     try {
-      return require(`../events/simulation/${simulation_id}.json`)
+      const simulationFile = await fsPromises.open(directory + `${simulation_id}.json`)
+        .catch((e) => {}) || null
+
+      if (simulationFile) {
+        await simulationFile.close()
+        return require(`../events/simulation/${simulation_id}.json`)
+      }
     } catch (e) {
       return e
     }
@@ -67,7 +73,7 @@ module.exports = {
   async delete (simulation_id) {
     try {
       const simulationFile = await fsPromises.open(directory + `${simulation_id}.json`)
-        .catch((e) => { return e }) || null
+        .catch((e) => {}) || null
 
       if (simulationFile) {
         await fsPromises.rm(directory + `${simulationFile}.json`)

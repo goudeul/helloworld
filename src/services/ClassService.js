@@ -35,7 +35,13 @@ module.exports = {
   },
   async read (class_id) {
     try {
-      return require(`../events/class/${class_id}.json`)
+      const classFile = await fsPromises.open(directory + `${class_id}.json`)
+        .catch((e) => {}) || null
+
+      if (classFile) {
+        await classFile.close()
+        return require(`../events/class/${class_id}.json`)
+      }
     } catch (e) {
       return e
     }
@@ -53,7 +59,7 @@ module.exports = {
   async delete (class_id) {
     try {
       const classFile = await fsPromises.open(directory + `${class_id}.json`)
-        .catch((e) => { return e }) || null
+        .catch((e) => {}) || null
 
       if (classFile) {
         await fsPromises.rm(directory + `${class_id}.json`)

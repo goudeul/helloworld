@@ -41,7 +41,13 @@ module.exports = {
   },
   async read (id) {
     try {
-      return require(`../events/user/${id}.json`)
+      const userFile = await fsPromises.open(directory + `${id}.json`)
+        .catch((e) => {}) || null
+
+      if (userFile) {
+        await userFile.close()
+        return require(`../events/user/${id}.json`)
+      }
     } catch (e) {
       return e
     }
@@ -60,7 +66,7 @@ module.exports = {
   async delete (id) {
     try {
       const userFile = await fsPromises.open(directory + `${id}.json`)
-        .catch((e) => { return e }) || null
+        .catch((e) => {}) || null
 
       if (userFile) {
         await fsPromises.rm(directory + `${id}.json`)
