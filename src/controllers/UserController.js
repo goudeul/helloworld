@@ -82,13 +82,8 @@ module.exports = {
 
       const newUser = {
         ...oldUser,
-        name: body.user.name || oldUser.name,
+        ...body.user,
         password: password || oldUser.password,
-        phone: body.user.phone || oldUser.phone,
-        identityNumber: body.user.identityNumber || oldUser.identityNumber,
-        role: body.user.role || oldUser.role,
-        lastModifyPassword:
-          password ? now : oldUser.lastModifyPassword,
         updated_at: now,
       }
 
