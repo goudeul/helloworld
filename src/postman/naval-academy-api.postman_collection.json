@@ -1,0 +1,713 @@
+{
+	"info": {
+		"_postman_id": "545b91ab-bd02-4eb2-827c-f5b10ff457fc",
+		"name": "naval-academy-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01. 회원",
+			"item": [
+				{
+					"name": "01. 회원 가입",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/user/register"
+					},
+					"response": [
+						{
+							"name": "01. 회원 생성 (교수자)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/user/register"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "298"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:07:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"navy_01\",\n            \"name\": \"신선향\",\n            \"role\": \"10\",\n            \"phone\": \"010-5555-5555\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:07:51\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:07:51\",\n            \"updated_at\": \"2021-07-12 12:07:51\"\n        }\n    }\n}"
+						},
+						{
+							"name": "01. 회원 생성 (학습자 1)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"name\": \"홍길삼\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": null,\n        \"identityNumber\": \"210635\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/user/register"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "294"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:08:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_01\",\n            \"name\": \"홍길삼\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"210635\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:08:31\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:08:31\",\n            \"updated_at\": \"2021-07-12 12:08:31\"\n        }\n    }\n}"
+						},
+						{
+							"name": "01. 회원 생성 (학습자 2)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"student_02\",\n        \"name\": \"김삼순\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": null,\n        \"identityNumber\": \"214563\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/user/register"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "294"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:11:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_02\",\n            \"name\": \"김삼순\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"214563\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:11:35\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:11:35\",\n            \"updated_at\": \"2021-07-12 12:11:35\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "02. 회원 로그인",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/user/login"
+					},
+					"response": [
+						{
+							"name": "02. 회원 로그인 (교수자)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/user/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "508"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:10:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"navy_01\",\n            \"name\": \"신선향\",\n            \"role\": \"10\",\n            \"phone\": \"010-5555-5555\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:07:51\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:07:51\",\n            \"updated_at\": \"2021-07-12 12:07:51\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNTk0MDksImV4cCI6MTYyNjY2NDIwOSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.H9Tu4EsdCH6Dgpotl6UTCDN4bUz7644Y50upnAr_n4I\"\n    }\n}"
+						},
+						{
+							"name": "02. 회원 로그인 (학습자 1)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/user/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "508"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:10:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_01\",\n            \"name\": \"홍길삼\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"210635\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:08:31\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:08:31\",\n            \"updated_at\": \"2021-07-12 12:08:31\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNTk0MjgsImV4cCI6MTYyNjY2NDIyOCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tTByHkiRxstannabixY1VNTAEZN8BJZKOZs12SxSRcE\"\n    }\n}"
+						},
+						{
+							"name": "02. 회원 로그인 (학습자 2)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"student_02\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/user/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "508"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:12:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_02\",\n            \"name\": \"김삼순\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"214563\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:11:35\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:11:35\",\n            \"updated_at\": \"2021-07-12 12:11:35\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDIiLCJpYXQiOjE2MjYwNTk1NzEsImV4cCI6MTYyNjY2NDM3MSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.T3Ouep7FIj_YJCvCi3BXBz0hSau78y_kxCyX9PTZ0Ks\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "03. 회원 본인정보",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/user/me"
+					},
+					"response": []
+				},
+				{
+					"name": "04. 회원 정보 변경",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"user\": {\n      \"phone\": \"010-3333-3333\",\n      \"name\": \"신선향\"\n   }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/user/navy_01"
+					},
+					"response": []
+				},
+				{
+					"name": "05. 회원 비밀번호 변경",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"user\": {\n      \"password\": \"coarsoft13@$\",\n      \"new_password\": \"1234!234test\"\n   }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/user/password"
+					},
+					"response": []
+				},
+				{
+					"name": "06. 회원 삭제 (!!주의!!)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/user/navy_01"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02. 클래스",
+			"item": [
+				{
+					"name": "01. 클래스 생성",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNzMzMDUsImV4cCI6MTYyNjY3ODEwNSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.G3rjfZA7Gg0Hqj8OcBrJ65KAHlsdBY1P4TGt9Vrnx9E"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"class\": {\n        \"name\": \"함정 추진체계 시뮬레이터\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/class"
+					},
+					"response": [
+						{
+							"name": "01. 클래스 생성",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"class\": {\n        \"name\": \"함정 추진체계 시뮬레이터2\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{HOST}}/v1/class"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "254"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:28:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"class\": {\n            \"id\": \"gk3tp36npkr02fwm3\",\n            \"name\": \"함정 추진체계 시뮬레이터2\",\n            \"lastApiRequest\": \"2021-07-12 12:28:26\",\n            \"created_at\": \"2021-07-12 12:28:26\",\n            \"professor\": {\n                \"id\": \"navy_01\",\n                \"name\": \"신선향\",\n                \"role\": \"10\"\n            },\n            \"students\": []\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "02. 클래스 목록",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNTM4MjMsImV4cCI6MTYyNjY1ODYyMywiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.a2FZXYZvNLx8e4JT_xi5dF7KGt3_0W6nOUjyOqwq1K4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {},\n    \"from\": 0,\n    \"size\": 10,\n    \"sort\": [\n        {\n            \"created_at\": \"desc\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/class/search"
+					},
+					"response": []
+				},
+				{
+					"name": "03. 클래스 입장",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNzMzOTEsImV4cCI6MTYyNjY3ODE5MSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.Yz30UDwXF7g4mXmspvoi8gJrZtvIuOlfd-sAOKZ2ti0"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp38t4kr0a4pzj\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/class/join"
+					},
+					"response": []
+				},
+				{
+					"name": "04. 클래스 퇴장",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNTk0MjgsImV4cCI6MTYyNjY2NDIyOCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tTByHkiRxstannabixY1VNTAEZN8BJZKOZs12SxSRcE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp36nakr02bh79\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/class/exit"
+					},
+					"response": []
+				},
+				{
+					"name": "05. 클래스 입장 내역 확인",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/class/gk3tp38t4kr0a4pzj"
+					},
+					"response": []
+				},
+				{
+					"name": "06. 클래스 종료 (!!주의!!)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNjgwNjUsImV4cCI6MTYyNjY3Mjg2NSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tZtsBHozbhL4OqwwOXOoDIBdKOTzhkKfX-gQynAWt9E"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp36nakr02bh79\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/class/gk3tp36nakr02bh79"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03. 시물레이션",
+			"item": [
+				{
+					"name": "01. 시물레이션 상세",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/simulation/gk3tp38t4kr0a4pzj"
+					},
+					"response": []
+				},
+				{
+					"name": "02. 시물레이션 변경",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"simulation\": {\n        \"screenID\": \"01\",\n        \"isSharing\": true,\n        \"modeling\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"scale\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"camera\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"button\": {\n            \"isRun\": true,\n            \"isInner\": true,\n            \"isFX\": false\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{HOST}}/v1/simulation/gk3tp38t4kr0a4pzj"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "00. Api Server 작동확인",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{HOST}}/v1"
+			},
+			"response": []
+		}
+	]
+}
