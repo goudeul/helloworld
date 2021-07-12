@@ -1,17 +1,33 @@
-export const auth = {
-  admin: async (ctx, done) => {},
-  broker: async (ctx, done) => {
-    if (ctx.user) {
-      const broker_id = ctx.user.broker_id
-      if (!broker_id) {
-        ctx.throw(401, '권한이 없습니다.', { code: 'S9999' })
-      }
-    } else {
-      ctx.throw(401, '유저정보가 없습니다.', { code: 'S9999' })
+module.exports = {
+  admin: (ctx, next) => {
+    const user = ctx.user
+
+    if (user.role !== '00') {
+      ctx.throw(404, '관리자 권한이 없습니다.', { code: 'S9999', user })
     }
-    return done()
+
+    return next()
   },
-  role: (aaa, ctx, done) => {
-    console.log(aaa)
-  }
+  professor: (ctx, next) => {
+    const user = ctx.user
+
+    // 관리자의 경우 패스
+    if (user.role === '00') return next()
+
+    if (user.role !== '10') {
+      ctx.throw(404, '교수자 권한이 없습니다.', { code: 'S9999', user })
+    }
+    return next()
+  },
+  student: (ctx, next) => {
+    const user = ctx.user
+
+    // 관리자의 경우 패스
+    if (user.role === '00') return next()
+
+    if (user.role !== '20') {
+      ctx.throw(404, '학습자 권한이 없습니다.', { code: 'S9999', user })
+    }
+    return next()
+  },
 }
