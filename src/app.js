@@ -6,6 +6,7 @@ import error from 'koa-json-error'
 import KoaLogger from 'koa-logger'
 import passport from 'koa-passport'
 import { authenticateJwt } from './middlewares/passport'
+import { apiRequest } from './middlewares/apiRequest'
 import './config/env'
 
 const app = new Koa()
@@ -32,6 +33,7 @@ app.use(
 // authentication
 app.use(passport.initialize())
 app.use(authenticateJwt)
+app.use(apiRequest)
 
 // router
 const router = new Router()
