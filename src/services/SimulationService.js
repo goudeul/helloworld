@@ -47,6 +47,23 @@ module.exports = {
       return e
     }
   },
+  async read (simulation_id) {
+    try {
+      return require(`../events/simulation/${simulation_id}.json`)
+    } catch (e) {
+      return e
+    }
+  },
+  async update (simulation_id, simulation) {
+    try {
+      await fsPromises.writeFile(directory + `${simulation_id}.json`,
+        JSON.stringify(simulation))
+
+      return simulation
+    } catch (e) {
+      return e
+    }
+  },
   async delete (simulation_id) {
     try {
       const simulationFile = await fsPromises.open(directory + `${simulation_id}.json`)

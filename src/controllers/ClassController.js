@@ -48,7 +48,7 @@ module.exports = {
       const { id: class_id } = body.class
       const student = ctx.user
 
-      const oldClass = require(`../events/class/${class_id}.json`)
+      const oldClass = await ClassService.read(class_id)
       const { students } = oldClass
 
       const index = students.findIndex(ele => ele.id === student.id)
@@ -77,7 +77,7 @@ module.exports = {
       const { id: class_id } = body.class
       const student = ctx.user
 
-      const oldClass = require(`../events/class/${class_id}.json`)
+      const oldClass = await ClassService.read(class_id)
       const { students } = oldClass
 
       const index = students.findIndex(ele => ele.id === student.id)

@@ -48,27 +48,11 @@ module.exports = {
   },
   async update (id, user) {
     try {
-      const oldUser = await this.read(id)
-      const password = (user.password) ? await this.createPassword(user.password) : null
-      const now = moment().format('YYYY-MM-DD HH:mm:ss')
-
-      const newUser = {
-        ...oldUser,
-        name: user.name || oldUser.name,
-        password: password || oldUser.password,
-        phone: user.phone || oldUser.phone,
-        identityNumber: user.identityNumber || oldUser.identityNumber,
-        role: user.role || oldUser.role,
-        lastModifyPassword:
-          password ? now : oldUser.lastModifyPassword,
-        updated_at: now,
-      }
-
       await fsPromises.writeFile(directory + `${id}.json`,
-        JSON.stringify(newUser))
+        JSON.stringify(user))
 
-      delete newUser.password
-      return newUser
+      delete user.password
+      return user
     } catch (e) {
       return e
     }

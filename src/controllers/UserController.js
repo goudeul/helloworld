@@ -1,6 +1,7 @@
 import UserService from '../services/UserService'
 import passport from 'koa-passport'
 import jwt from 'jsonwebtoken'
+import moment from 'moment'
 
 const bcrypt = require('bcryptjs')
 
@@ -74,7 +75,24 @@ module.exports = {
     try {
       const id = ctx.params.id
       const body = ctx.request.body
-      const user = await UserService.update(id, body.user)
+
+      const oldUser = await UserService.read(id)
+      const password = (body.user.password) ? await UserService.createPassword(body.user.password) : null
+      const now = moment().format('YYYY-MM-DD HH:mm:ss')
+
+      const newUser = {
+        ...oldUser,
+        name: body.user.name || oldUser.name,
+        password: password || oldUser.password,
+        phone: body.user.phone || oldUser.phone,
+        identityNumber: body.user.identityNumber || oldUser.identityNumber,
+        role: body.user.role || oldUser.role,
+        lastModifyPassword:
+          password ? now : oldUser.lastModifyPassword,
+        updated_at: now,
+      }
+
+      const user = await UserService.update(id, newUser)
 
       ctx.body = {
         code: 'S0001',
@@ -92,17 +110,24 @@ module.exports = {
     try {
       const id = ctx.user.id
       const body = ctx.request.body
-      const { password, new_password } = body.user
       const oldUser = await UserService.read(id)
+      const password = (body.user.new_password) ? await UserService.createPassword(body.user.new_password) : null
+      const now = moment().format('YYYY-MM-DD HH:mm:ss')
 
-      if (!await bcrypt.compareSync(password, oldUser.password)) {
+      if (!await bcrypt.compareSync(body.user.password, oldUser.password)) {
         const user = ctx.user
         ctx.throw(404, '패스워드를 확인해주세요.', { code: 'S9999', user })
       }
 
-      const user = await UserService.update(id, {
-        password: new_password,
-      })
+      const newUser = {
+        ...oldUser,
+        password: password || oldUser.password,
+        lastModifyPassword:
+          password ? now : oldUser.lastModifyPassword,
+        updated_at: now,
+      }
+
+      const user = await UserService.update(id, newUser)
 
       ctx.body = {
         code: 'S0001',
