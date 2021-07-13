@@ -1,4 +1,4 @@
 export async function apiRequest (ctx, next) {
-  console.log('apiRequest: ', ctx.user)
+  // console.log('apiRequest: ', ctx.user)
   return next()
 }

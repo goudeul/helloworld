@@ -4,12 +4,18 @@ import KoaBody from 'koa-body'
 import KoaCors from '@koa/cors'
 import error from 'koa-json-error'
 import KoaLogger from 'koa-logger'
+import Morgan from 'koa-morgan'
 import passport from 'koa-passport'
 import { authenticateJwt } from './middlewares/passport'
 import { apiRequest } from './middlewares/apiRequest'
 import './config/env'
 
 const app = new Koa()
+
+// authentication
+app.use(passport.initialize())
+app.use(authenticateJwt)
+app.use(apiRequest)
 
 // middleware
 app.use(KoaCors())
@@ -18,22 +24,19 @@ app.use(
   error((err) => {
     return {
       code: err.code || 'S9999',
-      message: err.message
+      message: err.message,
     }
   }),
 )
 
-// console
+// logging console
 app.use(
   KoaLogger((str, args) => {
     console.log(str)
   }),
 )
 
-// authentication
-app.use(passport.initialize())
-app.use(authenticateJwt)
-app.use(apiRequest)
+app.use(Morgan('combined'))
 
 // router
 const router = new Router()
