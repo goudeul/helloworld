@@ -4,6 +4,7 @@ import KoaBody from 'koa-body'
 import KoaCors from '@koa/cors'
 import error from 'koa-json-error'
 import KoaLogger from 'koa-logger'
+import { logger, stream } from './middlewares/winston'
 import Morgan from 'koa-morgan'
 import passport from 'koa-passport'
 import { authenticateJwt } from './middlewares/passport'
@@ -20,8 +21,9 @@ app.use(apiRequest)
 // middleware
 app.use(KoaCors())
 app.use(KoaBody())
+
 app.use(
-  error((err) => {
+  error((err, ctx) => {
     return {
       code: err.code || 'S9999',
       message: err.message,
@@ -36,18 +38,27 @@ app.use(
   }),
 )
 
-app.use(Morgan('combined'))
+app.use(Morgan('combined', { stream }))
 
 // router
 const router = new Router()
 const api = require('./routes/v1')
+
 router.use('/v1', api.routes())
 app.use(router.routes()).use(router.allowedMethods())
 
 // central error handler
-app.on('error', (err) => {
-  console.error('에러내용: ', err)
+app.on('error', (err, ctx) => {
+  // console.error('에러내용: ', err)
+  console.log(ctx.user)
   // todo logging 파일 처리 필요
 })
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000, () => {
+  logger.log({
+    level: 'info',
+    message: `Listening on port ${process.env.PORT}...`
+  })
+
+  // console.log(ctx)
+})
