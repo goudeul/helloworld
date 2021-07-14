@@ -15,10 +15,12 @@ app.use(KoaCors())
 app.use(KoaBody())
 app.use(
   error((err) => {
-    return {
+    const data = {
+      status: err.status || 500,
       code: err.code || 'S9999',
       message: err.message
     }
+    return data
   }),
 )
 
@@ -44,5 +46,9 @@ app.on('error', (err) => {
   console.error('에러내용: ', err)
   // todo logging 파일 처리 필요
 })
+
+app.use(function(next) {
+  next.throw(404, {code: 'S9999', message: '허용하지 않은 접근' })
+});
 
 app.listen(process.env.PORT || 3000)

@@ -1,7 +1,10 @@
 import fsPromises from 'fs/promises'
 import path from 'path'
+import { checkDir } from './fsUtil'
+
 const appDir = path.dirname(require.main.filename)
 const directory = appDir + '/events/user/'
+checkDir(directory)
 
 export default {
   /**
