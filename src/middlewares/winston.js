@@ -30,13 +30,6 @@ const errorTransport = new transports.File({
   filename: `${logDir}/error/${YYMMDD}.log`
 })
 
-/*const dailyRotateFileTransport = new transports.DailyRotateFile({
-  filename: logDir + '%DATE%.log',
-  datePattern: 'YYYY-MM-DD',
-  zippedArchive: true,
-  maxFiles: '14d',
-})*/
-
 const logger = createLogger({
   format: combine(
     loggingFormat,

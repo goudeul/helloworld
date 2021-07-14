@@ -24,6 +24,12 @@ app.use(KoaBody())
 
 app.use(
   error((err, ctx) => {
+    logger.log({
+      level: 'error',
+      message: err.ctx,
+    })
+
+    console.log(err.ctx.user)
     return {
       code: err.code || 'S9999',
       message: err.message,
@@ -38,7 +44,7 @@ app.use(
   }),
 )
 
-app.use(Morgan('combined', { stream }))
+app.use(Morgan('combined', { stream: stream }))
 
 // router
 const router = new Router()
@@ -49,15 +55,14 @@ app.use(router.routes()).use(router.allowedMethods())
 
 // central error handler
 app.on('error', (err, ctx) => {
-  // console.error('에러내용: ', err)
-  console.log(ctx.user)
-  // todo logging 파일 처리 필요
+  console.error('에러내용: ', err)
+  console.log('User: ', ctx.user)
 })
 
 app.listen(process.env.PORT || 3000, () => {
   logger.log({
     level: 'info',
-    message: `Listening on port ${process.env.PORT}...`
+    message: `Listening on port ${process.env.PORT}...`,
   })
 
   // console.log(ctx)

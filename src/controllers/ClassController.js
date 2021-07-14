@@ -18,8 +18,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   search: async (ctx) => {
@@ -37,8 +36,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   join: async (ctx) => {
@@ -67,8 +65,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   exit: async (ctx) => {
@@ -95,8 +92,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   read: async (ctx) => {
@@ -111,8 +107,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   delete: async (ctx) => {

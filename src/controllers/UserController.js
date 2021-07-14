@@ -31,15 +31,14 @@ module.exports = {
         },
       }
     } catch (e) {
-      ctx.throw(404, e.message, { code: 'S9999', body })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   login: async (ctx, next) => {
     try {
       await passport.authenticate('local', {}, async (err, user) => {
         if (err) {
-          const user = ctx.request.body.user
-          ctx.throw(404, err, { code: 'S9999', user })
+          ctx.throw(404, err, { code: 'S9999', ctx })
         } else {
           const bearerToken = setBearerToken(user)
 
@@ -53,8 +52,7 @@ module.exports = {
         }
       })(ctx, next)
     } catch (e) {
-      const body = ctx.request.body
-      ctx.throw(404, e.message, { code: 'S9999', body })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   me: async (ctx, next) => {
@@ -67,8 +65,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   update: async (ctx) => {
@@ -97,8 +94,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   changePassword: async (ctx, next) => {
@@ -110,8 +106,7 @@ module.exports = {
       const now = moment().format('YYYY-MM-DD HH:mm:ss')
 
       if (!await bcrypt.compareSync(body.user.password, oldUser.password)) {
-        const user = ctx.user
-        ctx.throw(404, '패스워드를 확인해주세요.', { code: 'S9999', user })
+        ctx.throw(404, '패스워드를 확인해주세요.', { code: 'S9999', ctx })
       }
 
       const newUser = {
@@ -131,8 +126,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   delete: async (ctx) => {
@@ -141,8 +135,7 @@ module.exports = {
       const user = await UserService.delete(id)
 
       if (!user) {
-        const user = ctx.user
-        ctx.throw(404, '회원정보가 존재하지 않습니다.', { code: 'S9999', user })
+        ctx.throw(404, '회원정보가 존재하지 않습니다.', { code: 'S9999', ctx })
       }
 
       ctx.body = {
@@ -152,8 +145,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
 }
