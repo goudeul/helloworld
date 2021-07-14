@@ -61,7 +61,7 @@ app.use(
     const message = {
       message: err.message,
       ctx: err.ctx,
-      user: err.ctx.user
+      user: err.ctx.user,
     }
     logger.log({
       level: 'error',
@@ -89,9 +89,9 @@ app.use(router.routes()).use(router.allowedMethods())
 //   // todo logging 파일 처리 필요
 // })
 
-app.use(function(next) {
-  next.throw(404, {message: '허용하지 않은 접근' })
-});
+app.use(function (next) {
+  next.throw(404, { message: '허용하지 않은 접근' })
+})
 
 app.listen(process.env.PORT || 3000, () => {
   logger.log({
