@@ -15,10 +15,6 @@ const loggingFormat = printf((info) => {
   return `${timeStamp} ${info.level} : ${info.message}`
 })
 
-printf(({ level, message, label, timestamp }) => {
-  return `{"time":"${timestamp}", "label":"${label}", "level":"${level}", "message": "${message}" },` // log 출력 포맷 정의
-})
-
 // log Level 정의
 const infoTransport = new transports.File({
   level: 'info',
@@ -44,12 +40,12 @@ const stream = {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  logger.add(new transports.Console({
+  /*logger.add(new transports.Console({
     format: format.combine(
       format.colorize(),
       format.simple()
     )
-  }));
+  }));*/
 }
 
 export {

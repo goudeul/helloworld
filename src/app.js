@@ -22,21 +22,6 @@ app.use(apiRequest)
 app.use(KoaCors())
 app.use(KoaBody())
 
-app.use(
-  error((err, ctx) => {
-    logger.log({
-      level: 'error',
-      message: err.ctx,
-    })
-
-    console.log(err.ctx.user)
-    return {
-      code: err.code || 'S9999',
-      message: err.message,
-    }
-  }),
-)
-
 // logging console
 app.use(
   KoaLogger((str, args) => {
@@ -44,7 +29,41 @@ app.use(
   }),
 )
 
-app.use(Morgan('combined', { stream: stream }))
+// Morgan으로 기록할 데이터 정의
+let context = {}
+app.use((ctx, next) => {
+  context = ctx
+  return next()
+})
+
+Morgan.token('id', function getId () {
+  return context.user.id
+})
+
+app.use(
+  Morgan('::remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" ":id"',
+    { stream: stream }),
+)
+
+// 에러처리
+app.use(
+  error((err) => {
+    const message = {
+      message: err.message,
+      ctx: err.ctx,
+      user: err.ctx.user
+    }
+    logger.log({
+      level: 'error',
+      message: JSON.stringify(message),
+    })
+
+    return {
+      code: err.code || 'S9999',
+      message: err.message,
+    }
+  }),
+)
 
 // router
 const router = new Router()
@@ -54,16 +73,14 @@ router.use('/v1', api.routes())
 app.use(router.routes()).use(router.allowedMethods())
 
 // central error handler
-app.on('error', (err, ctx) => {
+/*app.on('error', (err, ctx) => {
   console.error('에러내용: ', err)
   console.log('User: ', ctx.user)
-})
+})*/
 
 app.listen(process.env.PORT || 3000, () => {
   logger.log({
     level: 'info',
     message: `Listening on port ${process.env.PORT}...`,
   })
-
-  // console.log(ctx)
 })
