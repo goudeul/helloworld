@@ -25,7 +25,6 @@ app.use(KoaBody())
 app.use(
   error((err) => {
     const data = {
-      status: err.status || 500,
       code: err.code || 'S9999',
       message: err.message,
     }
@@ -49,12 +48,16 @@ const api = require('./routes/v1')
 router.use('/v1', api.routes())
 app.use(router.routes()).use(router.allowedMethods())
 
-// central error handler
-app.on('error', (err, ctx) => {
-  // console.error('에러내용: ', err)
-  console.log(ctx.user)
-  // todo logging 파일 처리 필요
-})
+// central error handler, 동작하지 않음, app.use(err(...)) 에서 처되됨
+// app.on('error', (err, ctx) => {
+//   // console.error('에러내용: ', err)
+//   console.log(ctx.user)
+//   // todo logging 파일 처리 필요
+// })
+
+app.use(function(next) {
+  next.throw(404, {message: '허용하지 않은 접근' })
+});
 
 app.listen(process.env.PORT || 3000, () => {
   logger.log({

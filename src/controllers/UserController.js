@@ -21,8 +21,9 @@ function setBearerToken (user) {
 module.exports = {
   create: async (ctx) => {
     const body = ctx.request.body
-    try {
+    // try {
       const user = await UserService.create(body.user)
+      if(!user) ctx.throw(500, { message: '정보 생성에 실패 했습니다.' })
 
       ctx.body = {
         code: 'S0001',
@@ -30,17 +31,17 @@ module.exports = {
           user: user,
         },
       }
-    } catch (e) {
-      ctx.throw(404, e.message, { code: 'S9999', body })
-    }
+    // } catch (e) {
+    //   ctx.throw(404, e.message, { code: 'S9999', body })
+    // }
   },
   login: async (ctx, next) => {
-    try {
+    // try {
       await passport.authenticate('local', {}, async (result, user) => {
 
         if (result) {
           const data = ctx.request.body.user
-          ctx.throw(result.status, {code: 'S9999', message: result.message, data: data })
+          ctx.throw(result.status, { message: result.message, data: data })
         } else {
           const bearerToken = setBearerToken(user)
 
@@ -53,10 +54,10 @@ module.exports = {
           }
         }
       })(ctx, next)
-    } catch (e) {
-      const data = ctx.request.body
-      ctx.throw(500, {code: 'S9999', message: e.message, data: data })
-    }
+    // } catch (e) {
+    //   const data = ctx.request.body
+    //   ctx.throw(e.status, {message: e.message, data: data })
+    // }
   },
   me: async (ctx, next) => {
     try {
@@ -69,7 +70,7 @@ module.exports = {
       }
     } catch (e) {
       const data = ctx.user
-      ctx.throw(500, {code: 'S9999', message: e.message, data: data })
+      ctx.throw(e.status, {message: e.message, data: data })
     }
   },
   update: async (ctx) => {
@@ -99,7 +100,7 @@ module.exports = {
       }
     } catch (e) {
       const data = ctx.user
-      ctx.throw(500, {code: 'S9999', message: e.message, data: data })
+      ctx.throw(e.status, {message: e.message, data: data })
     }
   },
   changePassword: async (ctx, next) => {
@@ -112,7 +113,7 @@ module.exports = {
 
       if (!await bcrypt.compareSync(body.user.password, oldUser.password)) {
         const data = ctx.user
-        ctx.throw(403, {code: 'S9999', message: '패스워드를 확인해주세요.', data: data })
+        ctx.throw(403, {message: '패스워드를 확인해주세요.', data: data })
       }
 
       const newUser = {
@@ -133,7 +134,7 @@ module.exports = {
       }
     } catch (e) {
       const data = ctx.user
-      ctx.throw(500, {code: 'S9999', message: e.message, data: data })
+      ctx.throw(e.status, {message: e.message, data: data })
     }
   },
   delete: async (ctx) => {
@@ -143,7 +144,7 @@ module.exports = {
 
       if (!user) {
         const data = ctx.user
-        ctx.throw(401, {code: 'S9999', message: '회원정보가 존재하지 않습니다.', data: data })
+        ctx.throw(401, {message: '회원정보가 존재하지 않습니다.', data: data })
       }
 
       ctx.body = {
@@ -154,7 +155,7 @@ module.exports = {
       }
     } catch (e) {
       const data = ctx.user
-      ctx.throw(500, {code: 'S9999', message: e.message, data: data })
+      ctx.throw(e.status, {message: e.message, data: data })
     }
   },
 }
