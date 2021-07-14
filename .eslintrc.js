@@ -43,7 +43,7 @@ module.exports = {
     'one-var': 'off',
 
     'import/first': 'off',
-    'import/named': 'error',
+    'import/named': 'off',
     'import/namespace': 'error',
     'import/default': 'off',
     'import/export': 'error',

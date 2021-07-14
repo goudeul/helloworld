@@ -14,8 +14,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
   update: async (ctx) => {
@@ -41,8 +40,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      const user = ctx.user
-      ctx.throw(404, e.message, { code: 'S9999', user })
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
     }
   },
 }
