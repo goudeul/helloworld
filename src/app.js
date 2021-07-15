@@ -58,10 +58,11 @@ app.use(
 // 에러처리
 app.use(
   error((err) => {
+    console.log(err.ctx.user)
     const message = {
       message: err.message,
       ctx: err.ctx,
-      user: err.ctx.user,
+      user: context.user,
     }
     logger.log({
       level: 'error',
