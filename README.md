@@ -52,6 +52,16 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
 
 ---
 
+### Dockerize
+1. 이미지 생성
+~~~shell
+docker build . -t coarsoft/naval-academy-api
+~~~
+2. 실행
+~~~shell
+docker run -p 3000:3000 -d coarsoft/naval-academy-api
+~~~
+
 ### 로그기록 저장
 1. 접속 일시
 2. 계정정보의 변경 정보 및 일시

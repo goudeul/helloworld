@@ -1,9 +1,18 @@
-FROM alpine:latest
-RUN apk add --update bash && rm -rf /var/cache/apk/*
-RUN apk add --update nodejs npm
-RUN apk add --update build-base libffi-dev
-RUN apk add --update git
-RUN apk add --update sudo
-RUN apk add --no-cache openssh-client
-RUN mkdir ./workspace
-RUN npm install -g nodemon
+FROM node:16
+
+# 앱 디렉터리 생성
+WORKDIR /usr/src/app
+
+# 앱 의존성 설치
+COPY package*.json ./
+
+RUN npm install
+# 프로덕션을 위한 코드를 빌드하는 경우
+# RUN npm ci --only=production
+
+# 앱 소스 추가
+COPY . .
+
+EXPOSE 3000
+CMD npm run start
+
