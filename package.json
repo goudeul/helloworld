@@ -4,10 +4,11 @@
   "description": "해군사관학교 스마트캠퍼스 함정추진체계",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 stop 0 && cross-env NODE_ENV=production pm2 start --interpreter babel-node ./src/app.js",
+    "start": "cross-env NODE_ENV=production pm2-runtime start --interpreter babel-node ./src/app.js",
     "dev": "cross-env NODE_ENV=development nodemon ./src/app.js --exec babel-node",
     "stop": "pm2 stop 0",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "aa": "pm2-runtime start dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -54,5 +55,8 @@
     "eslint-plugin-standard": "^5.0.0",
     "nodemon": "^2.0.6",
     "pm2": "^5.0.0"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   }
 }

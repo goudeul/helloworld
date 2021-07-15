@@ -54,13 +54,18 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
 
 ### Dockerize
 1. 이미지 생성
-~~~shell
+~~~bash
 docker build . -t coarsoft/naval-academy-api
 ~~~
 2. 실행
-~~~shell
-docker run -p 3000:3000 -d coarsoft/naval-academy-api
-~~~
+   - 개발환경
+   ~~~bash
+   docker run -d -p 3000:3000 -v $PWD:/app coarsoft/naval-academy-api
+   ~~~
+   - 프로덕션
+   ~~~bash
+   docker run -d -p 3000:3000 coarsoft/naval-academy-api
+   ~~~
 
 ### 로그기록 저장
 1. 접속 일시
