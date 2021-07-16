@@ -83,7 +83,7 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
    ~~~
    - 실행
    ~~~bash
-   docker run -d -p 80:3000 -v $PWD:/app coarsoft/naval-academy-api
+   docker run -d --name naval-academy-api -p 80:3000 -v $PWD:/app coarsoft/naval-academy-api:1.0
    ~~~
 2. Development
    - 이미지 생성
@@ -92,7 +92,7 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
    ~~~
    - 실행
    ~~~bash
-   docker run -d -p 3000:3000 -v $PWD:/app coarsoft/naval-academy-api-dev
+   docker run -d --name naval-academy-api-dev -p 3000:3000 -v $PWD:/app coarsoft/naval-academy-api-dev:1.0
    ~~~
    
 ---
