@@ -22,16 +22,6 @@ app.use(apiRequest)
 app.use(KoaCors())
 app.use(KoaBody())
 
-app.use(
-  error((err) => {
-    const data = {
-      code: err.code || 'S9999',
-      message: err.message,
-    }
-    return data
-  }),
-)
-
 // logging console
 app.use(
   KoaLogger((str, args) => {
@@ -58,7 +48,6 @@ app.use(
 // 에러처리
 app.use(
   error((err) => {
-    console.log(err.ctx.user)
     const message = {
       message: err.message,
       ctx: err.ctx,

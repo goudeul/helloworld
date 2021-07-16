@@ -1,15 +1,17 @@
 module.exports = {
   admin: (ctx, next) => {
     const user = ctx.user
+    if ( !user || !user.role) ctx.throw(404, '권한정보가 없습니다.', { ctx })
 
     if (user.role !== '00') {
-      ctx.throw(404, '관리자 권한이 없습니다.', { code: 'S9999', ctx })
+      ctx.throw(404, '관리자 권한이 없습니다.', { ctx })
     }
 
     return next()
   },
   professor: (ctx, next) => {
     const user = ctx.user
+    if ( !user || !user.role) ctx.throw(404, '권한정보가 없습니다.', { ctx })
 
     // 관리자의 경우 패스
     if (user.role === '00') return next()
@@ -21,6 +23,7 @@ module.exports = {
   },
   student: (ctx, next) => {
     const user = ctx.user
+    if ( !user || !user.role) ctx.throw(404, '권한정보가 없습니다.', { ctx })
 
     // 관리자의 경우 패스
     if (user.role === '00') return next()
