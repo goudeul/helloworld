@@ -45,6 +45,8 @@ $ npm run dev           // Dev Watch
 $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 ~~~
 
+---
+
 ### PM2 세팅
 1. ecosystem.config.js 처리
 2. package.json: babel plugin 추가
@@ -74,19 +76,26 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
 ---
 
 ### Dockerize
-1. 이미지 생성
+1. Production
+   - 이미지 생성
    ~~~bash
-   docker build . -t coarsoft/naval-academy-api
+   docker build . -t coarsoft/naval-academy-api:1.0
    ~~~
-2. 실행
-   - 개발환경
+   - 실행
    ~~~bash
-   docker run -d -p 3000:3000 -v $PWD:/app coarsoft/naval-academy-api
+   docker run -d -p 80:3000 -v $PWD:/app coarsoft/naval-academy-api
    ~~~
-   - 프로덕션
+2. Development
+   - 이미지 생성
    ~~~bash
-   docker run -d -p 3000:3000 coarsoft/naval-academy-api
+   docker build . -t coarsoft/naval-academy-api-dev:1.0 -f DockerfileDev
    ~~~
+   - 실행
+   ~~~bash
+   docker run -d -p 3000:3000 -v $PWD:/app coarsoft/naval-academy-api-dev
+   ~~~
+   
+---
 
 ### 로그기록 저장
 1. 접속 일시
