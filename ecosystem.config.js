@@ -1,13 +1,12 @@
 /**
- * pm2 실행을 위한 설정파일
+ * pm2 cluster 서버 config
  */
 module.exports = [{
   name: 'coarsoft/naval api',
-  script: 'babel-node ./src/app.js',
-  interpreter_args: '--interpreter',
+  script: './src/server-register.js',
   watch: true,
   exec_mode: 'cluster',
-  instances: 2,
+  instances: 1,
   env_production: {
     NODE_ENV: 'production',
   },
