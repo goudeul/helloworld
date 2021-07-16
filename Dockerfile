@@ -1,4 +1,5 @@
 FROM node:16-alpine
+MAINTAINER Seo Mac ohhapday@gmail.com
 
 # 앱 디렉터리 생성
 WORKDIR /app

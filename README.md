@@ -75,9 +75,9 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
 
 ### Dockerize
 1. 이미지 생성
-~~~bash
-docker build . -t coarsoft/naval-academy-api
-~~~
+   ~~~bash
+   docker build . -t coarsoft/naval-academy-api
+   ~~~
 2. 실행
    - 개발환경
    ~~~bash

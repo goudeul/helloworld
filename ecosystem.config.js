@@ -4,7 +4,6 @@
 module.exports = [{
   name: 'coarsoft/naval api',
   script: './src/server-register.js',
-  watch: true,
   exec_mode: 'cluster',
   instances: 0,
   env_production: {
