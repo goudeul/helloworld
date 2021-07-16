@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "545b91ab-bd02-4eb2-827c-f5b10ff457fc",
+		"_postman_id": "d75b4c57-54e9-4a56-a04f-0db8261b66b4",
 		"name": "naval-academy-api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -26,31 +26,51 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"name\": \"홍길삼\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": \"010-4444-4444\",\n        \"identityNumber\": \"210635\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/user/register"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/user/register",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"register"
+							]
+						}
 					},
 					"response": [
 						{
-							"name": "01. 회원 생성 (교수자)",
+							"name": "01. 어드민 생성 (어드민)",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"name\": \"관리자\",\n        \"password\": \"admin13@$\",\n        \"role\": \"00\",\n        \"phone\": \"010-1111-1111\",\n        \"identityNumber\": null\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/user/register"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/register",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"register"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -82,7 +102,65 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"navy_01\",\n            \"name\": \"신선향\",\n            \"role\": \"10\",\n            \"phone\": \"010-5555-5555\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:07:51\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:07:51\",\n            \"updated_at\": \"2021-07-12 12:07:51\"\n        }\n    }\n}"
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"admin\",\n            \"name\": \"관리자\",\n            \"role\": \"00\",\n            \"phone\": \"010-1111-1111\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 14:05:38\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 14:05:38\",\n            \"updated_at\": \"2021-07-14 14:05:38\"\n        }\n    }\n}"
+						},
+						{
+							"name": "01. 회원 생성 (교수자)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/register",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "298"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:07:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"navy_01\",\n            \"name\": \"신선향\",\n            \"role\": \"10\",\n            \"phone\": \"010-5555-5555\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 13:41:44\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 13:41:44\",\n            \"updated_at\": \"2021-07-14 13:41:44\"\n        }\n    }\n}"
 						},
 						{
 							"name": "01. 회원 생성 (학습자 1)",
@@ -91,14 +169,24 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"name\": \"홍길삼\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": null,\n        \"identityNumber\": \"210635\"\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"name\": \"홍길삼\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": \"010-4444-4444\",\n        \"identityNumber\": \"210635\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/user/register"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/register",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"register"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -130,7 +218,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_01\",\n            \"name\": \"홍길삼\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"210635\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:08:31\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:08:31\",\n            \"updated_at\": \"2021-07-12 12:08:31\"\n        }\n    }\n}"
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_01\",\n            \"name\": \"홍길삼\",\n            \"role\": \"20\",\n            \"phone\": \"010-4444-4444\",\n            \"identityNumber\": \"210635\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 13:42:05\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 13:42:05\",\n            \"updated_at\": \"2021-07-14 13:42:05\"\n        }\n    }\n}"
 						},
 						{
 							"name": "01. 회원 생성 (학습자 2)",
@@ -139,14 +227,24 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"student_02\",\n        \"name\": \"김삼순\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": null,\n        \"identityNumber\": \"214563\"\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"student_02\",\n        \"name\": \"김삼순\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": \"010-3333-3333\",\n        \"identityNumber\": \"214563\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/user/register"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/register",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"register"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -178,7 +276,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_02\",\n            \"name\": \"김삼순\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"214563\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:11:35\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:11:35\",\n            \"updated_at\": \"2021-07-12 12:11:35\"\n        }\n    }\n}"
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_02\",\n            \"name\": \"김삼순\",\n            \"role\": \"20\",\n            \"phone\": \"010-3333-3333\",\n            \"identityNumber\": \"214563\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 13:42:22\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 13:42:22\",\n            \"updated_at\": \"2021-07-14 13:42:22\"\n        }\n    }\n}"
 						}
 					]
 				},
@@ -189,31 +287,51 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/user/login"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/user/login",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"login"
+							]
+						}
 					},
 					"response": [
 						{
-							"name": "02. 회원 로그인 (교수자)",
+							"name": "02. 어드민 생성 (어드민)",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"password\": \"admin13@$\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/user/login"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/login",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"login"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -245,7 +363,65 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"navy_01\",\n            \"name\": \"신선향\",\n            \"role\": \"10\",\n            \"phone\": \"010-5555-5555\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:07:51\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:07:51\",\n            \"updated_at\": \"2021-07-12 12:07:51\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNTk0MDksImV4cCI6MTYyNjY2NDIwOSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.H9Tu4EsdCH6Dgpotl6UTCDN4bUz7644Y50upnAr_n4I\"\n    }\n}"
+							"body": "{\r\n    \"code\": \"S0001\",\r\n    \"data\": {\r\n        \"user\": {\r\n            \"id\": \"admin\",\r\n            \"name\": \"관리자\",\r\n            \"role\": \"00\",\r\n            \"phone\": \"010-1111-1111\",\r\n            \"identityNumber\": null,\r\n            \"lastApiRequest\": null,\r\n            \"lastModifyPassword\": \"2021-07-14 14:05:38\",\r\n            \"failLoginCount\": 0,\r\n            \"isBlocked\": false,\r\n            \"created_at\": \"2021-07-14 14:05:38\",\r\n            \"updated_at\": \"2021-07-14 14:05:38\"\r\n        },\r\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI2MjM5Mjk4LCJleHAiOjE2MjY4NDQwOTgsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.gWkjtKjfyMq9qNrDwEoZnVl8M7MCXL83nAYQWM9RDEA\"\r\n    }\r\n}"
+						},
+						{
+							"name": "02. 회원 로그인 (교수자)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/login",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "508"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jul 2021 03:10:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\": \"S0001\",\r\n    \"data\": {\r\n        \"user\": {\r\n            \"id\": \"navy_01\",\r\n            \"name\": \"신선향\",\r\n            \"role\": \"10\",\r\n            \"phone\": \"010-5555-5555\",\r\n            \"identityNumber\": null,\r\n            \"lastApiRequest\": null,\r\n            \"lastModifyPassword\": \"2021-07-14 13:41:44\",\r\n            \"failLoginCount\": 0,\r\n            \"isBlocked\": false,\r\n            \"created_at\": \"2021-07-14 13:41:44\",\r\n            \"updated_at\": \"2021-07-14 13:41:44\"\r\n        },\r\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYyMzc3NzQsImV4cCI6MTYyNjg0MjU3NCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.PtdlWHqaYqdjXaUdUzpD24Oi8-I4WM_FbdYZ0oBTxWE\"\r\n    }\r\n}"
 						},
 						{
 							"name": "02. 회원 로그인 (학습자 1)",
@@ -261,7 +437,17 @@
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/user/login"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/login",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"login"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -293,7 +479,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_01\",\n            \"name\": \"홍길삼\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"210635\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:08:31\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:08:31\",\n            \"updated_at\": \"2021-07-12 12:08:31\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNTk0MjgsImV4cCI6MTYyNjY2NDIyOCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tTByHkiRxstannabixY1VNTAEZN8BJZKOZs12SxSRcE\"\n    }\n}"
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_01\",\n            \"name\": \"홍길삼\",\n            \"role\": \"20\",\n            \"phone\": \"010-4444-4444\",\n            \"identityNumber\": \"210635\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 13:42:05\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 13:42:05\",\n            \"updated_at\": \"2021-07-14 13:42:05\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYyMzc4MDIsImV4cCI6MTYyNjg0MjYwMiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.5XbfaRiB9T4a6vu-c4Mm-6LKOV7hkCWfaJOOYFTFy5M\"\n    }\n}"
 						},
 						{
 							"name": "02. 회원 로그인 (학습자 2)",
@@ -309,7 +495,17 @@
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/user/login"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/user/login",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"login"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -341,7 +537,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_02\",\n            \"name\": \"김삼순\",\n            \"role\": \"20\",\n            \"phone\": null,\n            \"identityNumber\": \"214563\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-12 12:11:35\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-12 12:11:35\",\n            \"updated_at\": \"2021-07-12 12:11:35\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDIiLCJpYXQiOjE2MjYwNTk1NzEsImV4cCI6MTYyNjY2NDM3MSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.T3Ouep7FIj_YJCvCi3BXBz0hSau78y_kxCyX9PTZ0Ks\"\n    }\n}"
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"student_02\",\n            \"name\": \"김삼순\",\n            \"role\": \"20\",\n            \"phone\": \"010-3333-3333\",\n            \"identityNumber\": \"214563\",\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 13:42:22\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 13:42:22\",\n            \"updated_at\": \"2021-07-14 13:42:22\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDIiLCJpYXQiOjE2MjYyMzc4NDIsImV4cCI6MTYyNjg0MjY0MiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.ge9TiA0-uIHECvGQQVFwT6orBEOfPFWjlFVAIhUYdP8\"\n    }\n}"
 						}
 					]
 				},
@@ -353,9 +549,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYyMzc4MDIsImV4cCI6MTYyNjg0MjYwMiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.5XbfaRiB9T4a6vu-c4Mm-6LKOV7hkCWfaJOOYFTFy5M",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -368,7 +568,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/user/me"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/user/me",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"me"
+							]
+						}
 					},
 					"response": []
 				},
@@ -377,22 +587,36 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI2MjM5Mjk4LCJleHAiOjE2MjY4NDQwOTgsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.gWkjtKjfyMq9qNrDwEoZnVl8M7MCXL83nAYQWM9RDEA",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"user\": {\n      \"phone\": \"010-3333-3333\",\n      \"name\": \"신선향\"\n   }\n}",
+							"raw": "{\n   \"user\": {\n      \"phone\": \"010-3333-3333\",\n      \"name\": \"신선향2\"\n   }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/user/navy_01"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/user/student_012",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"student_012"
+							]
+						}
 					},
 					"response": []
 				},
@@ -401,9 +625,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
@@ -416,7 +644,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/user/password"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/user/password",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"password"
+							]
+						}
 					},
 					"response": []
 				},
@@ -424,7 +662,14 @@
 					"name": "06. 회원 삭제 (!!주의!!)",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI2NDE5MzY1LCJleHAiOjE2MjcwMjQxNjUsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.gvmdRANECTraInmjYJGUu6ZucUGPxbT8U_pttfkfKeQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -437,7 +682,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/user/navy_01"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/user/student_01",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"student_01"
+							]
+						}
 					},
 					"response": []
 				}
@@ -451,9 +706,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNzMzMDUsImV4cCI6MTYyNjY3ODEwNSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.G3rjfZA7Gg0Hqj8OcBrJ65KAHlsdBY1P4TGt9Vrnx9E"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNzMzMDUsImV4cCI6MTYyNjY3ODEwNSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.G3rjfZA7Gg0Hqj8OcBrJ65KAHlsdBY1P4TGt9Vrnx9E",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -466,7 +725,16 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/class"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/class",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"class"
+							]
+						}
 					},
 					"response": [
 						{
@@ -483,7 +751,16 @@
 										}
 									}
 								},
-								"url": "{{NAVAL_HOST}}/v1/class"
+								"url": {
+									"raw": "{{NAVAL_HOST}}/v1/class",
+									"host": [
+										"{{NAVAL_HOST}}"
+									],
+									"path": [
+										"v1",
+										"class"
+									]
+								}
 							},
 							"status": "OK",
 							"code": 200,
@@ -524,9 +801,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNTM4MjMsImV4cCI6MTYyNjY1ODYyMywiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.a2FZXYZvNLx8e4JT_xi5dF7KGt3_0W6nOUjyOqwq1K4"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNTM4MjMsImV4cCI6MTYyNjY1ODYyMywiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.a2FZXYZvNLx8e4JT_xi5dF7KGt3_0W6nOUjyOqwq1K4",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -539,7 +820,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/class/search"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/class/search",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"class",
+								"search"
+							]
+						}
 					},
 					"response": []
 				},
@@ -548,22 +839,36 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNTk0MjgsImV4cCI6MTYyNjY2NDIyOCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tTByHkiRxstannabixY1VNTAEZN8BJZKOZs12SxSRcE"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNzMzOTEsImV4cCI6MTYyNjY3ODE5MSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.Yz30UDwXF7g4mXmspvoi8gJrZtvIuOlfd-sAOKZ2ti0",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp3xh8kr36yk7y\"\n  }\n}",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp38t4kr0a4pzj\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/class/join"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/class/join",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"class",
+								"join"
+							]
+						}
 					},
 					"response": []
 				},
@@ -572,22 +877,36 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNTk0MjgsImV4cCI6MTYyNjY2NDIyOCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tTByHkiRxstannabixY1VNTAEZN8BJZKOZs12SxSRcE"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpYXQiOjE2MjYwNTk0MjgsImV4cCI6MTYyNjY2NDIyOCwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tTByHkiRxstannabixY1VNTAEZN8BJZKOZs12SxSRcE",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp3xh8kr36yk7y\"\n  }\n}",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp36nakr02bh79\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/class/exit"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/class/exit",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"class",
+								"exit"
+							]
+						}
 					},
 					"response": []
 				},
@@ -599,9 +918,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -614,7 +937,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/class/gk3tp3xh8kr36yk7y"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/class/gk3tp38t4kr0a4pzj",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"class",
+								"gk3tp38t4kr0a4pzj"
+							]
+						}
 					},
 					"response": []
 				},
@@ -623,9 +956,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNjgwNjUsImV4cCI6MTYyNjY3Mjg2NSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tZtsBHozbhL4OqwwOXOoDIBdKOTzhkKfX-gQynAWt9E"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjYwNjgwNjUsImV4cCI6MTYyNjY3Mjg2NSwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.tZtsBHozbhL4OqwwOXOoDIBdKOTzhkKfX-gQynAWt9E",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -638,7 +975,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/class/gk3tp3xh8kr36yk7y"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/class/gk3tp36nakr02bh79",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"class",
+								"gk3tp36nakr02bh79"
+							]
+						}
 					},
 					"response": []
 				}
@@ -655,9 +1002,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -670,7 +1021,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/simulation/gk3tp3xh8kr36yk7y"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"simulation",
+								"gk3tp38t4kr0a4pzj"
+							]
+						}
 					},
 					"response": []
 				},
@@ -679,9 +1040,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
@@ -694,7 +1059,17 @@
 								}
 							}
 						},
-						"url": "{{NAVAL_HOST}}/v1/simulation/gk3tp3xh8kr36yk7y"
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"simulation",
+								"gk3tp38t4kr0a4pzj"
+							]
+						}
 					},
 					"response": []
 				}
@@ -705,7 +1080,15 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{NAVAL_HOST}}/v1"
+				"url": {
+					"raw": "{{NAVAL_HOST}}/v1",
+					"host": [
+						"{{NAVAL_HOST}}"
+					],
+					"path": [
+						"v1"
+					]
+				}
 			},
 			"response": []
 		}
