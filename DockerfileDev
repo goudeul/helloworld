@@ -13,5 +13,6 @@ RUN npm i -g pm2 --silent
 # 앱 소스 추가
 COPY . .
 
-CMD [ "npm", "start" ]
+CMD npm run dev
 EXPOSE 3000
+

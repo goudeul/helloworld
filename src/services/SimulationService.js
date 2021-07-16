@@ -1,11 +1,9 @@
 import path from 'path'
 import fsPromises from 'fs/promises'
 import moment from 'moment'
-import { checkDir } from '../utils/fsUtil'
 
 const appDir = path.dirname(require.main.filename)
 const directory = appDir + '/events/simulation/'
-checkDir(directory)
 
 module.exports = {
   async create (simulation_id) {
