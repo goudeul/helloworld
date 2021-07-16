@@ -45,11 +45,32 @@ $ npm run dev           // Dev Watch
 $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 ~~~
 
-### production 서버 세팅시 확인할 것
-- 일반계정으로 서버 실행하기 (80번 포트)
-   - docker 처리로 가능한지 확인 요망
-- pm2 클러스터 모드로 실행
-
+### PM2 세팅
+1. ecosystem.config.js 처리
+2. package.json: babel plugin 추가
+   - [참조](https://stackoverflow.com/questions/48637156/how-to-use-babel-node-with-pm2)
+   ~~~json
+   {
+      "babel": {
+         "presets": [
+            "@babel/preset-env"
+         ],
+         "plugins": ["@babel/plugin-transform-runtime"]
+      }
+   }
+   ~~~
+3. babel-node 사용을 위한 설정
+   - [참조](https://jaeseokim.tistory.com/115)
+   - [참조](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2)
+   - server-register.js 생성
+   > 주의: app.js 와 동일 경로에 존재해야함
+4. pm2 start (정상작동 확인 용도)
+   ~~~shell
+   npx pm2 start ecosystem.config.js --env development   // dev
+   npx pm2 start ecosystem.config.js --env production    // prod
+   ~~~
+5. pm2를 활용한 무중단 서비스 (이부분은 적용 안함)
+   - [참조](https://engineering.linecorp.com/ko/blog/pm2-nodejs/)
 ---
 
 ### Dockerize
