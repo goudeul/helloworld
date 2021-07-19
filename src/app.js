@@ -41,7 +41,7 @@ Morgan.token('id', function getId () {
 })
 
 app.use(
-  Morgan('::remote-addr - :remote-user [:date[clf]] ' +
+  Morgan(':remote-addr - :remote-user [:date[clf]] ' +
     '":method :url HTTP/:http-version" :status :res[content-length] ' +
     '":referrer" ":user-agent" ":id"', { stream: stream }),
 )
