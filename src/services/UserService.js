@@ -2,11 +2,9 @@ import path from 'path'
 import fsPromises from 'fs/promises'
 import bcrypt from 'bcryptjs'
 import moment from 'moment'
-import { checkDir } from '../utils/fsUtil'
 
 const appDir = path.dirname(require.main.filename)
 const directory = appDir + '/events/user/'
-checkDir(directory)
 
 module.exports = {
   async createPassword (password) {
