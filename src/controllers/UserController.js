@@ -13,6 +13,7 @@ function setBearerToken(user) {
   };
   return jwt.sign(payload, secret, {
     expiresIn: "7d", // 7일
+    // expiresIn: "10000ms", // 10초
     issuer: "coarsoft.com",
     subject: "userInfo",
   });
