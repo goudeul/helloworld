@@ -66,7 +66,7 @@ $RECYCLE.BIN/
 ############################
 
 .tmp
-*.log
+#*.log
 *.sql
 *.sqlite
 *.sqlite3
@@ -90,11 +90,13 @@ src/public/uploads/*
 lib-cov
 lcov.info
 pids
-logs
 results
 node_modules
 .node_history
-src/events
+src/events/class/*.json
+src/events/user/*.json
+src/events/simulation/*.json
+logs/*.log
 dist
 
 
