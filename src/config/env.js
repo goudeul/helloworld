@@ -9,6 +9,6 @@ if (process.env.NODE_ENV === 'development') {
   dotenv.config({
     path: path.join(__dirname, '../../.env.production')
   })
-  console.log('::: Require process.env.NODE_ENV setup :::')
+  // console.log('::: Require process.env.NODE_ENV setup :::')
   // throw new Error('::: Require process.env.NODE_ENV setup :::')
 }

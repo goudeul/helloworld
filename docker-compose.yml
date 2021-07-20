@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+        read_only: false

@@ -21,3 +21,8 @@ docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=
    filebeat setup -e
 3. 실행
    brew services start elastic/tap/filebeat-full
+
+
+todo 엘라스틱 서치 7.13 라이센스??
+[보안문제?]https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html
+다른 docker-compose.yml 확인할것
