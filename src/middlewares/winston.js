@@ -12,7 +12,7 @@ const YYMMDD = moment().format('YYYY-MM-DD')
 const { combine, printf } = format
 const loggingFormat = printf((info) => {
   const timeStamp = moment().format('YYYY-MM-DD HH:mm:ss')
-  return `${timeStamp} ${info.level} : ${info.message}`
+  return `${timeStamp} ${info.level} ${info.message}`
 })
 
 // log Level 정의
@@ -35,7 +35,7 @@ const logger = createLogger({
 
 const stream = {
   write: message => {
-    logger.info(message)
+    logger.info(message.substring(0, message.lastIndexOf('\n')))
   },
 }
 

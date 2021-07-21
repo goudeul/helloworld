@@ -37,13 +37,13 @@ app.use((ctx, next) => {
 })
 
 Morgan.token('id', function getId () {
-  return (context.user) ? context.user.id : null
+  return (context.user) ? context.user.id : undefined
 })
 
 app.use(
-  Morgan(':remote-addr - :remote-user [:date[clf]] ' +
-    '":method :url HTTP/:http-version" :status :res[content-length] ' +
-    '":referrer" ":user-agent" ":id"', { stream: stream }),
+  Morgan(':remote-addr - :remote-user [:date[iso]] ' +
+    ':method :url HTTP/:http-version :status :res[content-length] ' +
+    ':referrer ":user-agent" :id', { stream: stream }),
 )
 
 // 에러처리
