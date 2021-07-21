@@ -53,6 +53,7 @@ app.use(
       message: err.message,
       ctx: err.ctx,
       user: context.user,
+      request: err.ctx.request.body
     }
     logger.log({
       level: 'error',
