@@ -1,47 +1,47 @@
 module.exports = {
   admin: (ctx, next) => {
-    const user = ctx.user;
-    if (!user || !user.role)
-      ctx.throw(404, "권한정보가 없습니다.", { code: "S9001", ctx });
-
-    if (user.role !== "00") {
-      ctx.throw(404, "관리자 권한이 없습니다.", { ctx });
+    const user = ctx.user
+    if (!user || !user.role) {
+      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
+    }
+    if (user.role !== '00') {
+      ctx.throw(404, '관리자 권한이 없습니다.', { ctx })
     }
 
-    return next();
+    return next()
   },
   professor: (ctx, next) => {
-    const user = ctx.user;
-    if (!user || !user.role)
-      ctx.throw(404, "권한정보가 없습니다.", { code: "S9001", ctx });
-
-    // 관리자의 경우 패스
-    if (user.role === "00") return next();
-
-    if (user.role !== "10") {
-      ctx.throw(404, "교수자 권한이 없습니다.", { code: "S9999", ctx });
+    const user = ctx.user
+    if (!user || !user.role) {
+      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
     }
-    return next();
+    // 관리자의 경우 패스
+    if (user.role === '00') return next()
+
+    if (user.role !== '10') {
+      ctx.throw(404, '교수자 권한이 없습니다.', { code: 'S9999', ctx })
+    }
+    return next()
   },
   student: (ctx, next) => {
-    const user = ctx.user;
-    if (!user || !user.role)
-      ctx.throw(404, "권한정보가 없습니다.", { code: "S9001", ctx });
-
-    // 관리자의 경우 패스
-    if (user.role === "00") return next();
-
-    if (user.role !== "20") {
-      ctx.throw(404, "학습자 권한이 없습니다.", { code: "S9999", ctx });
+    const user = ctx.user
+    if (!user || !user.role) {
+      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
     }
-    return next();
+    // 관리자의 경우 패스
+    if (user.role === '00') return next()
+
+    if (user.role !== '20') {
+      ctx.throw(404, '학습자 권한이 없습니다.', { code: 'S9999', ctx })
+    }
+    return next()
   },
   all: (ctx, next) => {
-    const user = ctx.user;
-    if (!user || !user.role)
-      ctx.throw(404, "권한정보가 없습니다.", { code: "S9001", ctx });
-
+    const user = ctx.user
+    if (!user || !user.role) {
+      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
+    }
     // 모두 패스
-    return next();
+    return next()
   },
-};
+}
