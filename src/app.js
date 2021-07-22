@@ -8,7 +8,6 @@ import { logger, stream } from './middlewares/winston'
 import Morgan from 'koa-morgan'
 import passport from 'koa-passport'
 import { authenticateJwt } from './middlewares/passport'
-import { apiRequest } from './middlewares/apiRequest'
 import './config/env'
 
 const app = new Koa()
@@ -16,7 +15,6 @@ const app = new Koa()
 // authentication
 app.use(passport.initialize())
 app.use(authenticateJwt)
-app.use(apiRequest)
 
 // middleware
 app.use(KoaCors())
