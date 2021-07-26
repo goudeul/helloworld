@@ -22,11 +22,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI3MjgzMDk3LCJleHAiOjE2Mjc4ODc4OTcsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.m6fBeGTASoQ_ZvN9z33FC_gIaBl7XCkRNOJQn98YoQg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"name\": \"홍길삼\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": \"010-4444-4444\",\n        \"identityNumber\": \"210635\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -53,7 +63,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"name\": \"관리자\",\n        \"password\": \"admin13@$\",\n        \"role\": \"00\",\n        \"phone\": \"010-1111-1111\",\n        \"identityNumber\": null\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"name\": \"관리자\",\n        \"password\": \"adm12qw!@QW\",\n        \"role\": \"00\",\n        \"phone\": \"010-1111-1111\",\n        \"identityNumber\": null\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -287,7 +297,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"password\": \"adm12qw!@QW\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
