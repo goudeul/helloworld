@@ -36,7 +36,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"name\": \"관리자\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"00\",\n        \"phone\": \"070-4632-5580\",\n        \"identityNumber\": null\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,7 +63,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"name\": \"관리자\",\n        \"password\": \"adm12qw!@QW\",\n        \"role\": \"00\",\n        \"phone\": \"010-1111-1111\",\n        \"identityNumber\": null\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"navy_01\",\n        \"name\": \"신선향\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"10\",\n        \"phone\": \"010-5555-5555\",\n        \"identityNumber\": null\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -112,7 +112,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"admin\",\n            \"name\": \"관리자\",\n            \"role\": \"00\",\n            \"phone\": \"010-1111-1111\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 14:05:38\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 14:05:38\",\n            \"updated_at\": \"2021-07-14 14:05:38\"\n        }\n    }\n}"
+							"body": "{\n    \"code\": \"S0001\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"navy_01\",\n            \"name\": \"신선향\",\n            \"role\": \"10\",\n            \"phone\": \"010-5555-5555\",\n            \"identityNumber\": null,\n            \"lastApiRequest\": null,\n            \"lastModifyPassword\": \"2021-07-14 13:41:44\",\n            \"failLoginCount\": 0,\n            \"isBlocked\": false,\n            \"created_at\": \"2021-07-14 13:41:44\",\n            \"updated_at\": \"2021-07-14 13:41:44\"\n        }\n    }\n}"
 						},
 						{
 							"name": "01. 회원 생성 (교수자)",
@@ -318,13 +318,13 @@
 					},
 					"response": [
 						{
-							"name": "02. 어드민 생성 (어드민)",
+							"name": "02. 어드민 로그인 (어드민)",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"password\": \"admin13@$\"\n    }\n}",
+									"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
