@@ -95,6 +95,7 @@ node_modules
 .node_history
 src/events/class/*.json
 src/events/user/*.json
+!src/events/user/admin.json
 src/events/simulation/*.json
 logs/*.log
 dist

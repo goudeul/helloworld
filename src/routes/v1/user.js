@@ -6,8 +6,8 @@ import auth from '../../middlewares/auth'
 
 const router = new Router()
 
-// router.post('/register', validRegister, UserController.create)      // 회원가입 (권한체크없음)
-router.post('/register', auth['admin', 'professor'], validRegister, UserController.create)      // 회원가입
+router.post('/register', validRegister, UserController.create)      // 회원가입 (권한체크없음)
+// router.post('/register', auth['admin'], validRegister, UserController.create)      // 회원가입
 router.post('/login', UserController.login)                         // 로그인
 router.get('/me', UserController.me)                                // 본인정보 확인
 router.put('/password', auth['all'], validPassword, UserController.changePassword)              // 비밀번호 변경
