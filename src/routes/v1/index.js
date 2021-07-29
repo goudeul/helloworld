@@ -1,17 +1,18 @@
 import Router from '@koa/router'
 
-import user from './user'
+import bo from './back-office'
 import cls from './class'
 import simulation from './simulation'
 import stream from './stream'
+import user from './user'
 
 const router = new Router()
 
-router.use('/user', user.routes())
+router.use('/bo', bo.routes())
 router.use('/class', cls.routes())
 router.use('/simulation', simulation.routes())
-
 router.use('/stream', stream.routes())
+router.use('/user', user.routes())
 
 router.get('/', ctx => {
   ctx.body = {
