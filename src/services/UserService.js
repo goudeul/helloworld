@@ -45,8 +45,9 @@ module.exports = {
         .catch((e) => {}) || null
 
       if (userFile) {
+        const user = await userFile.readFile({ encoding: 'utf-8' })
         await userFile.close()
-        return require(`../events/user/${id}.json`)
+        return JSON.parse(user)
       }
     } catch (e) {
       return e

@@ -37,14 +37,14 @@ module.exports = {
   },
   async read (class_id) {
     try {
-      const classFile =
-        (await fsPromises
-          .open(directory + `${class_id}.json`)
-          .catch((e) => {})) || null
+      const classFile = await fsPromises
+        .open(directory + `${class_id}.json`)
+        .catch((e) => {}) || null
 
       if (classFile) {
+        const cls = await classFile.readFile({ encoding: 'utf-8' })
         await classFile.close()
-        return require(`../events/class/${class_id}.json`)
+        return JSON.parse(cls)
       }
     } catch (e) {
       return e
@@ -83,10 +83,12 @@ module.exports = {
   },
   async fetchList (size, sort) {
     try {
-      const files = await fsPromises.readdir(directory)
-      return files.map((ele) => {
-        return require(`../events/class/${ele}`)
-      })
+      const files = (await fsPromises.readdir(directory)).filter(str => str !== 'blank')
+      const classes = await Promise.all(files.map((id) => {
+        return fsPromises.readFile(directory + `${id}`, { encoding: 'utf-8' })
+      }))
+
+      return classes.map(ele => JSON.parse(ele))
     } catch (e) {
       return e
     }

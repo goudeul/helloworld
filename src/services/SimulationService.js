@@ -53,8 +53,9 @@ module.exports = {
         .catch((e) => {}) || null
 
       if (simulationFile) {
+        const simulation = await simulationFile.readFile({ encoding: 'utf-8' })
         await simulationFile.close()
-        return require(`../events/simulation/${simulation_id}.json`)
+        return JSON.parse(simulation)
       }
     } catch (e) {
       return e
