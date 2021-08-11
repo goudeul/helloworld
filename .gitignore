@@ -98,6 +98,7 @@ src/events/user/*.json
 !src/events/user/admin.json
 src/events/simulation/*.json
 logs/*.log
+logs/error/*log
 dist
 
 
