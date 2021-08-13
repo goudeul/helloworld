@@ -47,7 +47,9 @@ module.exports = {
             const isExpired = moment().isAfter(expday)
             if (isExpired) modifyPasswordYN = 'Y'
           }
-          user.modifyPasswordYN = modifyPasswordYN
+          if (user) {
+            user.modifyPasswordYN = modifyPasswordYN
+          }
           // 암호변경 만료일 체크 //
 
           const bearerToken = setBearerToken(user)
