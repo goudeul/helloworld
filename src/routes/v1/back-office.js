@@ -1,4 +1,5 @@
 import Router from '@koa/router'
+import SettingController from '../../controllers/SettingController'
 import auth from '../../middlewares/auth'
 import userList from '../../tests/events/sampleUserList'
 
@@ -12,5 +13,9 @@ router.post('/user/search', (ctx) => {
     },
   }
 })
+
+router.get('/setting', SettingController.read)
+router.put('/setting', auth['admin'], SettingController.write)
+
 
 module.exports = router

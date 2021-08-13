@@ -1,4 +1,5 @@
 import UserService from '../services/UserService'
+import SettingService from '../services/SettingService'
 import passport from 'koa-passport'
 import jwt from 'jsonwebtoken'
 import moment from 'moment'
@@ -38,6 +39,17 @@ module.exports = {
         if (result) {
           ctx.throw(404, { message: '로그인에 실패했습니다. ' + result, ctx })
         } else {
+          // 암호변경 만료일 체크
+          let modifyPasswordYN = 'N'
+          const setting = await SettingService.read()
+          if (setting && setting.passwordPeriods) {
+            const expday = moment(user.lastModifyPassword).add(setting.passwordPeriods, 'M')
+            const isExpired = moment().isAfter(expday)
+            if (isExpired) modifyPasswordYN = 'Y'
+          }
+          user.modifyPasswordYN = modifyPasswordYN
+          // 암호변경 만료일 체크 //
+
           const bearerToken = setBearerToken(user)
 
           ctx.body = {

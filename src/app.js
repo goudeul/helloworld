@@ -47,11 +47,16 @@ app.use(
 // 에러처리
 app.use(
   error((err) => {
-    const message = {
+    let message = {
       message: err.message,
-      ctx: err.ctx,
       user: context.user,
-      request: err.ctx.request.body
+    }
+    if (err.ctx) {
+      message = {
+        ...message,
+        ctx: err.ctx,
+        request: err.ctx.request.body
+      }
     }
     logger.log({
       level: 'error',
