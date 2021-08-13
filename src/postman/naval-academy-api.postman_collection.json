@@ -1086,10 +1086,49 @@
 			]
 		},
 		{
-			"name": "04. 환경설정",
+			"name": "04. 백오피스",
 			"item": [
 				{
-					"name": "01. 설정값 읽기",
+					"name": "01. 회원목록",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/bo/user/search",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"bo",
+								"user",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02. 환경설정값 읽기",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1116,12 +1155,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/setting",
+							"raw": "{{NAVAL_HOST}}/v1/bo/setting",
 							"host": [
 								"{{NAVAL_HOST}}"
 							],
 							"path": [
 								"v1",
+								"bo",
 								"setting"
 							]
 						}
@@ -1129,7 +1169,7 @@
 					"response": []
 				},
 				{
-					"name": "02. 설정값 저장",
+					"name": "03. 환경설정값 저장",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1145,7 +1185,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"setting\": {\n        \"passwordPeriods\": 3\n    }\n}",
+							"raw": "{\n    \"setting\": {\n        \"passwordPeriods\": 1\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
