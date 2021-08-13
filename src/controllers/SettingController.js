@@ -1,4 +1,5 @@
 import SettingService from '../services/SettingService'
+import moment from 'moment'
 
 module.exports = {
   write: async (ctx) => {
@@ -21,10 +22,15 @@ module.exports = {
   },
   read: async (ctx, next) => {
     try {
-      const setting = await SettingService.read()
+      let setting = await SettingService.read()
 
       if (!setting) {
-        ctx.throw(401, { message: '설정정보가 존재하지 않습니다.', ctx })
+        // ctx.throw(401, { message: '설정정보가 존재하지 않습니다.', ctx })
+        const now = moment().format('YYYY-MM-DD HH:mm:ss')
+        setting = {
+          passwordPeriods: 0,
+          updated_at: now
+        }
       }
 
       ctx.body = {
