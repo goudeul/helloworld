@@ -2,6 +2,21 @@ import SimulationService from '../services/SimulationService'
 import moment from 'moment'
 
 module.exports = {
+  create: async (ctx) => {
+    try {
+      const simulation_id = ctx.params.id
+      const simulation = await SimulationService.create(simulation_id)
+
+      ctx.body = {
+        code: 'S0001',
+        data: {
+          simulation: simulation,
+        },
+      }
+    } catch (e) {
+      ctx.throw(404, e.message, { code: 'S9999', ctx })
+    }
+  },
   read: async (ctx) => {
     try {
       const simulation_id = ctx.params.id

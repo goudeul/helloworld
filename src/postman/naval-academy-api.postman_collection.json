@@ -1015,7 +1015,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY0MzI3LCJleHAiOjE2Mjk3NjkxMjcsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.WtQYSctnklzC9jQkK7XGBU5CYbP5wGw0ijEBakkJSok",
 									"type": "string"
 								}
 							]
@@ -1053,7 +1053,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY2MzcyLCJleHAiOjE2Mjk3NzExNzIsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.uarFJnYPH5OGNFaJgRZ_uVfvKMywZejNOXpmpqfPA5c",
 									"type": "string"
 								}
 							]
@@ -1062,7 +1062,45 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"simulation\": {\n        \"screenID\": \"01\",\n        \"isSharing\": true,\n        \"modeling\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"scale\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"camera\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"button\": {\n            \"isRun\": true,\n            \"isInner\": true,\n            \"isFX\": false\n        }\n    }\n}",
+							"raw": "{\n    \"simulation\": {\n        \"screenID\": \"01\",\n        \"isSharing\": true,\n        \"modeling\": {\n            \"position\": {\n                \"x\": 37.5668654,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"scale\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"camera\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"button\": {\n          \"isRun\": true, \n          \"isInner\": true, \n          \"isFX\": false,\n          \"btnStatusGT\": \"0\", \n          \"btnStatusDE\": \"0\", \n          \"btnStatusRG\": \"0\", \n          \"btnStatusSP\": \"0\"\n        },\n        \"parts\": {\n          \"isDiagramGT\": false, \n          \"isDiagramDE\": false, \n          \"diagramSpeed\": \"normal\", \n          \"diagramStopTime\": 0\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"simulation",
+								"gk3tp38t4kr0a4pzj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03. 시물레이션 생성",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY2MzcyLCJleHAiOjE2Mjk3NzExNzIsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.uarFJnYPH5OGNFaJgRZ_uVfvKMywZejNOXpmpqfPA5c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1138,7 +1176,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY0MzI3LCJleHAiOjE2Mjk3NjkxMjcsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.WtQYSctnklzC9jQkK7XGBU5CYbP5wGw0ijEBakkJSok",
 									"type": "string"
 								}
 							]

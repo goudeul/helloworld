@@ -34,6 +34,10 @@ module.exports = {
         },
         button: {
           isRun: true, isInner: true, isFX: false,
+          btnStatusGT: '0', btnStatusDE: '0', btnStatusRG: '0', btnStatusSP: '0',
+        },
+        parts: {
+          isDiagramGT: false, isDiagramDE: false, diagramSpeed: 'normal', diagramStopTime: 0
         },
         created_at: now,
         updated_at: now,
