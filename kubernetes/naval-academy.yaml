@@ -1,0 +1,86 @@
+## PV
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: naval-academy-pv
+#spec:
+#  capacity:
+#    storage: 2Gi
+#  volumeMode: Filesystem
+#  accessModes:
+#    - ReadWriteOnce
+#  storageClassName: manual
+#  persistentVolumeReclaimPolicy: Delete
+#  hostPath:
+#    path: /tmp/logs
+#---
+#
+## PVC
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: naval-academy-pvc
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  volumeMode: Filesystem
+#  resources:
+#    requests:
+#      storage: 2Gi
+#  storageClassName: manual
+#---
+
+# naval-academy-api
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: naval-academy
+  labels:
+    app: naval-academy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: naval-academy
+  template:
+    metadata:
+      labels:
+        app: naval-academy
+    spec:
+      containers:
+        - name: naval-academy
+          image: coarsoft/naval-academy-api:v1.0
+          env:
+            - name: NODE_ENV
+              value: production
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/logs
+              name: api-logs
+      volumes:
+        - name: api-logs
+          hostPath:
+            path: /Users/seoJeongSeok/Documents/10. Project/naval-academy-api/logs
+            type: Directory
+#        - name: api-volume
+#          persistentVolumeClaim:
+#            claimName: naval-academy-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: naval-academy
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 31000
+      protocol: TCP
+  selector:
+    app: naval-academy
+---
+
