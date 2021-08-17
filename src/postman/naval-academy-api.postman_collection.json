@@ -1120,6 +1120,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "04. 시물레이션 삭제",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY2MzcyLCJleHAiOjE2Mjk3NzExNzIsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.uarFJnYPH5OGNFaJgRZ_uVfvKMywZejNOXpmpqfPA5c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
+							"host": [
+								"{{NAVAL_HOST}}"
+							],
+							"path": [
+								"v1",
+								"simulation",
+								"gk3tp38t4kr0a4pzj"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

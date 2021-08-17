@@ -14,7 +14,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      ctx.throw(404, e.message, { code: 'S9999', ctx })
+      ctx.throw(401, { message: e.message, ctx })
     }
   },
   read: async (ctx) => {
@@ -29,7 +29,7 @@ module.exports = {
         },
       }
     } catch (e) {
-      ctx.throw(404, e.message, { code: 'S9999', ctx })
+      ctx.throw(401, { message: e.message, ctx })
     }
   },
   update: async (ctx) => {
@@ -55,7 +55,26 @@ module.exports = {
         },
       }
     } catch (e) {
-      ctx.throw(404, e.message, { code: 'S9999', ctx })
+      ctx.throw(401, { message: e.message, ctx })
     }
   },
+  delete: async (ctx) => {
+    try {
+      const simulation_id = ctx.params.id
+      const simulation = await SimulationService.delete(simulation_id)
+
+      if (!simulation) {
+        ctx.throw(401, { message: '시뮬레이션 정보가 존재하지 않습니다.', ctx })
+      }
+
+      ctx.body = {
+        code: 'S0001',
+        data: {
+          simulation: null,
+        },
+      }
+    } catch (e) {
+      ctx.throw(401, { message: e.message, ctx })
+    }
+  },  
 }
