@@ -5,7 +5,7 @@ import path from 'path'
 
 // log 저장 위치
 const appDir = path.dirname(require.main.filename)
-const logDir = appDir + '/../logs/'
+const logDir = appDir + '/../coarsoft_pv/logs/'
 const YYMMDD = moment().format('YYYY-MM-DD')
 
 // log 포맷 정의

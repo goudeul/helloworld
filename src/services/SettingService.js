@@ -3,7 +3,7 @@ import fsPromises from 'fs/promises'
 import moment from 'moment'
 
 const appDir = path.dirname(require.main.filename)
-const directory = appDir + '/events/'
+const directory = appDir + '/../coarsoft_pv/events/'
 
 module.exports = {
   async write (setting) {
