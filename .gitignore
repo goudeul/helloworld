@@ -93,13 +93,21 @@ pids
 results
 node_modules
 .node_history
+dist
+
 src/events/class/*.json
 src/events/user/*.json
 !src/events/user/admin.json
 src/events/simulation/*.json
 logs/*.log
 logs/error/*log
-dist
+
+coarsoft_pv/events/class/*.json
+coarsoft_pv/events/user/*.json
+coarsoft_pv/events/simulation/*.json
+!coarsoft_pv/events/user/admin.json
+coarsoft_pv/logs/*.log
+coarsoft_pv/logs/error/*.log
 
 
 ############################

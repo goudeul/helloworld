@@ -297,7 +297,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1281,6 +1281,226 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "11. 로그 (es: logs)",
+			"item": [
+				{
+					"name": "00. ES",
+					"item": [
+						{
+							"name": "01. Mapping 확인",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "changeme",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "elastic",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{NAVAL_ES_HOST}}/logstash-naval-academy-info-*/_search",
+									"host": [
+										"{{NAVAL_ES_HOST}}"
+									],
+									"path": [
+										"logstash-naval-academy-info-*",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "01. 전체 목록 조회",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/logs/all",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"logs",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02. 조건 검색",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Zhdkthvmxm3@!",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "coarsoft",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"from\": 0,\r\n  \"size\": 2,\r\n  \"search\": {\r\n    \"fields\": [\"message_data\", \"message\"],\r\n    \"keyword\": \"v1\"\r\n  },  \r\n  \"filters\": {\r\n\t\"@timestamp\": { \"gte\": \"2021-07-25T00:05:06.285Z\", \"lte\": \"2021-09-25T00:05:06.285Z\" }\r\n  },\r\n  \"sort\": [{\"@timestamp\":\"asc\"}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/v1/logs/search",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"v1",
+								"logs",
+								"search"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "01. 기존 예제",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"from\": 0,\r\n  \"size\": 1,\r\n  \"search\": {\r\n    \"fields\": [\"건축물명\", \"매물기본특징\"],\r\n    \"keyword\": \"서해\"\r\n  },\r\n  \"filters\": {\r\n\t\"매물유형\": \"아파트\",\r\n\t\"매물기본특징\": [\"입지조건\"],\r\n\t\"세대당주차면수\": { \"gte\": 1, \"lte\": 20 },\r\n\t\"건폐율\": { \"gte\": 10, \"lte\": 20 },\r\n    \"분양가.min\": { \"gte\": 80000000},\r\n    \"분양가.max\": { \"lte\": 1300000000},\r\n    \"타입정보\": {\r\n        \"공급면적\": { \"gt\": 61, \"lte\": 100 },\r\n        \"방수\": { \"gte\": 3, \"lte\": 5 },\r\n        \"욕실수\": { \"gte\": 1, \"lte\": 2 },\r\n        \"세대수\": { \"gte\": 100, \"lte\": 200 }\r\n    }\r\n  },\r\n  \"sort\": [{\"visit_count\":\"asc\"}]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/v1/realty/search",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"realty",
+										"search"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "02. 기본 예제",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"from\": 0,\r\n  \"size\": 2,\r\n  \"search\": {\r\n    \"fields\": [\"message_data\", \"message\"],\r\n    \"keyword\": \"v1\"\r\n  },  \r\n  \"filters\": {\r\n\t\"@timestamp\": { \"gte\": \"2021-07-25T00:05:06.285Z\", \"lte\": \"2021-09-25T00:05:06.285Z\" }\r\n  },\r\n  \"sort\": [{\"@timestamp\":\"asc\"}]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/v1/logs/search",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"logs",
+										"search"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "03. ID 검색",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"from\": 0,\r\n  \"size\": 2,\r\n  \"search\": {\r\n    \"fields\": [\"message_data\", \"message\"],\r\n    \"keyword\": \"v1\"\r\n  },  \r\n  \"filters\": {\r\n\t\"@timestamp\": { \"gte\": \"2021-07-25T00:05:06.285Z\", \"lte\": \"2021-09-25T00:05:06.285Z\" }\r\n  },\r\n  \"sort\": [{\"@timestamp\":\"asc\"}]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/v1/logs/search",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"v1",
+										"logs",
+										"search"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
 				}
 			]
 		},

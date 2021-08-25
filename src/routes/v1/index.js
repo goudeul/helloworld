@@ -5,6 +5,7 @@ import cls from './class'
 import simulation from './simulation'
 import stream from './stream'
 import user from './user'
+import logs from './logs'
 
 const router = new Router()
 
@@ -13,6 +14,7 @@ router.use('/class', cls.routes())
 router.use('/simulation', simulation.routes())
 router.use('/stream', stream.routes())
 router.use('/user', user.routes())
+router.use('/logs', logs.routes())
 
 router.get('/', ctx => {
   ctx.body = {
