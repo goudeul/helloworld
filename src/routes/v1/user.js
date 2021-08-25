@@ -1,5 +1,5 @@
 import Router from '@koa/router'
-import UserController from '../../controllers/UserController'
+import UserController from '../../controllers/SeqUserController'
 import { validRegister } from '../../middlewares/validRegister'
 import { validPassword } from '../../middlewares/validPassword'
 import auth from '../../middlewares/auth'
