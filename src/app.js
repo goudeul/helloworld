@@ -70,8 +70,8 @@ app.use(
   }),
 )
 
+// sequelize db 연결
 const models = require('./models/index.js');
-
 models.sequelize.sync().then(() => {
   console.log(' DB 연결 성공');
 }).catch(err => {

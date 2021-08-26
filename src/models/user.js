@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     identityNumber: {
       type: DataTypes.STRING(100),
       comment: '학번',
-      allowNull: false,
+      allowNull: true,
     },
     lastApiRequest: {
       type: DataTypes.DATE,

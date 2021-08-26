@@ -5,7 +5,7 @@ const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 import '../config/env'
 
-import UserService from '../services/UserService'
+import UserService from '../services/SeqUserService'
 
 // passport 로컬 Strategy(정책)
 passport.use(
@@ -15,7 +15,7 @@ passport.use(
       passwordField: 'user[password]',
     },
     async (id, password, done) => {
-      const user = await UserService.read(id)
+      const user = await UserService.readForce(id)
 
       if (!user || !user.id) return done('계정정보가 존재하지 않습니다.')
       if (!(await bcrypt.compareSync(password, user.password))) {

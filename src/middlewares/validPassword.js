@@ -1,12 +1,11 @@
-import validUser from '../utils/vaildUser'
+// import validUser from '../utils/vaildUser'
+import validUser from '../utils/SeqVaildUser'
 
 export async function validPassword (ctx, next) {
-  const body = ctx.request.body
-  const { password, new_password } = body.user
+  const id = ctx.params.id
+  const { new_password } = ctx.request.body.user
 
-  // if (!validUser.validPassword(new_password)) ctx.throw(404, '패스워드를 확인해주세요.', { code: 'S9999', ctx })
-
-  let resultPw = validUser.validPassword(new_password)
+  const resultPw = validUser.validPassword(new_password, id)
   if (resultPw !== '') ctx.throw(404, resultPw, { code: 'S9999', ctx })
 
   await next()

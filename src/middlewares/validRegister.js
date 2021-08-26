@@ -1,4 +1,5 @@
-import validUser from '../utils/vaildUser'
+// import validUser from '../utils/vaildUser'
+import validUser from '../utils/SeqVaildUser'
 
 export async function validRegister (ctx, next) {
   const body = ctx.request.body
@@ -18,7 +19,7 @@ export async function validRegister (ctx, next) {
   } else if (role === '20') {   // 학생 학번 체크
     if (!identityNumber) ctx.throw(404, '학습회원은 학번이 필수입니다.', { code: 'S9999', ctx })
   }
-
+  
   if (!await validUser.checkID(id)) ctx.throw(404, '동일한 아이디가 이미 존재합니다.', { code: 'S9999', ctx })
 
   await next()
