@@ -79,20 +79,20 @@ $ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 
 1. Production
    - 이미지 생성
    ~~~bash
-   docker build . -t coarsoft/naval-academy-api:1.0
+   docker build . -t coarsoft/3dengine-api-server:1.0
    ~~~
    - 실행
    ~~~bash
-   docker run -d --name naval-academy-api -p 80:3000 -v $PWD:/app coarsoft/naval-academy-api:1.0
+   docker run -d --name naval-academy-api -p 80:3000 -v $PWD:/app coarsoft/3dengine-api-server:1.0
    ~~~
 2. Development
    - 이미지 생성
    ~~~bash
-   docker build . -t coarsoft/naval-academy-api-dev:1.0 -f DockerfileDev
+   docker build . -t coarsoft/3dengine-api-server-dev:1.0 -f DockerfileDev
    ~~~
    - 실행
    ~~~bash
-   docker run -d --name naval-academy-api-dev -p 3000:3000 -v $PWD:/app coarsoft/naval-academy-api-dev:1.0
+   docker run -d --name naval-academy-api-dev -p 3000:3000 -v $PWD:/app coarsoft/3dengine-api-server-dev:1.0
    ~~~
    
 ---
