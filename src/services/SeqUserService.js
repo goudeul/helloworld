@@ -6,6 +6,16 @@ import moment from 'moment'
 const { filterSort } = require('../utils')
 
 module.exports = {
+  
+  createPassword: async (password) => {
+    return await new Promise((resolve, reject) => {
+      bcrypt.hash(password, bcrypt.genSaltSync(10), (err, hash) => {
+        if (err) reject(err)
+        resolve(hash)
+      })
+    })
+  },
+
   create: async (object) => {
     if (object.password) {
       object.password = await new Promise((resolve, reject) => {
@@ -21,7 +31,6 @@ module.exports = {
         ...object,
         created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
         updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-        deleted_at: null,
       },
       // { logging: console.log() },
     )
@@ -36,22 +45,12 @@ module.exports = {
       {
         where: {
           id: id,
-          [Op.and]: { deleted_at: null },
         },
       },
     )
   },
 
   delete: async (id) => {
-    return await Users.update(
-      {
-        deleted_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-      },
-      { where: { id } },
-    )
-  },
-
-  forceDelete: async (id) => {
     return await Users.destroy({ where: { id } })
   },
 
@@ -59,20 +58,16 @@ module.exports = {
     return await Users.findOne({
       where: {
         id: id,
-        [Op.and]: { deleted_at: null },
       },
       attributes: { exclude: ['password'] },
-      include: [{ model: Brokers }],
     })
   },
 
-  findEmail: async (email) => {
+  readForce: async (id) => {
     return await Users.findOne({
       where: {
-        email: email,
-        [Op.and]: { deleted_at: null },
-      },
-      include: [{ model: Brokers }],
+        id: id,
+      }
     })
   },
 

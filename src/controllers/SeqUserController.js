@@ -81,26 +81,26 @@ module.exports = {
   changePassword: async (ctx, next) => {
     try {
       const id = ctx.params.id
-      const body = ctx.request.body
+      const user = ctx.request.body.user
 
-      const oldUser = await UserService.read(id)
-      if (!(await bcrypt.compareSync(body.user.password, oldUser.password))) {
-        ctx.throw(403, { message: '패스워드를 확인해주세요.', ctx })
+      if ( user.password !== null && user.password !== '' && user.password === user.new_password ) {
+        ctx.throw(403, { message: '변경하려는 패스워드가 기존과 같습니다.', ctx })
       }
-
-      const password = body.user.new_password
-        ? await UserService.createPassword(body.user.new_password)
+      const oldUser = await UserService.readForce(id)
+      if (!(await bcrypt.compareSync(user.password, oldUser.password))) {
+        ctx.throw(403, { message: '패스워드를 확인 해 주세요.', ctx })
+      }
+      const password = user.new_password
+        ? await UserService.createPassword(user.new_password)
         : null
-      body.user.password = password
+      user.password = password
 
-      const user = await UserService.update(id, body.user)
-      if (user < 1) ctx.throw(409, '수정에 실패 했습니다.')
+      const result = await UserService.update(id, user)
+      if (result < 1) ctx.throw(409, '수정에 실패 했습니다.')
 
       ctx.body = {
         code: 'S0001',
-        data: {
-          user,
-        },
+        data: result
       }
     } catch (e) {
       ctx.throw(403, { message: e.message, ctx })
