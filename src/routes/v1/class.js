@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import ClassController from "../../controllers/ClassController";
+import ClassController from "../../controllers/SeqClassController";
 import auth from "../../middlewares/auth";
 
 const router = new Router();

@@ -1,9 +1,14 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('class', {
+    // id: {
+    //   autoIncrement: true,
+    //   type: DataTypes.INTEGER.UNSIGNED,
+    //   allowNull: false,
+    //   primaryKey: true
+    // },
     id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.STRING(100),
       allowNull: false,
       primaryKey: true
     },
@@ -19,38 +24,16 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     professor: {
-      type: DataTypes.TEXT,
+      type: DataTypes.JSON,
       comment: '교수정보',
-      allowNull: false,
+      allowNull: true,
       defaultValue: {id: '', name: '', role: ''},
-      get() {
-        try {
-          return JSON.parse(this.getDataValue('value'));
-        } catch (e) { return null; }
-      },
-      set(value) {
-        if (!(value instanceof Object)) {
-          throw Error('`value` should be an instance of Object');
-        }
-        this.setDataValue('value', JSON.stringify(value));
-      },
     },
     students: {
-      type: DataTypes.TEXT,
+      type: DataTypes.JSON,
       comment: '학생정보',
-      allowNull: false,
+      allowNull: true,
       defaultValue: [],
-      get() {
-        try {
-          return JSON.parse(this.getDataValue('value'));
-        } catch (e) { return null; }
-      },
-      set(value) {
-        if (!(value instanceof Object)) {
-          throw Error('`value` should be an instance of Object');
-        }
-        this.setDataValue('value', JSON.stringify(value));
-      },
     },
     created_at: {
       type: DataTypes.DATE,

@@ -41,7 +41,7 @@ export const filterSort = {
   /**
    * 0. filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
    * 1. 있을 경우: 추가
-   * 2. 없을 경우:
+   * 2. 없을 경우: 무시
    * @param where
    * @param filter
    * @param Model
@@ -49,9 +49,7 @@ export const filterSort = {
    */
   setFilter(where, filter, Model) {
     where = where || { [Op.and]: [] }
-    // const others = []
     const attributes = Object.keys(Model.rawAttributes)
-
     for (const [key, value] of Object.entries(filter)) {
       if (attributes.findIndex((element) => element === key) > -1) {
         const operator = Object.keys(value)[0]
@@ -59,10 +57,6 @@ export const filterSort = {
         where[Op.and].push({
           [key]: { [Op[operator]]: values },
         })
-        // } else {
-        //   others.push({
-        //     [key]: value,
-        //   })
       }
     }
 
@@ -72,7 +66,7 @@ export const filterSort = {
   /**
    * 0. filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
    * 1. 있을 경우: 추가
-   * 2. 없을 경우:
+   * 2. 없을 경우: 무시
    * @param where
    * @param filter
    * @param Model
@@ -92,6 +86,7 @@ export const filterSort = {
 
     return where
   },
+
   /**
    * 0. Sort Key 가 Model Column 비교하여 Sequelize 구문으로 변환
    * 1. 있을 경우: 추가
@@ -117,6 +112,7 @@ export const filterSort = {
     return order
   },
 
+  // 엘라스틱서치 전용
   getSqlQuery({ table, filter, search, from, size, sort }) {
     let sqlQuery = ''
 
@@ -200,6 +196,7 @@ export const filterSort = {
     return sqlQuery
   },
 
+  // 엘라스틱서치 전용
   getQueryDsl({ table, filters, search, from, size, sort }) {
     //
     const queryJson = {

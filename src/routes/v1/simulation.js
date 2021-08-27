@@ -1,5 +1,5 @@
 import Router from '@koa/router'
-import SimulationController from '../../controllers/SimulationController'
+import SimulationController from '../../controllers/SeqSimulationController'
 import auth from '../../middlewares/auth'
 
 const router = new Router()

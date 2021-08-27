@@ -1,9 +1,9 @@
 const { user: Users } = require('../models')
 const { Op } = require('sequelize')
 const bcrypt = require('bcryptjs')
+const { filterSort } = require('../utils')
 import moment from 'moment'
 
-const { filterSort } = require('../utils')
 
 module.exports = {
   

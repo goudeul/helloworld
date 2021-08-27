@@ -12,7 +12,6 @@ const client = new Client({
 })
 
 export async function fetchList ({ table, filters, search, from, size, sort }) {
-  // const sqlQuery = filterSort.getSqlQuery({
   const queryJson = filterSort.getQueryDsl({
     table,
     filters,
@@ -21,19 +20,7 @@ export async function fetchList ({ table, filters, search, from, size, sort }) {
     size,
     sort,
   })
-  // console.log('queryJson -> ', JSON.stringify(queryJson))
 
-//   const result = await client.transport
-//     .request({
-//       method: 'POST',
-//       path: '/_opendistro/_sql?format=json',
-//       body: {
-//         query: sqlQuery,
-//       },
-//     })
-//     .catch((err) => {
-//       console.log('Error: ', err.message)
-//     })
   const result = await client
     .search({
       index: table,
@@ -99,28 +86,10 @@ export async function fetchListAll ({ table, from, size }) {
 }
 
 export async function fetchItem (table, id) {
-  const result = await client
-    .get({
-      index: table,
-      id: id,
-    })
-    // .catch((err) => {
-    //   console.log('Error: ', err.message)
-    // })
-
-  // if (
-  //   !result ||
-  //   !result.body ||
-  //   !result.body._source ||
-  //   result.body._source.deleted_at !== null
-  // ) {
-  //   return
-  // }
-
-  // const data = {
-  //   id: result.body._id,
-  //   ...result.body._source,
-  // }
+  const result = await client.get({
+    index: table,
+    id: id,
+  })
 
   if (!result) return
 
