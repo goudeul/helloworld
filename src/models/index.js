@@ -1,12 +1,9 @@
 'use strict'
 import fs from 'fs'
 import path from 'path'
-import { Sequelize } from 'sequelize'
+import Sequelize from 'sequelize'
 
 const basename = path.basename(__filename)
-/*const env2 = process.env.NODE_ENV || 'development';
-const config = require('../config/sequelize')[env2];*/
-
 const db = {}
 
 const sequelize = new Sequelize(
@@ -24,14 +21,12 @@ const sequelize = new Sequelize(
 
 fs.readdirSync(__dirname)
   .filter((file) => {
-    return (
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-    )
+    return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
   })
-  .forEach((file) => {
+  .forEach(file => {
     const model = require(path.join(__dirname, file))(
       sequelize,
-      Sequelize.DataTypes,
+      Sequelize['DataTypes'],
     )
     db[model.name] = model
   })
@@ -44,11 +39,11 @@ Object.keys(db).forEach((modelName) => {
 
 // Fix the wrong count issue in findAndCountAll()
 // 참조: https://github.com/sequelize/sequelize/issues/9481
-sequelize.addHook('beforeCount', function(options) {
-  if (this._scope.include && this._scope.include.length > 0) {
+sequelize.addHook('beforeCount', function (options) {
+  if (this['_scope'].include && this['_scope'].include.length > 0) {
     options.distinct = true
     options.col =
-      this._scope.col || options.col || `"${this.options.name.singular}".id`
+      this['_scope'].col || options.col || `"${this.options.name.singular}".id`
   }
 
   if (options.include && options.include.length > 0) {
