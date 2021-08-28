@@ -1,4 +1,4 @@
-import UserService from '../services/UserService'
+import UserService from '../services/SeqUserService'
 import SettingService from '../services/SettingService'
 import passport from 'koa-passport'
 import jwt from 'jsonwebtoken'

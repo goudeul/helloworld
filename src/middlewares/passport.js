@@ -55,7 +55,7 @@ passport.use(
 
 // bearerToken을 추출하여 ctx.user에 주입
 export const authenticateJwt = async (ctx, done) => {
-  await passport.authenticate('jwt', { session: false }, (result, user) => {
+  await passport.authenticate('jwt', { session: false }, (_null, result, { message, user }) => {
     if (user) {
       ctx.user = user
     }
