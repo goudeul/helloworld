@@ -18,19 +18,18 @@ module.exports = {
   },
 
   join: async (ctx) => {
-    const now = moment().format('YYYY-MM-DD HH:mm:ss')
-    const body = ctx.request.body
-    const { id } = body.class
+    const { id } = ctx.request.body.class
     const student = ctx.user
 
-    const oldClass = await ClassService.read(id)
-    const { students } = oldClass
+    const cls  = await ClassService.read(id)
+    const { students } = cls
 
     const index = students.findIndex(ele => ele.id === student.id)
-    if (index < 0) oldClass.students.push(student)
+    if (index < 0) students.push(student)
 
-    const cls = await ClassService.update(id, oldClass)
+    await ClassService.update(id, cls.dataValues)
 
+    const now = moment().format('YYYY-MM-DD HH:mm:ss')
     ctx.body = {
       code: 'S0001',
       data: {
@@ -41,17 +40,16 @@ module.exports = {
   },
 
   exit: async (ctx) => {
-    const body = ctx.request.body
-    const { id } = body.class
+    const { id } = ctx.request.body.class
     const student = ctx.user
 
-    const oldClass = await ClassService.read(id)
-    const { students } = oldClass
+    const cls = await ClassService.read(id)
+    const { students } = cls
 
     const index = students.findIndex(ele => ele.id === student.id)
     if (index > -1) students.splice(index, 1)
 
-    await ClassService.update(id, oldClass)
+    await ClassService.update(id, cls.dataValues)
 
     ctx.body = {
       code: 'S0001',
@@ -68,6 +66,7 @@ module.exports = {
   create: async (ctx) => {
     const body = ctx.request.body
     const professor = ctx.user
+
     const cls = await ClassService.create(body.class, professor)
 
     if (cls) await SimulationService.create(cls.id)
@@ -82,7 +81,6 @@ module.exports = {
 
   read: async (ctx) => {
     const id = ctx.params.id
-
     const cls = await ClassService.read(id)
 
     ctx.body = {

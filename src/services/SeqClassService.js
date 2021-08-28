@@ -8,11 +8,11 @@ module.exports = {
 
   async create (cls, professor) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
-    const class_id = uniqid()
+    const id = uniqid()
 
     cls = {
       ...cls,
-      id: class_id,
+      id: id,
       // name: cls.name,
       lastApiRequest: now,
       professor: {
@@ -24,7 +24,9 @@ module.exports = {
       created_at: now,
       updated_at: now,
     }
-    return await Classes.create(cls)
+    await Classes.create(cls)
+
+    return await Classes.findOne({ where: { id } })
   },
 
   async read (id) {
@@ -33,9 +35,11 @@ module.exports = {
 
   async update (id, cls) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
-    Classes.update_at = now
+    cls.updated_at = now
 
-    return await Classes.update(cls, { where: { id } })
+    await Classes.update(cls, { where: { id: id } })
+
+    return await Classes.findOne({ where: { id } })
   },
 
   async delete (id) {

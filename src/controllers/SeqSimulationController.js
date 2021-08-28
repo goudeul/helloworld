@@ -33,14 +33,7 @@ module.exports = {
 
   update: async (ctx) => {
     const id = ctx.params.id
-    const body = ctx.request.body
-
-    const oldSimulation = await SimulationService.read(id)
-    const newSimulation = {
-      ...oldSimulation,
-      ...body.simulation
-    }
-
+    const newSimulation = ctx.request.body.simulation
     const simulation = await SimulationService.update(id, newSimulation)
 
     ctx.body = {

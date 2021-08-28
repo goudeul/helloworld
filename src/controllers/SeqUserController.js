@@ -26,13 +26,20 @@ module.exports = {
   login: async (ctx, next) => {
     try {
       await passport.authenticate('local', {}, async (error, user) => {
+        const setting = await SettingService.read()
+
         if (error || !user) {
+          // 로그인실패일때
+          user.failLoginCount++
+          if (setting && user.failLoginCount > setting.passwordFailCount) {
+            user.isBlocked = true
+          }
+          await UserService.update(user.id, user)
           ctx.throw(404, { message: '로그인에 실패했습니다. ' + error, ctx })
         } else {
           // 암호변경 만료일 체크
           let modifyPasswordYN = 'N'
-          const setting = await SettingService.read()
-          if (setting && setting.passwordPeriods) {
+          if (setting) {
             const expday = moment(user.lastModifyPassword).add(setting.passwordPeriods, 'M')
             const isExpired = moment().isAfter(expday)
             if (isExpired) modifyPasswordYN = 'Y'

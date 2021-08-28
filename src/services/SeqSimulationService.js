@@ -38,8 +38,9 @@ module.exports = {
       created_at: now,
       updated_at: now,
     }
-console.log('simulation=',simulation)
-    return await Simulations.create(simulation)
+    await Simulations.create(simulation)
+
+    return await Simulations.findOne({ where: { id } })
   },
 
   async read (id) {
@@ -48,9 +49,11 @@ console.log('simulation=',simulation)
 
   async update (id, simulation) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
-    simulation.update_at = now
+    simulation.updated_at = now
 
-    return await Simulations.update(simulation, { where: { id } })
+    await Simulations.update(simulation, { where: { id } })
+    
+    return await Simulations.findOne({ where: { id } })
   },
 
   async delete (id) {

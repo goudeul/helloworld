@@ -40,7 +40,7 @@ module.exports = {
   },
 
   update: async (id, object) => {
-    return await Users.update(
+    await Users.update(
       {
         ...object,
         updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
@@ -51,6 +51,13 @@ module.exports = {
         },
       },
     )
+
+    return await Users.findOne({
+      where: {
+        id: id,
+      },
+      attributes: { exclude: ['password'] },
+    })
   },
 
   delete: async (id) => {

@@ -29,6 +29,7 @@ module.exports = {
         const now = moment().format('YYYY-MM-DD HH:mm:ss')
         setting = {
           passwordPeriods: 0,
+          passwordFailCount: 3,
           updated_at: now
         }
       }
