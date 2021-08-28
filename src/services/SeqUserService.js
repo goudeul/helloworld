@@ -4,9 +4,8 @@ const bcrypt = require('bcryptjs')
 const { filterSort } = require('../utils')
 import moment from 'moment'
 
-
 module.exports = {
-  
+
   createPassword: async (password) => {
     return await new Promise((resolve, reject) => {
       bcrypt.hash(password, bcrypt.genSaltSync(10), (err, hash) => {
@@ -26,14 +25,18 @@ module.exports = {
       })
     }
 
-    return await Users.create(
+    const user = await Users.create(
       {
         ...object,
-        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-        updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
       },
-      // { logging: console.log() },
     )
+
+    return await Users.findOne({
+      where: {
+        id: user.id,
+      },
+      attributes: { exclude: ['password'] },
+    })
   },
 
   update: async (id, object) => {
@@ -67,7 +70,7 @@ module.exports = {
     return await Users.findOne({
       where: {
         id: id,
-      }
+      },
     })
   },
 

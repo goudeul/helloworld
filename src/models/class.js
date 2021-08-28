@@ -1,16 +1,9 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('class', {
-    // id: {
-    //   autoIncrement: true,
-    //   type: DataTypes.INTEGER.UNSIGNED,
-    //   allowNull: false,
-    //   primaryKey: true
-    // },
     id: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING(100),
@@ -21,13 +14,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       comment: '마지막 접근시간',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+      defaultValue: sequelize.fn('NOW')
     },
     professor: {
       type: DataTypes.JSON,
       comment: '교수정보',
       allowNull: true,
-      defaultValue: {id: '', name: '', role: ''},
+      defaultValue: { id: '', name: '', role: '' },
     },
     students: {
       type: DataTypes.JSON,
@@ -35,18 +28,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: [],
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
-      comment: '생성시간',
+      field: 'created_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+      comment: '생성시간'
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
-      comment: '수정시간',
+      field: 'updated_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-    },
+      comment: '수정시간'
+    }
   }, {
     sequelize,
     tableName: 'class',
@@ -60,8 +53,8 @@ module.exports = function(sequelize, DataTypes) {
         using: 'BTREE',
         fields: [
           { name: 'id' },
-        ]
+        ],
       },
-    ]
-  });
-};
+    ],
+  })
+}

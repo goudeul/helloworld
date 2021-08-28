@@ -1,5 +1,4 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('user', {
     id: {
       type: DataTypes.STRING(100),
@@ -30,25 +29,25 @@ module.exports = function(sequelize, DataTypes) {
     identityNumber: {
       type: DataTypes.STRING(100),
       comment: '학번',
-      allowNull: true,
+      allowNull: true
     },
     lastApiRequest: {
       type: DataTypes.DATE,
       comment: '마지막 접근시간',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+      defaultValue: sequelize.fn('NOW')
     },
     lastModifyPassword: {
       type: DataTypes.DATE,
       comment: '마지막 암호변경시간',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+      defaultValue: sequelize.fn('NOW')
     },
     failLoginCount: {
       type: DataTypes.INTEGER,
       comment: '로그인 실패횟수',
       allowNull: false,
-      defaultValue: 0,
+      defaultValue: 0
     },
     isBlocked: {
       type: DataTypes.BOOLEAN,
@@ -56,18 +55,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
-      comment: '생성시간',
+      field: 'created_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+      comment: '생성시간'
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
-      comment: '수정시간',
+      field: 'updated_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-    },
+      comment: '수정시간'
+    }
   }, {
     sequelize,
     tableName: 'user',

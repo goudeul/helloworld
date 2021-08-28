@@ -1,16 +1,9 @@
-const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('simulation', {
-    // id: {
-    //   autoIncrement: true,
-    //   type: DataTypes.INTEGER.UNSIGNED,
-    //   allowNull: false,
-    //   primaryKey: true
-    // },
     id: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     screenID: {
       type: DataTypes.STRING(2),
@@ -29,9 +22,9 @@ module.exports = function(sequelize, DataTypes) {
       comment: '모델 상태정보',
       allowNull: true,
       defaultValue: {
-        position: {x: 37, y: 100, z: 3},
-        rotation: {x: 37, y: 100, z: 3},
-        scale: {x: 37, y: 100, z: 3},
+        position: { x: 37, y: 100, z: 3 },
+        rotation: { x: 37, y: 100, z: 3 },
+        scale: { x: 37, y: 100, z: 3 },
       },
     },
     camera: {
@@ -39,8 +32,8 @@ module.exports = function(sequelize, DataTypes) {
       comment: '카메라 상태정보',
       allowNull: true,
       defaultValue: {
-        position: {x: 37, y: 100, z: 3},
-        rotation: {x: 37, y: 100, z: 3},
+        position: { x: 37, y: 100, z: 3 },
+        rotation: { x: 37, y: 100, z: 3 },
       },
     },
     button: {
@@ -48,8 +41,13 @@ module.exports = function(sequelize, DataTypes) {
       comment: '버튼정보모음',
       allowNull: true,
       defaultValue: {
-        isRun: true, isInner: true, isFX: false,
-        btnStatusGT: '0', btnStatusDE: '0', btnStatusRG: '0', btnStatusSP: '0',
+        isRun: true,
+        isInner: true,
+        isFX: false,
+        btnStatusGT: '0',
+        btnStatusDE: '0',
+        btnStatusRG: '0',
+        btnStatusSP: '0',
       },
     },
     parts: {
@@ -57,21 +55,21 @@ module.exports = function(sequelize, DataTypes) {
       comment: '파츠 컨트롤 상태정보',
       allowNull: true,
       defaultValue: {
-        isDiagramGT: false, isDiagramDE: false, diagramSpeed: 'normal', diagramStopTime: 0
+        isDiagramGT: false, isDiagramDE: false, diagramSpeed: 'normal', diagramStopTime: 0,
       },
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
-      comment: '생성시간',
+      field: 'created_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+      comment: '생성시간'
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
-      comment: '수정시간',
+      field: 'updated_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-    },
+      comment: '수정시간'
+    }
   }, {
     sequelize,
     tableName: 'simulation',
@@ -85,8 +83,8 @@ module.exports = function(sequelize, DataTypes) {
         using: 'BTREE',
         fields: [
           { name: 'id' },
-        ]
+        ],
       },
-    ]
-  });
-};
+    ],
+  })
+}

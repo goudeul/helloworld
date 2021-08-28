@@ -9,29 +9,18 @@ const config = require('../config/sequelize')[env2];*/
 
 const db = {}
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-  host: process.env.DB_HOST,
-  dialect: 'mysql',
-  logging: false,
-})
-
-// Read, Write Cluster 분리 (현재는 사용하지 않음)
-// eslint-disable-next-line no-unused-vars
-const sequelize2 = new Sequelize(process.env.DB_NAME, null, null, {
-  dialect: 'mysql',
-  replication: {
-    write: {},
-    read: {
-      host: '1.1.1.1',
-      username: 'write-username',
-      password: process.env.WRITE_DB_PW,
-    },
-  },
-  pool: {
-    max: 20,
-    idle: 30000,
-  },
-})
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASS,
+  {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
+    // 날짜의 경우 문자열로 처리 필요 (https://lahuman.github.io/sequelize_timezone/)
+    dialectOptions: { charset: 'utf8mb4', dateStrings: true, typeCast: true },
+    timezone: '+09:00',
+    logging: false,
+  })
 
 fs.readdirSync(__dirname)
   .filter((file) => {
@@ -55,7 +44,7 @@ Object.keys(db).forEach((modelName) => {
 
 // Fix the wrong count issue in findAndCountAll()
 // 참조: https://github.com/sequelize/sequelize/issues/9481
-sequelize.addHook('beforeCount', function (options) {
+sequelize.addHook('beforeCount', function(options) {
   if (this._scope.include && this._scope.include.length > 0) {
     options.distinct = true
     options.col =

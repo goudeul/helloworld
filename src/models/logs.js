@@ -17,17 +17,18 @@ module.exports = function(sequelize, DataTypes) {
       comment: '메시지',
       allowNull: true,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
-      comment: '생성시간',
+      field: 'created_at',
       allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-    },
+      comment: '생성시간'
+    }
   }, {
     sequelize,
     tableName: 'logs',
     hasTrigger: true,
     timestamps: true,
+    updatedAt: false,
     underscored: true,
     indexes: [
       {

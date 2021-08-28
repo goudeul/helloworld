@@ -37,6 +37,7 @@ module.exports = {
             const isExpired = moment().isAfter(expday)
             if (isExpired) modifyPasswordYN = 'Y'
           }
+
           if (user) {
             user.modifyPasswordYN = modifyPasswordYN
           }
