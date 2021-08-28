@@ -2,7 +2,7 @@ import fsPromises from 'fs/promises'
 import path from 'path'
 
 const appDir = path.dirname(require.main.filename)
-const directory = appDir + '/../coarsoft_pv/events/user/'
+const directory = appDir + '/events/user/'
 
 export default {
   /**

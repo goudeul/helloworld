@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
     role: {
       type: DataTypes.CHAR(2),
       comment: '권한 00:관리자, 10:교수, 20:학생',
-      allowNull: false
+      allowNull: false,
     },
     phone: {
       type: DataTypes.STRING(16),
@@ -24,30 +24,30 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING(128),
       comment: '암호',
-      allowNull: false
+      allowNull: false,
     },
     identityNumber: {
       type: DataTypes.STRING(100),
       comment: '학번',
-      allowNull: true
+      allowNull: true,
     },
     lastApiRequest: {
       type: DataTypes.DATE,
       comment: '마지막 접근시간',
       allowNull: false,
-      defaultValue: sequelize.fn('NOW')
+      defaultValue: sequelize.fn('NOW'),
     },
     lastModifyPassword: {
       type: DataTypes.DATE,
       comment: '마지막 암호변경시간',
       allowNull: false,
-      defaultValue: sequelize.fn('NOW')
+      defaultValue: sequelize.fn('NOW'),
     },
     failLoginCount: {
       type: DataTypes.INTEGER,
       comment: '로그인 실패횟수',
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 0,
     },
     isBlocked: {
       type: DataTypes.BOOLEAN,
@@ -59,14 +59,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DATE,
       field: 'created_at',
       allowNull: false,
-      comment: '생성시간'
+      comment: '생성시간',
     },
     updatedAt: {
       type: DataTypes.DATE,
       field: 'updated_at',
       allowNull: false,
-      comment: '수정시간'
-    }
+      comment: '수정시간',
+    },
   }, {
     sequelize,
     tableName: 'user',
@@ -80,8 +80,8 @@ module.exports = function (sequelize, DataTypes) {
         using: 'BTREE',
         fields: [
           { name: 'id' },
-        ]
+        ],
       },
-    ]
-  });
-};
+    ],
+  })
+}

@@ -71,9 +71,9 @@ app.use(
 )
 
 // sequelize db 연결
-const models = require('./models/index.js');
-models.sequelize.sync().then(() => {
-  console.log('DB connect success');
+const { sequelize } = require('./models/index.js');
+sequelize.sync().then(() => {
+  console.log('DB connect success!!');
 }).catch(err => {
   console.log('DB connect failed');
   console.log(err);
