@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 import moment from 'moment'
 
 const appDir = path.dirname(require.main.filename)
-const directory = appDir + '/events/user/'
+const directory = appDir + '/../coarsoft_pv/events/user/'
 
 module.exports = {
   async createPassword (password) {
