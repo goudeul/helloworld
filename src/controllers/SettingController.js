@@ -22,17 +22,7 @@ module.exports = {
   },
   read: async (ctx, next) => {
     try {
-      let setting = await SettingService.read()
-
-      if (!setting) {
-        // ctx.throw(401, { message: '설정정보가 존재하지 않습니다.', ctx })
-        const now = moment().format('YYYY-MM-DD HH:mm:ss')
-        setting = {
-          passwordPeriods: 0,
-          passwordFailCount: 3,
-          updated_at: now
-        }
-      }
+      const setting = await SettingService.read()
 
       ctx.body = {
         code: 'S0001',

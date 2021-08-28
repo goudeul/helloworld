@@ -32,6 +32,12 @@ module.exports = {
         const setting = await settingFile.readFile({ encoding: 'utf-8' })
         await settingFile.close()
         return JSON.parse(setting)
+      } else {
+        const setting = {
+          passwordPeriods: 0,
+          passwordFailCount: 3
+        }
+        return setting
       }
     } catch (e) {
       return e

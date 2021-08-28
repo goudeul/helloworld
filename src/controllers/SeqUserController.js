@@ -24,46 +24,43 @@ function setBearerToken (user) {
 module.exports = {
 
   login: async (ctx, next) => {
-    try {
-      await passport.authenticate('local', {}, async (error, user) => {
-        const setting = await SettingService.read()
+    // try {
+    await passport.authenticate('local', {}, async (_null, result, { message, user }) => {
+      const setting = await SettingService.read()
 
-        if (error || !user) {
-          // 로그인실패일때
-          user.failLoginCount++
-          if (setting && user.failLoginCount > setting.passwordFailCount) {
+      if (!result) {
+        if (user) {
+          // 로그인실패일때 실패횟수체크
+          user.failLoginCount += 1
+          if (user.failLoginCount > setting.passwordFailCount) {
             user.isBlocked = true
           }
-          await UserService.update(user.id, user)
-          ctx.throw(404, { message: '로그인에 실패했습니다. ' + error, ctx })
-        } else {
-          // 암호변경 만료일 체크
-          let modifyPasswordYN = 'N'
-          if (setting) {
-            const expday = moment(user.lastModifyPassword).add(setting.passwordPeriods, 'M')
-            const isExpired = moment().isAfter(expday)
-            if (isExpired) modifyPasswordYN = 'Y'
-          }
-
-          if (user) {
-            user.modifyPasswordYN = modifyPasswordYN
-          }
-          // 암호변경 만료일 체크 //
-
-          const bearerToken = setBearerToken(user)
-
-          ctx.body = {
-            code: 'S0001',
-            data: {
-              user,
-              token: bearerToken,
-            },
-          }
+          await UserService.update(user.id, user.dataValues)
         }
-      })(ctx, next)
-    } catch (e) {
-      ctx.throw(404, { message: e.message, ctx })
-    }
+        ctx.throw(404, { message, ctx })
+      } else {
+        // 암호변경 만료일 체크
+        const expday = moment(user.lastModifyPassword).add(setting.passwordPeriods, 'M')
+        const isExpired = moment().isAfter(expday)
+        if (isExpired) {
+          user.modifyPasswordYN = 'Y'
+        }
+        user.failLoginCount = 0
+        await UserService.update(user.id, user.dataValues)
+
+        const bearerToken = setBearerToken(user)
+        ctx.body = {
+          code: 'S0001',
+          data: {
+            user,
+            token: bearerToken,
+          },
+        }
+      }
+    })(ctx, next)
+    // } catch (e) {
+    //   ctx.throw(404, { message: e.message, ctx })
+    // }
   },
   me: async (ctx, next) => {
     try {

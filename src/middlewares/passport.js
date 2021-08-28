@@ -17,15 +17,18 @@ passport.use(
     async (id, password, done) => {
       const user = await UserService.readForce(id)
 
-      if (!user || !user.id) return done('계정정보가 존재하지 않습니다.')
-      if (!(await bcrypt.compareSync(password, user.password))) {
-        return done('패스워드를 확인해주세요.')
+      if (!user || !user.id) {
+        return done(null, false, { message: '계정정보가 존재하지 않습니다.' })
       }
-      // returnUser 객체의 패스워드를 지워서 반환해야함!! (user 객체에 대한 메모리 참조때문에)
-      const returnUser = JSON.parse(JSON.stringify(user))
-      delete returnUser.password
+      if (user.isBlocked) {
+        return done(null, false, { message: '로그인이 차단되었습니다.' })
+      }
+      if (!(await bcrypt.compareSync(password, user.password))) {
+        return done(null, false, { message: '패스워드를 확인해주세요.', user: user })
+      }
 
-      return done(null, returnUser) //"로그인에 성공했습니다."
+      delete user.password
+      return done(null, true, { user: user }) //'로그인에 성공했습니다.'
     },
   ),
 )
@@ -40,13 +43,12 @@ passport.use(
     async (payload, done) => {
       const user = await UserService.read(payload.id)
 
-      if (!user || !user.id) return done('계정정보가 존재하지 않습니다.')
+      if (!user || !user.id) return done(null, false, { message: '계정정보가 존재하지 않습니다.' })
 
       // returnUser 객체의 패스워드를 지워서 반환해야함!! (user 객체에 대한 메모리 참조때문에)
-      const returnUser = JSON.parse(JSON.stringify(user))
-      delete returnUser.password
+      delete user.password
 
-      return done(null, returnUser) //"로그인에 성공했습니다."
+      return done(null, true, { user: user }) //'로그인에 성공했습니다.'
     },
   ),
 )
