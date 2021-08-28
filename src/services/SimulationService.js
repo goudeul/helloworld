@@ -3,7 +3,7 @@ import fsPromises from 'fs/promises'
 import moment from 'moment'
 
 const appDir = path.dirname(require.main.filename)
-const directory = appDir + '/../coarsoft_pv/events/simulation/'
+const directory = appDir + '/events/simulation/'
 
 module.exports = {
   async create (simulation_id) {

@@ -4,7 +4,7 @@ import moment from 'moment'
 import uniqid from 'uniqid'
 
 const appDir = path.dirname(require.main.filename)
-const directory = appDir + '/../coarsoft_pv/events/class/'
+const directory = appDir + '/events/class/'
 
 module.exports = {
   async create (cls, professor) {
