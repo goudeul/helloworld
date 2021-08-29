@@ -17,5 +17,4 @@ router.post('/user/search', (ctx) => {
 router.get('/setting', SettingController.read)
 router.put('/setting', auth['admin'], SettingController.write)
 
-
 module.exports = router
