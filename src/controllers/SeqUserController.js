@@ -88,7 +88,7 @@ module.exports = {
       const id = ctx.params.id
       const user = ctx.request.body.user
 
-      if ( user.password !== null && user.password !== '' && user.password === user.new_password ) {
+      if (user.password !== null && user.password !== '' && user.password === user.new_password) {
         ctx.throw(403, { message: '변경하려는 패스워드가 기존과 같습니다.', ctx })
       }
       const oldUser = await UserService.readForce(id)
@@ -105,7 +105,7 @@ module.exports = {
 
       ctx.body = {
         code: 'S0001',
-        data: result
+        data: result,
       }
     } catch (e) {
       ctx.throw(403, { message: e.message, ctx })

@@ -12,6 +12,6 @@ router.post('/login', UserController.login)                         // 로그인
 router.get('/me', UserController.me)                                // 본인정보 확인
 router.put('/password/:id', auth['all'], validPassword, UserController.changePassword)              // 비밀번호 변경
 router.put('/:id', auth['all'], UserController.update)                           // 회원 정보 변경
-router.delete('/:id', auth['admin', 'professor'], UserController.delete)                        // 회원 삭제
+router.delete('/:id', auth['admin'], UserController.delete)                        // 회원 삭제
 
 module.exports = router

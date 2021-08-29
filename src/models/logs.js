@@ -1,11 +1,10 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('logs', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     level: {
       type: DataTypes.STRING(10),
@@ -21,8 +20,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       field: 'created_at',
       allowNull: false,
-      comment: '생성시간'
-    }
+      comment: '생성시간',
+    },
   }, {
     sequelize,
     tableName: 'logs',
@@ -37,8 +36,8 @@ module.exports = function(sequelize, DataTypes) {
         using: 'BTREE',
         fields: [
           { name: 'id' },
-        ]
+        ],
       },
-    ]
-  });
-};
+    ],
+  })
+}
