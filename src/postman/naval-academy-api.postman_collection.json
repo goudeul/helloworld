@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "d75b4c57-54e9-4a56-a04f-0db8261b66b4",
+		"_postman_id": "67aa8690-1a47-43f0-b9b6-480c699db8e2",
 		"name": "naval-academy-api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -24,36 +24,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI4NjYyNDAyLCJleHAiOjE2MjkyNjcyMDIsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.RJPW3sIUIboWHobpsiX30qDRnQyG2wP7HlkcB_lDtPk",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI4NjYyNDAyLCJleHAiOjE2MjkyNjcyMDIsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.RJPW3sIUIboWHobpsiX30qDRnQyG2wP7HlkcB_lDtPk"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"name\": \"홍길삼\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"20\",\n        \"phone\": \"010-4444-4444\",\n        \"identityNumber\": \"210635\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"name\": \"어드민\",\n        \"password\": \"coarsoft13@$\",\n        \"role\": \"00\",\n        \"phone\": \"010-0000-0000\",\n        \"identityNumber\": null\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/user/register",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"register"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/user/register"
 					},
 					"response": [
 						{
@@ -70,17 +56,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/register",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"register"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/register"
 							},
 							"status": "OK",
 							"code": 200,
@@ -128,17 +104,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/register",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"register"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/register"
 							},
 							"status": "OK",
 							"code": 200,
@@ -186,17 +152,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/register",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"register"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/register"
 							},
 							"status": "OK",
 							"code": 200,
@@ -244,17 +200,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/register",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"register"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/register"
 							},
 							"status": "OK",
 							"code": 200,
@@ -297,24 +243,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"user\": {\n        \"id\": \"student_01\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
+							"raw": "{\n    \"user\": {\n        \"id\": \"admin\",\n        \"password\": \"coarsoft13@$\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/user/login",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"login"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/user/login"
 					},
 					"response": [
 						{
@@ -331,17 +267,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/login",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"login"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/login"
 							},
 							"status": "OK",
 							"code": 200,
@@ -389,17 +315,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/login",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"login"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/login"
 							},
 							"status": "OK",
 							"code": 200,
@@ -447,17 +363,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/login",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"login"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/login"
 							},
 							"status": "OK",
 							"code": 200,
@@ -505,17 +411,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/user/login",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"user",
-										"login"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/user/login"
 							},
 							"status": "OK",
 							"code": 200,
@@ -559,13 +455,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYyOTk2NDU3MSwiZXhwIjoxNjMwNTY5MzcxLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.38UWfXN8fJ05VQCdOZXTPQ4UeDNOEwB7QeFhXQtDWls",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpZGVudGl0eU51bWJlciI6bnVsbCwiaWF0IjoxNjMwMjEwMDU4LCJleHAiOjE2MzA4MTQ4NTgsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.X94OcpLGrctMO4PHL_GtEj0yXSDtZKFx9VUUi-3m0P0"
+							}
 						},
 						"method": "GET",
 						"header": [],
@@ -578,17 +470,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/user/me",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"me"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/user/me"
 					},
 					"response": []
 				},
@@ -597,13 +479,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYyOTk2MjU5OCwiZXhwIjoxNjMwNTY3Mzk4LCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.wA-3K8medDu0bjfdvNNKmX2S8ooMNwReC-s6TmMgb8Q",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpZGVudGl0eU51bWJlciI6bnVsbCwiaWF0IjoxNjMwMjEwMDU4LCJleHAiOjE2MzA4MTQ4NTgsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.X94OcpLGrctMO4PHL_GtEj0yXSDtZKFx9VUUi-3m0P0"
+							}
 						},
 						"method": "PUT",
 						"header": [],
@@ -616,17 +494,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/user/student_01",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"student_01"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/user/student_01"
 					},
 					"response": []
 				},
@@ -635,37 +503,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYyOTk2NDU3MSwiZXhwIjoxNjMwNTY5MzcxLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.38UWfXN8fJ05VQCdOZXTPQ4UeDNOEwB7QeFhXQtDWls",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpZGVudGl0eU51bWJlciI6bnVsbCwiaWF0IjoxNjMwMjEwMDU4LCJleHAiOjE2MzA4MTQ4NTgsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.X94OcpLGrctMO4PHL_GtEj0yXSDtZKFx9VUUi-3m0P0"
+							}
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"user\": {\n      \"password\": \"coarsoft13@$\",\n      \"new_password\": \"coarsoft13@$\"\n   }\n}",
+							"raw": "{\n   \"user\": {\n      \"password\": \"11coarsoft13@$\",\n      \"new_password\": \"coarsoft13@$\"\n   }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/user/password/student_01",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"password",
-								"student_01"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/user/password/navy_01"
 					},
 					"response": []
 				},
@@ -674,13 +527,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYyOTk2NDU3MSwiZXhwIjoxNjMwNTY5MzcxLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.38UWfXN8fJ05VQCdOZXTPQ4UeDNOEwB7QeFhXQtDWls",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDIxMDc1NSwiZXhwIjoxNjMwODE1NTU1LCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.eNbeujZajsV9o-5tI98MdWe6sXqUoKbOsYz2A1bqHg0"
+							}
 						},
 						"method": "DELETE",
 						"header": [],
@@ -693,17 +542,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/user/student_01",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"student_01"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/user/student_01"
 					},
 					"response": []
 				}
@@ -717,35 +556,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDA0OTI2MCwiZXhwIjoxNjMwNjU0MDYwLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aQm69v8JDhhd9zWi4iqUhPvDmt6z5kGlMMwdoY-Gin0",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpZGVudGl0eU51bWJlciI6bnVsbCwiaWF0IjoxNjMwMjEwODE3LCJleHAiOjE2MzA4MTU2MTcsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.s5D8CMQhaaiKJXeVI1-GJjX9geo_8p9AEdotygi-xt8"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"class\": {\n        \"name\": \"함정 추진체계 시뮬레이터22\"\n    }\n}",
+							"raw": "{\n    \"class\": {\n        \"name\": \"함정 추진체계 시뮬레이터11\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/class",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"class"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/class"
 					},
 					"response": [
 						{
@@ -762,16 +588,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/class",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"class"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/class"
 							},
 							"status": "OK",
 							"code": 200,
@@ -812,36 +629,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDA0OTI2MCwiZXhwIjoxNjMwNjU0MDYwLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aQm69v8JDhhd9zWi4iqUhPvDmt6z5kGlMMwdoY-Gin0",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDA0OTI2MCwiZXhwIjoxNjMwNjU0MDYwLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aQm69v8JDhhd9zWi4iqUhPvDmt6z5kGlMMwdoY-Gin0"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"filter\": {\n        \"id\": {\"eq\": \"2sbepragksu23jfw\"}\n    },\n    \"from\": 0,\n    \"size\": 10,\n    \"sort\": [\n        {\"created_at\": \"desc\"}\n    ],\n    \"logging\": true\n}",
+							"raw": "{\n    \"filter\": {\n    },\n    \"from\": 0,\n    \"size\": 10,\n    \"sort\": [\n        {\"created_at\": \"desc\"}\n    ],\n    \"logging\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/class/search",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"class",
-								"search"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/class/search"
 					},
 					"response": [
 						{
@@ -858,22 +661,12 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_HOST}}/v1/class/search",
-									"host": [
-										"{{NAVAL_HOST}}"
-									],
-									"path": [
-										"v1",
-										"class",
-										"search"
-									]
-								}
+								"url": "{{NAVAL_HOST}}/v1/class/search"
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -882,36 +675,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpZGVudGl0eU51bWJlciI6IjIxMDYzNSIsImlhdCI6MTYzMDExMjUzMywiZXhwIjoxNjMwNzE3MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aDnE1LBVMpd4CaGSqCpfjJ-UYRlsMAIoeizJ6OTN7AM",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDIiLCJpZGVudGl0eU51bWJlciI6IjIxNDU2MyIsImlhdCI6MTYzMDIxMTcxNSwiZXhwIjoxNjMwODE2NTE1LCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.g_ghzkGcNV8hqH2YRt-E_MYO-fcMdXxNnvKCOmtNvJg"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"class\": {\n    \"id\": \"2sbepragksu23jfw\"\n  }\n}",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp2jzzkswpg4em\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/class/join",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"class",
-								"join"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/class/join"
 					},
 					"response": []
 				},
@@ -920,36 +699,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDEiLCJpZGVudGl0eU51bWJlciI6IjIxMDYzNSIsImlhdCI6MTYzMDExMjUzMywiZXhwIjoxNjMwNzE3MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aDnE1LBVMpd4CaGSqCpfjJ-UYRlsMAIoeizJ6OTN7AM",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InN0dWRlbnRfMDIiLCJpZGVudGl0eU51bWJlciI6IjIxNDU2MyIsImlhdCI6MTYzMDIxMTcxNSwiZXhwIjoxNjMwODE2NTE1LCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.g_ghzkGcNV8hqH2YRt-E_MYO-fcMdXxNnvKCOmtNvJg"
+							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"class\": {\n    \"id\": \"2sbepragksu23jfw\"\n  }\n}",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp2jzzkswpg4em\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/class/exit",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"class",
-								"exit"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/class/exit"
 					},
 					"response": []
 				},
@@ -961,13 +726,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI"
+							}
 						},
 						"method": "GET",
 						"header": [],
@@ -980,17 +741,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/class/2sbepragksu23jfw",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"class",
-								"2sbepragksu23jfw"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/class/gk3tp2jzzkswpg4em"
 					},
 					"response": []
 				},
@@ -999,36 +750,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDA0OTI2MCwiZXhwIjoxNjMwNjU0MDYwLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aQm69v8JDhhd9zWi4iqUhPvDmt6z5kGlMMwdoY-Gin0",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDA0OTI2MCwiZXhwIjoxNjMwNjU0MDYwLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.aQm69v8JDhhd9zWi4iqUhPvDmt6z5kGlMMwdoY-Gin0"
+							}
 						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp36nakr02bh79\"\n  }\n}",
+							"raw": "{\n  \"class\": {\n    \"id\": \"gk3tp2jzzkswpg4em\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/class/2sbepragksu23jfw",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"class",
-								"2sbepragksu23jfw"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/class/gk3tp2jzzkswpg4em"
 					},
 					"response": []
 				}
@@ -1045,13 +782,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI"
+							}
 						},
 						"method": "GET",
 						"header": [],
@@ -1064,17 +797,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"simulation",
-								"gk3tp38t4kr0a4pzj"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/simulation/gk3tp2jzzkswpht5y"
 					},
 					"response": []
 				},
@@ -1083,36 +806,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI"
+							}
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"simulation\": {\n        \"screenID\": \"01\",\n        \"isSharing\": true,\n        \"modeling\": {\n            \"position\": {\n                \"x\": 37.5668654,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"scale\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"camera\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"button\": {\n          \"isRun\": true, \n          \"isInner\": true, \n          \"isFX\": false,\n          \"btnStatusGT\": \"0\", \n          \"btnStatusDE\": \"0\", \n          \"btnStatusRG\": \"0\", \n          \"btnStatusSP\": \"0\"\n        },\n        \"parts\": {\n          \"isDiagramGT\": false, \n          \"isDiagramDE\": false, \n          \"diagramSpeed\": \"normal\", \n          \"diagramStopTime\": 0\n        }\n    }\n}",
+							"raw": "{\n    \"simulation\": {\n        \"screenID\": \"01\",\n        \"isSharing\": true,\n        \"modeling\": {\n            \"position\": {\n                \"x\": 11111,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"scale\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"camera\": {\n            \"position\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            },\n            \"rotation\": {\n                \"x\": 37,\n                \"y\": 100,\n                \"z\": 3\n            }\n        },\n        \"button\": {\n          \"isRun\": true, \n          \"isInner\": true, \n          \"isFX\": false,\n          \"btnStatusGT\": \"0\", \n          \"btnStatusDE\": \"0\", \n          \"btnStatusRG\": \"0\", \n          \"btnStatusSP\": \"0\"\n        },\n        \"parts\": {\n          \"isDiagramGT\": false, \n          \"isDiagramDE\": false, \n          \"diagramSpeed\": \"normal\", \n          \"diagramStopTime\": 0\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"simulation",
-								"gk3tp38t4kr0a4pzj"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/simulation/gk3tp2jzzkswpht5y"
 					},
 					"response": []
 				},
@@ -1121,13 +830,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -1140,17 +845,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"simulation",
-								"gk3tp38t4kr0a4pzj"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/simulation/gk3tp2jzzkswpht5y"
 					},
 					"response": []
 				},
@@ -1159,13 +854,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDEyMDUzMywiZXhwIjoxNjMwNzI1MzMzLCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.OErRqqzSAssStA-UTtPEiHtn1b4OxZ_AQ7f2c0ZFQaI"
+							}
 						},
 						"method": "DELETE",
 						"header": [],
@@ -1178,17 +869,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/simulation/gk3tp38t4kr0a4pzj",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"simulation",
-								"gk3tp38t4kr0a4pzj"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/simulation/gk3tp2jzzkswpht5y"
 					},
 					"response": []
 				}
@@ -1202,13 +883,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5hdnlfMDEiLCJpYXQiOjE2MjU4MDkxMTYsImV4cCI6MTYyNjQxMzkxNiwiaXNzIjoiY29hcnNvZnQuY29tIiwic3ViIjoidXNlckluZm8ifQ.bXwK5sxF2RQNPwJSD813U9365w3K0R_wEqsg6zgJXjM"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -1221,18 +898,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/bo/user/search",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"bo",
-								"user",
-								"search"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/bo/user/search"
 					},
 					"response": []
 				},
@@ -1244,13 +910,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY0MzI3LCJleHAiOjE2Mjk3NjkxMjcsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.WtQYSctnklzC9jQkK7XGBU5CYbP5wGw0ijEBakkJSok",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI5MTY0MzI3LCJleHAiOjE2Mjk3NjkxMjcsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.WtQYSctnklzC9jQkK7XGBU5CYbP5wGw0ijEBakkJSok"
+							}
 						},
 						"method": "GET",
 						"header": [],
@@ -1263,17 +925,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/bo/setting",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"bo",
-								"setting"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/bo/setting"
 					},
 					"response": []
 				},
@@ -1282,13 +934,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNjI4ODE5OTYwLCJleHAiOjE2Mjk0MjQ3NjAsImlzcyI6ImNvYXJzb2Z0LmNvbSIsInN1YiI6InVzZXJJbmZvIn0.60w0wULLth2ITgVME5h11CKnbGeFupS7A-yvLNxhZlI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWRlbnRpdHlOdW1iZXIiOm51bGwsImlhdCI6MTYzMDIxMjIyNiwiZXhwIjoxNjMwODE3MDI2LCJpc3MiOiJjb2Fyc29mdC5jb20iLCJzdWIiOiJ1c2VySW5mbyJ9.bDmQwIxEwp0qlojy-1wMD1njnNLNdrDpxkWKAdg-3q4"
+							}
 						},
 						"method": "PUT",
 						"header": [],
@@ -1301,17 +949,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{NAVAL_HOST}}/v1/bo/setting",
-							"host": [
-								"{{NAVAL_HOST}}"
-							],
-							"path": [
-								"v1",
-								"bo",
-								"setting"
-							]
-						}
+						"url": "{{NAVAL_HOST}}/v1/bo/setting"
 					},
 					"response": []
 				}
@@ -1331,18 +969,10 @@
 							"request": {
 								"auth": {
 									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "changeme",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "elastic",
-											"type": "string"
-										}
-									]
+									"basic": {
+										"password": "changeme",
+										"username": "elastic"
+									}
 								},
 								"method": "GET",
 								"header": [],
@@ -1355,16 +985,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{NAVAL_ES_HOST}}/logstash-naval-academy-info-*/_search",
-									"host": [
-										"{{NAVAL_ES_HOST}}"
-									],
-									"path": [
-										"logstash-naval-academy-info-*",
-										"_search"
-									]
-								}
+								"url": "{{NAVAL_ES_HOST}}/logstash-naval-academy-info-*/_search"
 							},
 							"response": []
 						}
@@ -1384,17 +1005,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST}}/v1/logs/all",
-							"host": [
-								"{{HOST}}"
-							],
-							"path": [
-								"v1",
-								"logs",
-								"all"
-							]
-						}
+						"url": "{{HOST}}/v1/logs/all"
 					},
 					"response": []
 				},
@@ -1403,18 +1014,10 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "Zhdkthvmxm3@!",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "coarsoft",
-									"type": "string"
-								}
-							]
+							"basic": {
+								"password": "Zhdkthvmxm3@!",
+								"username": "coarsoft"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -1427,17 +1030,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{HOST}}/v1/logs/search",
-							"host": [
-								"{{HOST}}"
-							],
-							"path": [
-								"v1",
-								"logs",
-								"search"
-							]
-						}
+						"url": "{{HOST}}/v1/logs/search"
 					},
 					"response": [
 						{
@@ -1454,22 +1047,12 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{HOST}}/v1/realty/search",
-									"host": [
-										"{{HOST}}"
-									],
-									"path": [
-										"v1",
-										"realty",
-										"search"
-									]
-								}
+								"url": "{{HOST}}/v1/realty/search"
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						},
 						{
 							"name": "02. 기본 예제",
@@ -1485,22 +1068,12 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{HOST}}/v1/logs/search",
-									"host": [
-										"{{HOST}}"
-									],
-									"path": [
-										"v1",
-										"logs",
-										"search"
-									]
-								}
+								"url": "{{HOST}}/v1/logs/search"
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						},
 						{
 							"name": "03. ID 검색",
@@ -1516,22 +1089,12 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{HOST}}/v1/logs/search",
-									"host": [
-										"{{HOST}}"
-									],
-									"path": [
-										"v1",
-										"logs",
-										"search"
-									]
-								}
+								"url": "{{HOST}}/v1/logs/search"
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				}
@@ -1542,15 +1105,16 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{NAVAL_HOST}}/v1",
-					"host": [
-						"{{NAVAL_HOST}}"
-					],
-					"path": [
-						"v1"
-					]
-				}
+				"url": "{{NAVAL_HOST}}/v1"
+			},
+			"response": []
+		},
+		{
+			"name": "01. 스트림 다운로드",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{NAVAL_HOST}}/v1/stream"
 			},
 			"response": []
 		}
