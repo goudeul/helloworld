@@ -1,11 +1,9 @@
 import {
   fetchList,
   fetchListAll,
-  fetchItem,
 } from '../services/esService'
 
 const table = 'logstash-naval-academy-info-*'
-
 
 module.exports = {
   getList: async (ctx) => {

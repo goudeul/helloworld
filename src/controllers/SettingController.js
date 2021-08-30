@@ -1,5 +1,4 @@
 import SettingService from '../services/SettingService'
-import moment from 'moment'
 
 module.exports = {
   write: async (ctx) => {

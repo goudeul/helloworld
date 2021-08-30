@@ -15,7 +15,7 @@ module.exports = {
         updated_at: now,
       }
 
-      await fsPromises.writeFile(directory + `setting.json`,
+      await fsPromises.writeFile(directory + 'setting.json',
         JSON.stringify(setting))
 
       return setting
@@ -25,7 +25,7 @@ module.exports = {
   },
   async read () {
     try {
-      const settingFile = await fsPromises.open(directory + `setting.json`)
+      const settingFile = await fsPromises.open(directory + 'setting.json')
         .catch((e) => {}) || null
 
       if (settingFile) {

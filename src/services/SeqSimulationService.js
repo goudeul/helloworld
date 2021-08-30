@@ -29,8 +29,13 @@ module.exports = {
         },
       },
       button: {
-        isRun: true, isInner: true, isFX: false,
-        btnStatusGT: '0', btnStatusDE: '0', btnStatusRG: '0', btnStatusSP: '0',
+        isRun: true,
+        isInner: true,
+        isFX: false,
+        btnStatusGT: '0',
+        btnStatusDE: '0',
+        btnStatusRG: '0',
+        btnStatusSP: '0',
       },
       parts: {
         isDiagramGT: false, isDiagramDE: false, diagramSpeed: 'normal', diagramStopTime: 0
@@ -52,7 +57,7 @@ module.exports = {
     simulation.updated_at = now
 
     await Simulations.update(simulation, { where: { id } })
-    
+
     return await Simulations.findOne({ where: { id } })
   },
 
