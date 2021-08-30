@@ -1,47 +1,44 @@
 module.exports = {
   admin: (ctx, next) => {
     const user = ctx.user
-    if (!user || !user.role) {
-      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
+    if (user && user.role && user.role === '00') {  // 관리자 권한있음
+      ctx.pass = true
     }
-    if (user.role !== '00') {
-      ctx.throw(404, '관리자 권한이 없습니다.', { ctx })
-    }
-
     return next()
   },
   professor: (ctx, next) => {
     const user = ctx.user
-    if (!user || !user.role) {
-      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
-    }
-    // 관리자의 경우 패스
-    if (user.role === '00') return next()
-
-    if (user.role !== '10') {
-      ctx.throw(404, '교수자 권한이 없습니다.', { code: 'S9999', ctx })
+    if (user && user.role && user.role === '10') {  // 교수자 권한있음
+      ctx.pass = true
     }
     return next()
   },
   student: (ctx, next) => {
     const user = ctx.user
-    if (!user || !user.role) {
-      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
+    if (user && user.role && user.role === '20') {  // 학생 권한있음
+      ctx.pass = true
     }
-    // 관리자의 경우 패스
-    if (user.role === '00') return next()
-
-    if (user.role !== '20') {
-      ctx.throw(404, '학습자 권한이 없습니다.', { code: 'S9999', ctx })
+    return next()
+  },
+  me: (ctx, next) => {
+    const user = ctx.user
+    const id = ctx.params.id
+    if (user && user.role && user.id === id) {  // 본인 권한있음
+      ctx.pass = true
     }
     return next()
   },
   all: (ctx, next) => {
     const user = ctx.user
-    if (!user || !user.role) {
-      ctx.throw(404, '권한정보가 없습니다.', { code: 'S9001', ctx })
+    if (user && user.role) {  // any 권한있음
+      ctx.pass = true
     }
-    // 모두 패스
     return next()
   },
+  passCheck: (ctx, next) => {
+    if (!ctx.pass) {
+      ctx.throw(404, '권한이 없습니다.', { code: 'S9001', ctx })
+    }
+    return next()
+  }
 }
