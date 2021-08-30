@@ -29,24 +29,31 @@ module.exports = {
       const setting = await SettingService.read()
 
       if (!result) {
-        if (user) {
+        if (user && setting.passwordFailCount > 0) {
           // 로그인실패일때 실패횟수체크
           user.failLoginCount += 1
-          if (user.failLoginCount > setting.passwordFailCount) {
+          if (user.failLoginCount >= setting.passwordFailCount) {
             user.isBlocked = true
           }
-          await UserService.update(user.id, user.dataValues)
+          user = await UserService.update(user.id, user.dataValues)
         }
         ctx.throw(404, { message, ctx })
       } else {
         // 암호변경 만료일 체크
+        let isModify = false
         const expday = moment(user.lastModifyPassword).add(setting.passwordPeriods, 'M')
         const isExpired = moment().isAfter(expday)
         if (isExpired) {
           user.modifyPasswordYN = 'Y'
+          isModify = true
         }
-        user.failLoginCount = 0
-        await UserService.update(user.id, user.dataValues)
+        if (user.failLoginCount > 0) {
+          user.failLoginCount = 0
+          isModify = true
+        }
+        if (isModify) {
+          user = await UserService.update(user.id, user.dataValues)
+        }
 
         const bearerToken = setBearerToken(user)
         ctx.body = {
