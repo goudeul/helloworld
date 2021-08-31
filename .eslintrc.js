@@ -18,12 +18,11 @@ module.exports = {
   extends: [
     // Base ESLint recommended rules
     // 'eslint:recommended',
-
     'standard',
-
+    'plugin:jsdoc/recommended'
   ],
 
-  plugins: [],
+  plugins: ['jsdoc'],
 
   globals: {
     ga: true, // Google Analytics

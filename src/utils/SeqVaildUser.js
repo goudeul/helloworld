@@ -2,7 +2,7 @@ import UserService from '../services/SeqUserService'
 
 export default {
   /**
-   * @desc 비밀번호 검증
+   * @description 비밀번호 검증
    *   숫자, 문자, 특수 혼합하여 9자 ~ 20자
    *   공백불가
    *   아이디와 다르게
@@ -10,7 +10,7 @@ export default {
    *   오름차순, 내림차순 3회 이상 금지
    * @param {string} pw - 검증하고자하는 암호
    * @param {string} id - 검증하고자하는 아이디, 암호와 중복되었는지 점검용
-   * @returns {String} - 에러내용 표시, 없으면 '' 반환
+   * @returns {string} - 에러내용 반환, 에러없으면 '' 반환
    */
   validPassword(pw, id) {
     try {
@@ -45,12 +45,12 @@ export default {
   },
 
   /**
-   * @desc 아이디 검증
+   * @description 아이디 검증
    *   4자리 ~ 20자
    *   공백불가
-   *   파일생성 불가 문자 제외 (\/:*?"<>|)
-   * @param {string} id - 검증하고자하는 아이디, 암호와 중복되었는지 점검용
-   * @returns {boolean}
+   *   파일생성 불가문자(파일생성불가문자) 제외 (\/:*?"<>|)
+   * @param {string} id - 검증하고자하는 아이디
+   * @returns {string} - 에러내용 반환, 에러없으면 '' 반환
    */
   validID(id) {
     try {
@@ -58,7 +58,7 @@ export default {
 
       if (id.search(/\s/) !== -1) return '아이디에 공백 없이 입력해주세요.'
 
-      // const pattern = /[!@#$%^&*/]/  // 요청한문자
+      // const pattern = /[!@#$%^&*/]/  // 요청한특수문자
       // if(pattern.test(id) ) return '아이디에 특수문자 !@#$%^&*/ 를 제거해주세요.'
 
       const pattern = /[\/:*?"<>|]/   // 파일생성불가문자
@@ -72,9 +72,9 @@ export default {
   },
 
   /**
-   * @desc 동일 아이디 존재 확인
-   * @param id
-   * @returns {Promise<boolean>}
+   * @description 기존DB에 동일 아이디 있는지 확인
+   * @param {string} id - 검증하고자하는 아이디
+   * @returns {Promise<boolean>} - true:동일아이디 있음, false:동일아이디 없음
    */
   async checkID(id) {
     const user = await UserService.read(id)
@@ -82,7 +82,12 @@ export default {
   },
 }
 
-// 연속된 문자 +- 체크용 함수
+/**
+ * @description 연속된 문자 (오름차순, 내림차순, 반복문자) 체크용 함수
+ * @param {string} str - 검증하고자하는 문자
+ * @param {number} limit - limit 글자 이상 중복되면 에러 반환함
+ * @returns {boolean} - true:정상임, false:에러임 연속된 문자가 있음
+ */
 function stck(str, limit) {
   limit = limit || 3
   let o, d, p, n = 0

@@ -13,8 +13,11 @@ const RANGE = {
   isnotnull: ' IS NOT NULL',
 }
 
-// 필드:{min:0, max:10} 와 같은쿼리를 엘라스틱에서 처리하기 위해
-// 필드.min --> `필드`.`min`  와 같이 반환한다.
+/**
+ * @description 엘라스틱서치에서 한글필드 처리를 위해 아래와 같이 쿼리필드를 변환한다.
+ * @param {string} key - 필드.min <-- 한글이 포함된 엘라스틱필드
+ * @returns {string} - `필드`.`min` <-- 변환된 필드 반환
+ */
 function wrapKey(key) {
   const ksplit = key.split('.')
   let result = ''
@@ -25,12 +28,25 @@ function wrapKey(key) {
   return result
 }
 
-// 문자이면 ' ' 문자로 감싼다.
-// like 처리시 % 를 붙이려면 append='%' 를 입력받는다.
+/**
+ * @description 엘라스틱서치에서 쿼리 value가 number가 아니면 '' 홋따옴표로 감싸준다.
+ * @param {object} value - number 또는 string 타입의 쿼리 value 를 입력받음
+ * @param {string} append - like 처리를 위해 홋따옴표 안에 % 문자를 넣으려면 '%' 를 입력받는다.
+ * @returns {string}  - value가 문자이면 '' 홋따옴표로 감싸준다.
+ */
 function wrapValue(value, append) {
   return typeof value === 'number' ? value : '\'' + value + (append || '') + '\''
 }
 
+/**
+ * @description 엘라스틱서치 queryDSL 의 sort 처리시 형태 맞추기 위해 사용함
+ * @example
+ *  요청쿼리 --> "sort": [{created_at: desc}]
+ *  변환쿼리 --> "sort": [{created_at: {order:desc}}]
+ * @param {string} key - 위에서 created_at 키
+ * @param {string} value - 위에서 desc 값
+ * @returns {string} - 변환된 json
+ */
 function parseSort(key, value) {
   const jsonObj = {}
   jsonObj[key] = { order: value }
@@ -39,7 +55,7 @@ function parseSort(key, value) {
 
 export const filterSort = {
   /**
-   * 0. filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
+   * @description  filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
    * 1. 있을 경우: 추가
    * 2. 없을 경우: 무시
    * @param where
@@ -67,6 +83,7 @@ export const filterSort = {
    * 0. filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
    * 1. 있을 경우: 추가
    * 2. 없을 경우: 무시
+   *
    * @param where
    * @param filter
    * @param Model
@@ -91,6 +108,7 @@ export const filterSort = {
    * 0. Sort Key 가 Model Column 비교하여 Sequelize 구문으로 변환
    * 1. 있을 경우: 추가
    * 2. 없을 경우:
+   *
    * @param order
    * @param filter
    * @param Model
