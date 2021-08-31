@@ -4,11 +4,13 @@ export default {
   /**
    * @desc 비밀번호 검증
    *   숫자, 문자, 특수 혼합하여 9자 ~ 20자
+   *   공백불가
    *   아이디와 다르게
    *   동일문자 3회 이상 반복 금지
    *   오름차순, 내림차순 3회 이상 금지
-   * @param password
-   * @returns {boolean}
+   * @param {string} pw - 검증하고자하는 암호
+   * @param {string} id - 검증하고자하는 아이디, 암호와 중복되었는지 점검용
+   * @returns {String} - 에러내용 표시, 없으면 '' 반환
    */
   validPassword(pw, id) {
     try {
@@ -45,8 +47,9 @@ export default {
   /**
    * @desc 아이디 검증
    *   4자리 ~ 20자
+   *   공백불가
    *   파일생성 불가 문자 제외 (\/:*?"<>|)
-   * @param id
+   * @param {string} id - 검증하고자하는 아이디, 암호와 중복되었는지 점검용
    * @returns {boolean}
    */
   validID(id) {
@@ -55,10 +58,10 @@ export default {
 
       if (id.search(/\s/) !== -1) return '아이디에 공백 없이 입력해주세요.'
 
-      // const pattern = /[!@#$%^&*/]/
+      // const pattern = /[!@#$%^&*/]/  // 요청한문자
       // if(pattern.test(id) ) return '아이디에 특수문자 !@#$%^&*/ 를 제거해주세요.'
 
-      const pattern = /[\/:*?"<>|]/
+      const pattern = /[\/:*?"<>|]/   // 파일생성불가문자
       if (pattern.test(id)) return '아이디에 특수문자 \/:*?"<>| 를 제거해주세요.'
     } catch (e) {
       console.error(e.message)

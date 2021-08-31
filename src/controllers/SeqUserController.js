@@ -7,7 +7,7 @@ import moment from 'moment'
 const table = 'user'
 const bcrypt = require('bcryptjs')
 
-function setBearerToken (user) {
+function setBearerToken(user) {
   const secret = process.env.JWT_SECRET
   const payload = {
     id: user.id,  //아이디
@@ -29,10 +29,10 @@ module.exports = {
       const setting = await SettingService.read()
 
       if (!result) {
-        if (user && setting.passwordFailCount > 0) {
+        if (user && process.env.passwordFailCount > 0) {
           // 로그인실패일때 실패횟수체크
           user.failLoginCount += 1
-          if (user.failLoginCount >= setting.passwordFailCount) {
+          if (user.failLoginCount >= process.env.passwordFailCount) {
             user.isBlocked = true
           }
           user = await UserService.update(user.id, user.dataValues)
@@ -87,6 +87,19 @@ module.exports = {
       }
     } catch (e) {
       ctx.throw(404, { code: e.code, message: e.message, ctx })
+    }
+  },
+
+  search: async (ctx) => {
+    const body = ctx.request.body
+    const user = await UserService.find(body)
+
+    ctx.body = {
+      code: 'S0001',
+      data: {
+        total: user.total,
+        users: user,
+      },
     }
   },
 

@@ -6,7 +6,7 @@ const appDir = path.dirname(require.main.filename)
 const directory = appDir + '/events/'
 
 module.exports = {
-  async write (setting) {
+  async write(setting) {
     try {
       const now = moment().format('YYYY-MM-DD HH:mm:ss')
 
@@ -23,10 +23,10 @@ module.exports = {
       return e
     }
   },
-  async read () {
+  async read() {
     try {
       const settingFile = await fsPromises.open(directory + 'setting.json')
-        .catch((e) => {}) || null
+        .catch((e) => { }) || null
 
       if (settingFile) {
         const setting = await settingFile.readFile({ encoding: 'utf-8' })
@@ -34,8 +34,7 @@ module.exports = {
         return JSON.parse(setting)
       } else {
         const setting = {
-          passwordPeriods: 0,
-          passwordFailCount: 3
+          passwordPeriods: 0
         }
         return setting
       }

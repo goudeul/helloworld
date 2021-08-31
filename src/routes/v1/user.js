@@ -7,14 +7,12 @@ import auth from '../../middlewares/auth'
 const router = new Router()
 
 router.post('/register', validRegister, UserController.create)      // 회원가입 (권한체크없음)
-// router.post('/register', auth['admin'], validRegister, UserController.create)      // 회원가입
+// router.post('/register', auth['admin'], validRegister, UserController.create) // 회원가입
 router.post('/login', UserController.login)                         // 로그인
 router.get('/me', UserController.me)                                // 본인정보 확인
-router.put('/password/:id', auth['admin'], auth['professor'], auth['me'], auth['passCheck'], validPassword
-  , UserController.changePassword)              // 비밀번호 변경
-router.put('/:id', auth['admin'], auth['professor'], auth['me'], auth['passCheck']
-  , UserController.update)                           // 회원 정보 변경
-router.delete('/:id', auth['admin'], auth['professor'], auth['passCheck']
-  , UserController.delete)                        // 회원 삭제, 학생은 삭제못함
+router.post('/search', auth['all'], auth['passCheck'], UserController.search); // 회원 조회
+router.put('/password/:id', auth['admin'], auth['professor'], auth['me'], auth['passCheck'], validPassword, UserController.changePassword) // 비밀번호 변경
+router.put('/:id', auth['admin'], auth['professor'], auth['me'], auth['passCheck'], UserController.update) // 회원 정보 변경
+router.delete('/:id', auth['admin'], auth['professor'], auth['passCheck'], UserController.delete)          // 회원 삭제, 학생은 삭제못함
 
 module.exports = router

@@ -15,47 +15,38 @@ module.exports = {
     })
   },
 
-  create: async (object) => {
-    if (object.password) {
-      object.password = await new Promise((resolve, reject) => {
-        bcrypt.hash(object.password, bcrypt.genSaltSync(10), (err, hash) => {
+  create: async (user) => {
+    if (user.password) {
+      user.password = await new Promise((resolve, reject) => {
+        bcrypt.hash(user.password, bcrypt.genSaltSync(10), (err, hash) => {
           if (err) reject(err)
           resolve(hash)
         })
       })
     }
 
-    const user = await Users.create(
-      {
-        ...object,
-      },
-    )
-
+    const result = await Users.create(user)
     return await Users.findOne({
       where: {
-        id: user.id,
+        id: result.id,
       },
       attributes: { exclude: ['password'] },
     })
   },
 
-  update: async (id, object) => {
+  update: async (id, user) => {
     await Users.update(
       {
-        ...object,
+        ...user,
         updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        where: {
-          id: id,
-        },
+        where: { id }
       },
     )
 
     return await Users.findOne({
-      where: {
-        id: id,
-      },
+      where: { id },
       attributes: { exclude: ['password'] },
     })
   },
@@ -66,40 +57,36 @@ module.exports = {
 
   read: async (id) => {
     return await Users.findOne({
-      where: {
-        id: id,
-      },
+      where: { id },
       attributes: { exclude: ['password'] },
     })
   },
 
   readForce: async (id) => {
     return await Users.findOne({
-      where: {
-        id: id,
-      },
+      where: { id }
     })
   },
 
-  find: async (object) => {
+  find: async (body) => {
     const where = { [Op.and]: [] }
 
-    if (object.filter) {
-      filterSort.setFilter(where, object.filter || [], Users)
+    if (body.filter) {
+      filterSort.setFilter(where, body.filter || [], Users)
     }
 
     const order = []
-    if (object.sort) {
-      filterSort.setSort(order, object.sort || [], Users)
+    if (body.sort) {
+      filterSort.setSort(order, body.sort || [], Users)
     }
 
     const { count, rows } = await Users.findAndCountAll({
       where: where || null,
       order: order || null,
-      offset: object.from,
-      limit: object.size,
-      attributes: object.attributes || null,
-      logging: object.logging || false,
+      offset: body.from || 0,
+      limit: body.size || null,
+      attributes: body.attributes || null,
+      logging: body.logging || false,
     })
 
     if (count < 1) throw new Error('정보가 존재하지 않습니다.')
