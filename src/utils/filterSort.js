@@ -28,11 +28,11 @@ function wrapKey(key) {
 // 문자이면 ' ' 문자로 감싼다.
 // like 처리시 % 를 붙이려면 append='%' 를 입력받는다.
 function wrapValue(value, append) {
-  return typeof value === 'number' ? value : "'" + value + (append || '') + "'"
+  return typeof value === 'number' ? value : '\'' + value + (append || '') + '\''
 }
 
 function parseSort(key, value) {
-  const jsonObj	= {}
+  const jsonObj = {}
   jsonObj[key] = { order: value }
   return JSON.parse(JSON.stringify(jsonObj))
 }
@@ -213,7 +213,7 @@ export const filterSort = {
     if (search !== undefined) {
       if (search.fields !== undefined && search.keyword !== undefined) {
         // 여러필드검색 ->   "search": {"fields": ["건축물명", "주소", "매물소개"],"keyword": "자이"}
-        const jsonObj	= { query_string: { query: search.keyword , fields: search.fields }}
+        const jsonObj = { query_string: { query: search.keyword, fields: search.fields } }
         queryJson.query.bool.must.push(jsonObj)
       }
     }
@@ -224,7 +224,7 @@ export const filterSort = {
         if (value instanceof Object) {
           if (value instanceof Array) {
             // 여러검색어 ->  "filter": {"주소": ["서울", "서울특별시"]}
-            jsonObj	= { terms: { [key]: value }}
+            jsonObj = { terms: { [key]: value } }
           } else {
             const nJsonObj = []
             for (const [nKey, nValue] of Object.entries(value)) {
@@ -232,10 +232,10 @@ export const filterSort = {
                 // 중첩검색 전처리
                 if (nValue instanceof Array) {
                   // 중첩검색>여러검색어 ->  "filter": {"주소": ["서울", "서울특별시"]}
-                  nJsonObj.push({ terms: { [`${key}.${nKey}`]: nValue }})
+                  nJsonObj.push({ terms: { [`${key}.${nKey}`]: nValue } })
                 } else {
                   // 중첩검색>범위검색 ->  "filter": {"면적": { "gte": 10, "lte": 19 }}
-                  nJsonObj.push({ range: { [`${key}.${nKey}`]: nValue }})
+                  nJsonObj.push({ range: { [`${key}.${nKey}`]: nValue } })
                 }
               }
             }
@@ -245,12 +245,12 @@ export const filterSort = {
               jsonObj = { nested: { path: key, query: { bool: { must: nJsonObj } } } }
             } else {
               // 범위검색 ->  "filter": {"면적": { "gte": 10, "lte": 19 }}
-              jsonObj	= { range: { [key]: value } }
+              jsonObj = { range: { [key]: value } }
             }
           }
         } else {
           // 단일검색 ->  "filter": {"매물유형": "아파트"}
-          jsonObj	= { term: { [key]: value } }
+          jsonObj = { term: { [key]: value } }
         }
 
         queryJson.query.bool.must.push(jsonObj)
@@ -260,7 +260,7 @@ export const filterSort = {
     queryJson.sort = []
     if (sort === undefined) {
       // 정의하지 않았을때
-      const jsonObj	= {}
+      const jsonObj = {}
       jsonObj['@timestamp'] = { order: 'desc' }
       queryJson.sort.push(jsonObj)
     } else {
@@ -268,12 +268,12 @@ export const filterSort = {
         // 배열일때
         for (const row of sort) {
           const col = Object.keys(row)
-          queryJson.sort.push( parseSort(col[0], row[col]) )
+          queryJson.sort.push(parseSort(col[0], row[col]))
         }
       } else if (sort instanceof Object) {
         // 배열이 아닐때
         const col = Object.keys(sort)
-        queryJson.sort.push( parseSort(col[0], sort[col]) )
+        queryJson.sort.push(parseSort(col[0], sort[col]))
       }
     }
 

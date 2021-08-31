@@ -10,8 +10,7 @@ export default {
    * @param password
    * @returns {boolean}
    */
-  validPassword (pw, id) {
-
+  validPassword(pw, id) {
     try {
       if (pw.length < 9 || pw.length > 20) return '비밀번호는 9자리 ~ 20자리 이내 이여야 합니다.'
 
@@ -20,7 +19,7 @@ export default {
       if (id !== undefined) {
         try {
           if (pw.search(id) > -1) return '비밀번호에 아이디가 포함되었습니다.'
-        } catch (e) {}
+        } catch (e) { }
       }
 
       const num = pw.search(/[0-9]/g)
@@ -35,7 +34,6 @@ export default {
       if (eachcheck2.test(pw)) return '비밀번호에 같은 특수문자를 연속 3번 이상 사용하실 수 없습니다.'
 
       if (!stck(pw)) return '비밀번호에 연속된 3자리 이상 문자는 사용하실 수 없습니다.'
-
     } catch (e) {
       console.error(e.message)
       return '비밀번호 체크에 실패했습니다.'
@@ -51,8 +49,7 @@ export default {
    * @param id
    * @returns {boolean}
    */
-  validID (id) {
-
+  validID(id) {
     try {
       if (id.length < 4 || id.length > 20) return '아이디는 4자리 ~ 20자리 이내로 입력해주세요.'
 
@@ -63,7 +60,6 @@ export default {
 
       const pattern = /[\/:*?"<>|]/
       if (pattern.test(id)) return '아이디에 특수문자 \/:*?"<>| 를 제거해주세요.'
-
     } catch (e) {
       console.error(e.message)
       return '아이디 체크에 실패했습니다.'
@@ -77,22 +73,21 @@ export default {
    * @param id
    * @returns {Promise<boolean>}
    */
-  async checkID (id) {
+  async checkID(id) {
     const user = await UserService.read(id)
-    return (user) ? false: true
+    return !user
   },
 }
 
 // 연속된 문자 +- 체크용 함수
-function stck (str, limit) {
-
+function stck(str, limit) {
   limit = limit || 3
   let o, d, p, n = 0
   for (let i = 0; i < str.length; i++) {
-    let c = str.charCodeAt(i)
-    if (i > 0 && (p = o - c) > -2 && p < 2 && (n = p === d ? n + 1 : 0) > limit - 3)
-      return false
-    d = p, o = c
+    const c = str.charCodeAt(i)
+    if (i > 0 && (p = o - c) > -2 && p < 2 && (n = p === d ? n + 1 : 0) > limit - 3) return false
+    d = p
+    o = c
   }
   return true
 }
