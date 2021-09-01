@@ -6,6 +6,11 @@ module.exports = {
   // CRUD
   //-------------------
 
+  /**
+   * @description 시물레이션 생성
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 시물레이션 생성결과
+   */
   create: async (ctx) => {
     const id = ctx.params.id
     const simulation = await SimulationService.create(id)
@@ -19,6 +24,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 시물레이션 상세
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 시물레이션 상세정보
+   */
   read: async (ctx) => {
     const id = ctx.params.id
     const simulation = await SimulationService.read(id)
@@ -31,6 +41,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 시물레이션 변경
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 시물레이션 변경결과
+   */
   update: async (ctx) => {
     const id = ctx.params.id
     const newSimulation = ctx.request.body.simulation
@@ -44,6 +59,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 시물레이션 삭제
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 시물레이션 삭제결과
+   */
   delete: async (ctx) => {
     const id = ctx.params.id
     const simulation = await SimulationService.delete(id)

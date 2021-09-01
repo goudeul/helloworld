@@ -6,7 +6,13 @@ import uniqid from 'uniqid'
 
 module.exports = {
 
-  async create (cls, professor) {
+  /**
+   * @description 클래스 생성
+   * @param {JSON} cls - 생성할 클래스 정보
+   * @param {JSON} professor - 클래스를 생성한 교수님 정보
+   * @returns {JSON} - 생성된 클래스 정보
+   */
+  async create(cls, professor) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
     const id = uniqid()
 
@@ -29,11 +35,16 @@ module.exports = {
     return await Classes.findOne({ where: { id } })
   },
 
-  async read (id) {
+  /**
+   * @description 클래스 정보 검색
+   * @param {string} id - 클래스 아이디
+   * @returns {JSON} - 검색한 클래스 정보
+   */
+  async read(id) {
     return await Classes.findOne({ where: { id } })
   },
 
-  async update (id, cls) {
+  async update(id, cls) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
     cls.updated_at = now
 
@@ -42,11 +53,11 @@ module.exports = {
     return await Classes.findOne({ where: { id } })
   },
 
-  async delete (id) {
+  async delete(id) {
     return await Classes.destroy({ where: { id } })
   },
 
-  async find (body) {
+  async find(body) {
     const where = { [Op.and]: [] }
     if (body.filter) {
       filterSort.setFilter(where, body.filter || [], Classes)

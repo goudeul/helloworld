@@ -12,7 +12,7 @@ const bcrypt = require('bcryptjs')
  * @param {string} user - 토큰을 생성할 로그인 사용자정보
  * @returns {string} - 토큰값 반환
  */
-function setBearerToken (user) {
+function setBearerToken(user) {
   const secret = process.env.JWT_SECRET
   const payload = {
     id: user.id,  //아이디
@@ -28,8 +28,12 @@ function setBearerToken (user) {
 
 module.exports = {
 
+  /**
+   * @description  회원 로그인
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   login: async (ctx, next) => {
-    // try {
     await passport.authenticate('local', {}, async (_null, result, { message, user }) => {
       const setting = await SettingService.read()
 
@@ -70,10 +74,13 @@ module.exports = {
         }
       }
     })(ctx, next)
-    // } catch (e) {
-    //   ctx.throw(404, { message: e.message, ctx })
-    // }
   },
+
+  /**
+   * @description  회원 본인정보
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   me: async (ctx, next) => {
     try {
       const user = ctx.user
@@ -95,6 +102,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description  회원 검색
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   search: async (ctx) => {
     const body = ctx.request.body
     const user = await UserService.find(body)
@@ -108,6 +120,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description  회원 비밀번호 변경
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   changePassword: async (ctx, next) => {
     try {
       const id = ctx.params.id
@@ -141,6 +158,11 @@ module.exports = {
   // CRUD
   //-------------------
 
+  /**
+   * @description  회원 로그인
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   create: async (ctx) => {
     const body = ctx.request.body
     const user = await UserService.create(body.user)
@@ -154,6 +176,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description  회원 정보 변경
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   update: async (ctx) => {
     try {
       const id = ctx.params.id
@@ -177,6 +204,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description  회원 삭제
+   * @param {object} ctx - 컨텍스트
+   * @param {object} next - 다음 미들웨어 전달용 함수
+   */
   delete: async (ctx) => {
     try {
       const id = ctx.params.id

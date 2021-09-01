@@ -4,6 +4,11 @@ import SimulationService from '../services/SeqSimulationService'
 
 module.exports = {
 
+  /**
+   * @description 클래스 검색
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 클래스자리스트
+   */
   search: async (ctx) => {
     const body = ctx.request.body
     const classes = await ClassService.find(body)
@@ -17,11 +22,16 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 클래스 입장
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 클래스 입장결과
+   */
   join: async (ctx) => {
     const { id } = ctx.request.body.class
     const student = ctx.user
 
-    const cls  = await ClassService.read(id)
+    const cls = await ClassService.read(id)
     const { students } = cls
 
     const index = students.findIndex(ele => ele.id === student.id)
@@ -39,6 +49,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 클래스 퇴장
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 클래스 퇴장결과
+   */
   exit: async (ctx) => {
     const { id } = ctx.request.body.class
     const student = ctx.user
@@ -63,6 +78,11 @@ module.exports = {
   // CRUD
   //-------------------
 
+  /**
+   * @description 클래스 생성
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 클래스 생성결과
+   */
   create: async (ctx) => {
     const body = ctx.request.body
     const professor = ctx.user
@@ -79,6 +99,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 클래스 상세정보
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 클래스 상세정보
+   */
   read: async (ctx) => {
     const id = ctx.params.id
     const cls = await ClassService.read(id)
@@ -91,6 +116,11 @@ module.exports = {
     }
   },
 
+  /**
+   * @description 클래스 종료
+   * @param {object} ctx - 컨텍스트
+   * @returns {JSON} - 클래스 종료결과
+   */
   delete: async (ctx) => {
     const id = ctx.params.id
 
