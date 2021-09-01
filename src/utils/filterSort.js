@@ -18,7 +18,7 @@ const RANGE = {
  * @param {string} key - 필드.min <-- 한글이 포함된 엘라스틱필드
  * @returns {string} - `필드`.`min` <-- 변환된 필드 반환
  */
-function wrapKey(key) {
+function wrapKey (key) {
   const ksplit = key.split('.')
   let result = ''
   for (const i in ksplit) {
@@ -34,7 +34,7 @@ function wrapKey(key) {
  * @param {string} append - like 처리를 위해 홋따옴표 안에 % 문자를 넣으려면 '%' 를 입력받는다.
  * @returns {string}  - value가 문자이면 '' 홋따옴표로 감싸준다.
  */
-function wrapValue(value, append) {
+function wrapValue (value, append) {
   return typeof value === 'number' ? value : '\'' + value + (append || '') + '\''
 }
 
@@ -47,23 +47,26 @@ function wrapValue(value, append) {
  * @param {string} value - 위에서 desc 값
  * @returns {string} - 변환된 json
  */
-function parseSort(key, value) {
+function parseSort (key, value) {
   const jsonObj = {}
   jsonObj[key] = { order: value }
   return JSON.parse(JSON.stringify(jsonObj))
 }
 
 export const filterSort = {
+
   /**
-   * @description  filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
-   * 1. 있을 경우: 추가
-   * 2. 없을 경우: 무시
-   * @param where
-   * @param filter
-   * @param Model
-   * @returns {{}}
+   * @description Sequelize 검색을 위한 JSON 포멧을 맞춰줌
+   *
+   * filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환함.
+   *
+   * 필드가 없을 경우 무시함.
+   * @param {JSON} where - 기준이 되는 Sequelize Where절
+   * @param {JSON} filter - Sequelize Where 절로 구분을 위한 json
+   * @param {object} Model - Sequelize class 테이블
+   * @returns {JSON} - 변환된 Sequelize Where 절
    */
-  setFilter(where, filter, Model) {
+  setFilter (where, filter, Model) {
     where = where || { [Op.and]: [] }
     const attributes = Object.keys(Model.rawAttributes)
     for (const [key, value] of Object.entries(filter)) {
@@ -80,16 +83,19 @@ export const filterSort = {
   },
 
   /**
-   * 0. filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환
-   * 1. 있을 경우: 추가
-   * 2. 없을 경우: 무시
+   * @description Sequelize 검색을 위한 JSON 포멧을 맞춰줌
    *
-   * @param where
-   * @param filter
-   * @param Model
-   * @returns {{filter: {}, otherFilter: []}}
+   * filter Key 가 Model Column 비교하여 Sequelize 구문으로 변환함.
+   *
+   * 필드가 없을 경우 무시함.
+   *
+   * where 적용시 and 가 아니라 or을 적용함
+   * @param {JSON} where - 기준이 되는 Sequelize Where절
+   * @param {JSON} filter - Sequelize Where 절로 구분을 위한 json
+   * @param {object} Model - Sequelize class 테이블
+   * @returns {JSON} - 변환된 Sequelize Where 절
    */
-  setFilterOr(where, filter, Model) {
+  setFilterOr (where, filter, Model) {
     where = where || { [Op.or]: [] }
     const attributes = Object.keys(Model.rawAttributes)
 
@@ -105,16 +111,13 @@ export const filterSort = {
   },
 
   /**
-   * 0. Sort Key 가 Model Column 비교하여 Sequelize 구문으로 변환
-   * 1. 있을 경우: 추가
-   * 2. 없을 경우:
-   *
-   * @param order
-   * @param filter
-   * @param Model
-   * @returns {*[]}
+   * @description Sequelize 검색의 정렬을 위한 JSON 포멧을 맞춰줌
+   * @param {JSON} order - 기준이 되는 Sequelize order절
+   * @param {JSON} filter - Sequelize order 절로 구분을 위한 json
+   * @param {object} Model - Sequelize class 테이블
+   * @returns {JSON} - 변환된 Sequelize order 절
    */
-  setSort(order, filter, Model) {
+  setSort (order, filter, Model) {
     order = order || []
     // const otherSort = []
     const attributes = Object.keys(Model.rawAttributes)
@@ -130,8 +133,18 @@ export const filterSort = {
     return order
   },
 
-  // 엘라스틱서치 전용
-  getSqlQuery({ table, filter, search, from, size, sort }) {
+  /**
+   * @description 엘라스틱서치 검색을 위한 query string 구문으로 반환함
+   * @param {JSON} root0 - 검색정보
+   * @param {string} root0.table - 대상테이블이름
+   * @param {JSON} root0.filters - 검색필터
+   * @param {JSON} root0.search - 검색필터
+   * @param {number} root0.from - limit 페이징 시작위치
+   * @param {number} root0.size - offset 페이징 페이지사이즈
+   * @param {JSON} root0.sort - 정렬필터
+   * @returns {string} - 검색쿼리 SQL query String
+   */
+  getSqlQuery ({ table, filter, search, from, size, sort }) {
     let sqlQuery = ''
 
     if (filter !== undefined) {
@@ -214,8 +227,18 @@ export const filterSort = {
     return sqlQuery
   },
 
-  // 엘라스틱서치 전용
-  getQueryDsl({ table, filters, search, from, size, sort }) {
+  /**
+   * @description 엘라스틱서치 검색을 위한 query json 구문으로 반환함
+   * @param {JSON} root0 - 검색정보
+   * @param {string} root0.table - 대상테이블이름
+   * @param {JSON} root0.filters - 검색필터
+   * @param {JSON} root0.search - 검색필터
+   * @param {number} root0.from - limit 페이징 시작위치
+   * @param {number} root0.size - offset 페이징 페이지사이즈
+   * @param {JSON} root0.sort - 정렬필터
+   * @returns {string} - 검색쿼리 query json
+   */
+  getQueryDsl ({ table, filters, search, from, size, sort }) {
     //
     const queryJson = {
       query: {

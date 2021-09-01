@@ -1,6 +1,11 @@
 // import validUser from '../utils/vaildUser'
 import validUser from '../utils/SeqVaildUser'
 
+/**
+ * @description 사용자등록을 위한 id, pw, 중복 검증
+ * @param {object} ctx - 컨텍스트
+ * @param {object} next - 다음 미들웨어 전달용 함수
+ */
 export async function validRegister (ctx, next) {
   const body = ctx.request.body
   const { id, password, role, phone, identityNumber } = body.user

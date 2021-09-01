@@ -7,7 +7,12 @@ import moment from 'moment'
 const table = 'user'
 const bcrypt = require('bcryptjs')
 
-function setBearerToken(user) {
+/**
+ * @description bearer 토큰을 생성함
+ * @param {string} user - 토큰을 생성할 로그인 사용자정보
+ * @returns {string} - 토큰값 반환
+ */
+function setBearerToken (user) {
   const secret = process.env.JWT_SECRET
   const payload = {
     id: user.id,  //아이디

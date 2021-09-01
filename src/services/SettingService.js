@@ -6,7 +6,7 @@ const appDir = path.dirname(require.main.filename)
 const directory = appDir + '/events/'
 
 module.exports = {
-  async write(setting) {
+  async write (setting) {
     try {
       const now = moment().format('YYYY-MM-DD HH:mm:ss')
 
@@ -23,7 +23,7 @@ module.exports = {
       return e
     }
   },
-  async read() {
+  async read () {
     try {
       const settingFile = await fsPromises.open(directory + 'setting.json')
         .catch((e) => { }) || null
