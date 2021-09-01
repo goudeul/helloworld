@@ -105,7 +105,6 @@ module.exports = {
   /**
    * @description  회원 검색
    * @param {object} ctx - 컨텍스트
-   * @param {object} next - 다음 미들웨어 전달용 함수
    */
   search: async (ctx) => {
     const body = ctx.request.body
@@ -152,6 +151,22 @@ module.exports = {
     } catch (e) {
       ctx.throw(403, { message: e.message, ctx })
     }
+  },
+
+  /**
+   * 최초 DB생성시 특정 회원이 없으면 생성함.
+   * 생성회원 : admin, professor_default, student_default
+   *
+   * @param {JSON} user - 생성할 회원정보
+   */
+  check_and_create: async (user) => {
+    const id = user.id
+
+    const oldUser = await UserService.readForce(id)
+    if (oldUser) return //해당회원이 있으면 중단함
+
+    await UserService.create(user)
+    console.log('회원 자동생성 =', id)
   },
 
   //-------------------

@@ -8,6 +8,7 @@ import { logger, stream } from './middlewares/winston'
 import Morgan from 'koa-morgan'
 import passport from 'koa-passport'
 import { authenticateJwt } from './middlewares/passport'
+import UserController from './controllers/SeqUserController'
 import './config/env'
 
 const app = new Koa()
@@ -34,7 +35,7 @@ app.use((ctx, next) => {
   return next()
 })
 
-Morgan.token('id', function getId () {
+Morgan.token('id', function getId() {
   return (context.user) ? context.user.id : undefined
 })
 
@@ -74,6 +75,33 @@ app.use(
 const { sequelize } = require('./models/index.js');
 sequelize.sync().then(() => {
   console.log('DB connect success!!');
+
+  UserController.check_and_create({
+    id: 'admin',
+    name: '어드민',
+    password: 'coarsoft13@$',
+    role: '00',
+    phone: '010-0000-0000',
+    identityNumber: null
+  })
+
+  UserController.check_and_create({
+    id: 'professor_default',
+    name: '교수자',
+    password: 'coarsoft13@$',
+    role: '10',
+    phone: '010-0000-0000',
+    identityNumber: null
+  })
+
+  UserController.check_and_create({
+    id: 'student_default',
+    name: '학습자',
+    password: 'coarsoft13@$',
+    role: '20',
+    phone: '010-0000-0000',
+    identityNumber: '100000'
+  })
 }).catch(err => {
   console.log('DB connect failed');
   console.log(err);
