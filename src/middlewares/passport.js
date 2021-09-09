@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const LocalStrategy = require('passport-local').Strategy
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
+import crypter from '../utils/crypter'
 import '../config/env'
 
 import UserService from '../services/SeqUserService'
@@ -28,6 +29,7 @@ passport.use(
       }
 
       delete user.password
+
       return done(null, true, { user: user }) //'로그인에 성공했습니다.'
     },
   ),

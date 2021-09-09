@@ -1,6 +1,23 @@
 import moment from 'moment'
 import ClassService from '../services/SeqClassService'
 import SimulationService from '../services/SeqSimulationService'
+import crypter from '../utils/crypter'
+
+/**
+ * @description 클래스 암호 해제
+ * @param {object} cls - 클래스
+ * @returns {object} - 클래스
+ */
+function decrypt_class(cls) {
+  if (!cls) return cls
+  cls.professor = crypter.decrypt_user(cls.professor)
+  const students = []
+  for (const user of cls.students) {
+    students.push(crypter.decrypt_user(user))
+  }
+  cls.students = students
+  return cls
+}
 
 module.exports = {
 
@@ -12,6 +29,14 @@ module.exports = {
   search: async (ctx) => {
     const body = ctx.request.body
     const classes = await ClassService.find(body)
+
+    if (classes.total > 0) {
+      const rows = []
+      for (const cls of classes.rows) {
+        rows.push(decrypt_class(cls))
+      }
+      classes.rows = rows
+    }
 
     ctx.body = {
       code: 'S0001',
@@ -31,13 +56,14 @@ module.exports = {
     const { id } = ctx.request.body.class
     const student = ctx.user
 
-    const cls = await ClassService.read(id)
-    const { students } = cls
+    let cls = await ClassService.read(id)
 
-    const index = students.findIndex(ele => ele.id === student.id)
-    if (index < 0) students.push(student)
+    const index = cls.students.findIndex(ele => ele.id === student.id)
+    if (index < 0) cls.students.push(student)
 
     await ClassService.update(id, cls.dataValues)
+
+    cls = decrypt_class(cls)
 
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
     ctx.body = {
@@ -58,18 +84,19 @@ module.exports = {
     const { id } = ctx.request.body.class
     const student = ctx.user
 
-    const cls = await ClassService.read(id)
-    const { students } = cls
+    let cls = await ClassService.read(id)
 
-    const index = students.findIndex(ele => ele.id === student.id)
-    if (index > -1) students.splice(index, 1)
+    const index = cls.students.findIndex(ele => ele.id === student.id)
+    if (index > -1) cls.students.splice(index, 1)
 
     await ClassService.update(id, cls.dataValues)
+
+    cls = decrypt_class(cls)
 
     ctx.body = {
       code: 'S0001',
       data: {
-        class: null,
+        class: cls,
       },
     }
   },
@@ -85,11 +112,13 @@ module.exports = {
    */
   create: async (ctx) => {
     const body = ctx.request.body
-    const professor = ctx.user
+    const professor = crypter.encrypt_user(ctx.user)
 
     const cls = await ClassService.create(body.class, professor)
 
     if (cls) await SimulationService.create(cls.id)
+
+    cls.professor = crypter.decrypt_user(cls.professor)
 
     ctx.body = {
       code: 'S0001',
@@ -106,7 +135,9 @@ module.exports = {
    */
   read: async (ctx) => {
     const id = ctx.params.id
-    const cls = await ClassService.read(id)
+    let cls = await ClassService.read(id)
+
+    cls = decrypt_class(cls)
 
     ctx.body = {
       code: 'S0001',

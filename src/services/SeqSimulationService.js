@@ -3,7 +3,10 @@ import moment from 'moment'
 
 module.exports = {
 
-  async create (id) {
+  async create(id) {
+    const simulationFind = await Simulations.findOne({ where: { id } })
+    if (simulationFind) return simulationFind
+
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
     const simulation = {
       id: id,
@@ -48,11 +51,11 @@ module.exports = {
     return await Simulations.findOne({ where: { id } })
   },
 
-  async read (id) {
+  async read(id) {
     return await Simulations.findOne({ where: { id } })
   },
 
-  async update (id, simulation) {
+  async update(id, simulation) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
     simulation.updated_at = now
 
@@ -61,7 +64,7 @@ module.exports = {
     return await Simulations.findOne({ where: { id } })
   },
 
-  async delete (id) {
+  async delete(id) {
     return await Simulations.destroy({ where: { id } })
   },
 }

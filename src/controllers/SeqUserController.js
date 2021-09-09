@@ -3,8 +3,8 @@ import SettingService from '../services/SettingService'
 import passport from 'koa-passport'
 import jwt from 'jsonwebtoken'
 import moment from 'moment'
+import crypter from '../utils/crypter'
 
-const table = 'user'
 const bcrypt = require('bcryptjs')
 
 /**
@@ -63,6 +63,7 @@ module.exports = {
         if (isModify) {
           user = await UserService.update(user.id, user.dataValues)
         }
+        if (user) user = crypter.decrypt_user(user)
 
         const bearerToken = setBearerToken(user)
         ctx.body = {
@@ -83,7 +84,7 @@ module.exports = {
    */
   me: async (ctx, next) => {
     try {
-      const user = ctx.user
+      let user = ctx.user
       if (!user) {
         ctx.throw(404, {
           code: 'S9001',
@@ -91,6 +92,9 @@ module.exports = {
           ctx,
         })
       }
+
+      user = crypter.decrypt_user(user)
+
       ctx.body = {
         code: 'S0001',
         data: {
@@ -108,13 +112,18 @@ module.exports = {
    */
   search: async (ctx) => {
     const body = ctx.request.body
-    const user = await UserService.find(body)
+
+    if (body.user) body.user = crypter.encrypt_user(body.user)
+
+    let user = await UserService.find(body)
+
+    if (user) user = crypter.decrypt_user(user)
 
     ctx.body = {
       code: 'S0001',
       data: {
         total: user.total,
-        users: user,
+        user: user,
       },
     }
   },
@@ -127,7 +136,7 @@ module.exports = {
   changePassword: async (ctx, next) => {
     try {
       const id = ctx.params.id
-      const user = ctx.request.body.user
+      let user = ctx.request.body.user
 
       if (user.password !== null && user.password !== '' && user.password === user.new_password) {
         ctx.throw(403, { message: '변경하려는 패스워드가 기존과 같습니다.', ctx })
@@ -141,12 +150,17 @@ module.exports = {
         : null
       user.password = password
 
-      const result = await UserService.update(id, user)
-      if (result < 1) ctx.throw(409, '수정에 실패 했습니다.')
+      if (user) user = crypter.encrypt_user(user)
+
+      let user2 = await UserService.update(id, user)
+      if (user2 < 1) ctx.throw(409, '수정에 실패 했습니다.')
+      if (user2) user2 = crypter.decrypt_user(user2)
 
       ctx.body = {
         code: 'S0001',
-        data: result,
+        data: {
+          user: user2
+        }
       }
     } catch (e) {
       ctx.throw(403, { message: e.message, ctx })
@@ -165,6 +179,8 @@ module.exports = {
     const oldUser = await UserService.readForce(id)
     if (oldUser) return //해당회원이 있으면 중단함
 
+    if (user) user = crypter.encrypt_user(user)
+
     await UserService.create(user)
     console.log('회원 자동생성 =', id)
   },
@@ -176,13 +192,16 @@ module.exports = {
   /**
    * @description  회원 로그인
    * @param {object} ctx - 컨텍스트
-   * @param {object} next - 다음 미들웨어 전달용 함수
    */
   create: async (ctx) => {
     const body = ctx.request.body
-    const user = await UserService.create(body.user)
+
+    if (body.user) body.user = crypter.encrypt_user(body.user)
+
+    let user = await UserService.create(body.user)
     if (!user) ctx.throw(500, { message: '정보 생성에 실패 했습니다.' }, ctx)
 
+    if (user) user = crypter.decrypt_user(user)
     ctx.body = {
       code: 'S0001',
       data: {
@@ -194,18 +213,20 @@ module.exports = {
   /**
    * @description  회원 정보 변경
    * @param {object} ctx - 컨텍스트
-   * @param {object} next - 다음 미들웨어 전달용 함수
    */
   update: async (ctx) => {
     try {
       const id = ctx.params.id
       const body = ctx.request.body
 
+      if (body.user) body.user = crypter.encrypt_user(body.user)
+
       const result = await UserService.update(id, body.user)
       if (result < 1) ctx.throw(409, '수정에 실패 했습니다.')
 
-      const user = await UserService.read(id)
-      ctx.body = { code: 'S0001', [table]: user }
+      let user = await UserService.read(id)
+
+      if (user) user = crypter.decrypt_user(user)
 
       ctx.body = {
         code: 'S0001',
@@ -222,7 +243,6 @@ module.exports = {
   /**
    * @description  회원 삭제
    * @param {object} ctx - 컨텍스트
-   * @param {object} next - 다음 미들웨어 전달용 함수
    */
   delete: async (ctx) => {
     try {

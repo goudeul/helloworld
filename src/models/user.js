@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(128),
       comment: '성명',
       allowNull: false,
     },
@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     phone: {
-      type: DataTypes.STRING(16),
+      type: DataTypes.STRING(128),
       comment: '전화번호',
       allowNull: false,
     },
@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     identityNumber: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(128),
       comment: '학번',
       allowNull: true,
     },
