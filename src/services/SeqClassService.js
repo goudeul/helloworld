@@ -44,6 +44,12 @@ module.exports = {
     return await Classes.findOne({ where: { id } })
   },
 
+  /**
+   * @description 클래스 정보 수정
+   * @param {string} id - 클래스 아이디
+   * @param {class} cls - 클래스 구조체
+   * @returns {JSON} - 클래스 정보
+   */
   async update(id, cls) {
     const now = moment().format('YYYY-MM-DD HH:mm:ss')
     cls.updated_at = now
@@ -53,10 +59,20 @@ module.exports = {
     return await Classes.findOne({ where: { id } })
   },
 
+  /**
+   * @description 클래스 삭제
+   * @param {string} id - 클래스 아이디
+   * @returns {JSON} - 클래스 정보
+   */
   async delete(id) {
     return await Classes.destroy({ where: { id } })
   },
 
+  /**
+   * @description 클래스 검색정보
+   * @param {object} body - 컨텍스트
+   * @returns {JSON} - 검색한 클래스 정보
+   */
   async find(body) {
     const where = { [Op.and]: [] }
     if (body.filter) {
